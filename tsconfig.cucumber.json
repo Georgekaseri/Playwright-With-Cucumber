@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist-cucumber",
+    "types": ["node"]
+  },
+  "include": ["features/**/*.ts"]
+}

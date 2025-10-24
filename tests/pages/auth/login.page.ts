@@ -15,8 +15,11 @@ export class LoginPage extends BasePage {
     ]);
   }
 
-  async expectDashboard() {
-    await expect(this.page).toHaveURL(/dashboard/i);
-    await expect(this.page.getByText(/Dashboard/i)).toBeVisible();
-  }
+ async expectDashboard() {
+  await expect(this.page).toHaveURL(/dashboard/i);
+
+  const dashboardHeading = this.page.locator('h6.oxd-topbar-header-breadcrumb-module');
+  await expect(dashboardHeading).toBeVisible();
+  await expect(dashboardHeading).toHaveText('Dashboard');
+}
 }
