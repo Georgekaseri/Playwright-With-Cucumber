@@ -1,0 +1,27 @@
+name: BDD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  cucumber:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: npm ci
+      - name: Build Cucumber TS
+        run: npm run bdd:build
+      - name: Run BDD
+        run: npm run bdd:run
+      - name: Upload Cucumber HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: reports/cucumber-report.html
+          if-no-files-found: error

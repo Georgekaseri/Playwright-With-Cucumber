@@ -8,5 +8,11 @@
     "outDir": "dist-cucumber",
     "types": ["node"]
   },
-  "include": ["features/**/*.ts"]
+  "include": [
+     "features/**/*.ts",
+    "tests/pages/**/*.ts",     // <-- include POM
+    "tests/utils/**/*.ts"
+
+
+]
 }

@@ -1,18 +1,19 @@
 {
   "name": "playwright-with-cucumber",
   "version": "1.0.0",
-"scripts": {
-  "test": "playwright test",
-  "bdd:build": "tsc -p tsconfig.cucumber.json",
-  "bdd:run": "cucumber-js \"features/**/*.feature\" --require dist-cucumber/support/**/*.js --require dist-cucumber/steps/**/*.js --format progress --format html:reports/cucumber-report.html",
-  "bdd": "npm run bdd:build && npm run bdd:run"
-},
+  "scripts": {
+    "test": "playwright test",
+    "bdd:build": "tsc -p tsconfig.cucumber.json",
+    "bdd:run": "cucumber-js \"features/**/*.feature\" --require dist-cucumber/support/**/*.js --require dist-cucumber/steps/**/*.js --format progress --format html:reports/cucumber-report.html",
+    "bdd": "npm run bdd:build && npm run bdd:run"
+  },
   "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@cucumber/cucumber": "^12.2.0",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.1",

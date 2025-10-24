@@ -1,0 +1,21 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+  - script: npm ci
+    displayName: Install
+  - script: npm run bdd:build
+    displayName: Build Cucumber
+  - script: npm run bdd:run
+    displayName: Run BDD
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'reports/cucumber-report.html'
+      ArtifactName: 'cucumber-report'
+      publishLocation: 'Container'
