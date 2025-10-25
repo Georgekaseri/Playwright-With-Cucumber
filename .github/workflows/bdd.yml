@@ -1,31 +1,20 @@
-name: BDD
+name: Playwright-Cucumber BDD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, feature/* ]
   pull_request:
 
 jobs:
-  bdd:
+  run-bdd:
     runs-on: ubuntu-latest
-    env:
-      A11Y_SKIP_DOMAINS: 'opensource-demo.orangehrmlive.com'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -33,22 +22,41 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Build TypeScript
+      # Safety: ensure report folder exists even if tests fail early
+      - name: Prepare reports dir
+        run: mkdir -p reports
+
+      - name: Create .env from secrets
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
+          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
+          echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
+          echo "WROTE_ENV=1" >> $GITHUB_ENV
+
+      # Optional debug: show which vars are present (masked)
+      - name: Debug env presence (masked)
+        run: |
+          echo "Has BASE_URL? $([ -z \"$BASE_URL\" ] && echo NO || echo YES)"
+          echo "Has USER_EMAIL? $([ -z \"$USER_EMAIL\" ] && echo NO || echo YES)"
+          echo "Has USER_PASSWORD? $([ -z \"$USER_PASSWORD\" ] && echo NO || echo YES)"
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+
+      - name: Build Cucumber
         run: npm run bdd:build
 
-      - name: Run BDD
+      - name: Run Cucumber BDD tests
+        # Give more time and fail a11y only on critical (same as local)
+        env:
+          A11Y_FAIL_ON: critical
         run: npm run bdd:run
 
-      - name: Upload Cucumber report
+      - name: Upload HTML report (always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
           path: reports/cucumber-report.html
-
-      - name: Upload a11y results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: a11y-reports
-          path: reports/a11y/
+          if-no-files-found: warn
