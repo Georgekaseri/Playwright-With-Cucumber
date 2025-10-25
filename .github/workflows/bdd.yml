@@ -8,13 +8,19 @@ on:
 jobs:
   run-bdd:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+          
       - name: Install dependencies
         run: npm ci
+        
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
       - name: Create .env from secrets
@@ -22,12 +28,27 @@ jobs:
           echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
           echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
           echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
+          
       - name: Build Cucumber
         run: npm run bdd:build
+        
       - name: Run Cucumber BDD tests
         run: npm run bdd:run
-      - name: Upload HTML report
+        id: bdd-test
+        continue-on-error: true
+        
+      - name: Upload test results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-report
-          path: reports/cucumber-report.html
+          name: test-results
+          path: |
+            reports/cucumber-report.html
+            playwright-report/
+            test-results/
+            reports/html/
+          retention-days: 30
+          
+      - name: Check test results
+        if: steps.bdd-test.outcome == 'failure'
+        run: exit 1
