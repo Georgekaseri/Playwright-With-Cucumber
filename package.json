@@ -1,12 +1,13 @@
 {
   "name": "playwright-with-cucumber",
-  "version": "1.0.0",
-  "scripts": {
-    "test": "playwright test",
-    "bdd:build": "tsc -p tsconfig.cucumber.json",
-    "bdd:run": "cucumber-js \"features/**/*.feature\" --require dist-cucumber/support/**/*.js --require dist-cucumber/steps/**/*.js --format progress --format html:reports/cucumber-report.html",
-    "bdd": "npm run bdd:build && npm run bdd:run"
-  },
+  "version": "1.0.0","scripts": {
+  "bdd": "npm run bdd:build && npm run bdd:run",
+  "bdd:build": "tsc -p tsconfig.cucumber.json",
+  "bdd:run": "A11Y_FAIL_ON=critical cucumber-js --require \"dist-cucumber/features/**/*.js\" --format progress --format html:reports/cucumber-report.html \"features/**/*.feature\""
+
+
+},
+  
   "main": "index.js",
   "keywords": [],
   "author": "",

@@ -6,13 +6,11 @@
     "esModuleInterop": true,
     "strict": true,
     "outDir": "dist-cucumber",
+    "rootDir": ".",
     "types": ["node"]
   },
   "include": [
-     "features/**/*.ts",
-    "tests/pages/**/*.ts",     // <-- include POM
-    "tests/utils/**/*.ts"
-
-
-]
+    "features/**/*.ts",
+    "tests/pages/**/*.ts"
+  ]
 }
