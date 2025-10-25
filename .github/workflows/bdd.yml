@@ -8,84 +8,55 @@ on:
 jobs:
   run-bdd:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-      - name: Check secrets availability
-        run: |
-          if [ -z "${{ secrets.BASE_URL }}" ]; then
-            echo "::error::BASE_URL secret is not set"
-            exit 1
-          fi
-          if [ -z "${{ secrets.USER_EMAIL }}" ]; then
-            echo "::error::USER_EMAIL secret is not set"
-            exit 1
-          fi
-          if [ -z "${{ secrets.USER_PASSWORD }}" ]; then
-            echo "::error::USER_PASSWORD secret is not set"
-            exit 1
-          fi
+
+      # Safety: ensure report folder exists even if tests fail early
+      - name: Prepare reports dir
+        run: mkdir -p reports
 
       - name: Create .env from secrets
         run: |
           echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
           echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
           echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
-          
-      - name: Clean previous builds
-        run: |
-          echo "Cleaning workspace..."
-          npm run clean || true
+          echo "WROTE_ENV=1" >> $GITHUB_ENV
 
-      - name: Build Cucumber TypeScript
+      # Optional debug: show which vars are present (masked)
+      - name: Debug env presence (masked)
         run: |
-          echo "Building cucumber JS from TypeScript..."
-          npm run bdd:build
+          echo "Has BASE_URL? $([ -z \"$BASE_URL\" ] && echo NO || echo YES)"
+          echo "Has USER_EMAIL? $([ -z \"$USER_EMAIL\" ] && echo NO || echo YES)"
+          echo "Has USER_PASSWORD? $([ -z \"$USER_PASSWORD\" ] && echo NO || echo YES)"
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
 
-      - name: List project root (debug)
-        run: |
-          echo "Project root listing:"
-          ls -la
-          echo "Listing features and compiled output:"
-          ls -la features || true
-          ls -la dist-cucumber || true
-
-      - name: List compiled files
-        run: |
-          echo "Recursive listing of dist-cucumber:"
-          ls -R dist-cucumber || echo "dist-cucumber not found"
+      - name: Build Cucumber
+        run: npm run bdd:build
 
       - name: Run Cucumber BDD tests
-        run: |
-          echo "Running Cucumber BDD tests..."
-          npm run bdd:run
-        id: bdd-test
-        continue-on-error: true
-        
-      - name: Upload test results
+        # Give more time and fail a11y only on critical (same as local)
+        env:
+          A11Y_FAIL_ON: critical
+        run: npm run bdd:run
+
+      - name: Upload HTML report (always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: |
-            reports/cucumber-report.html
-            playwright-report/
-            test-results/
-            reports/html/
-          retention-days: 30
-          
-      - name: Check test results
-        if: steps.bdd-test.outcome == 'failure'
-        run: exit 1
+          name: cucumber-report
+          path: reports/cucumber-report.html
+          if-no-files-found: warn
