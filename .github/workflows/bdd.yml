@@ -44,11 +44,33 @@ jobs:
           echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
           echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
           
-      - name: Build Cucumber
-        run: npm run bdd:build
-        
+      - name: Clean previous builds
+        run: |
+          echo "Cleaning workspace..."
+          npm run clean || true
+
+      - name: Build Cucumber TypeScript
+        run: |
+          echo "Building cucumber JS from TypeScript..."
+          npm run bdd:build
+
+      - name: List project root (debug)
+        run: |
+          echo "Project root listing:"
+          ls -la
+          echo "Listing features and compiled output:"
+          ls -la features || true
+          ls -la dist-cucumber || true
+
+      - name: List compiled files
+        run: |
+          echo "Recursive listing of dist-cucumber:"
+          ls -R dist-cucumber || echo "dist-cucumber not found"
+
       - name: Run Cucumber BDD tests
-        run: npm run bdd:run
+        run: |
+          echo "Running Cucumber BDD tests..."
+          npm run bdd:run
         id: bdd-test
         continue-on-error: true
         
