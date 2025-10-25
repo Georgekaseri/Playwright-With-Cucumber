@@ -1,54 +1,33 @@
-name: BDD
+name: Playwright-Cucumber BDD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, feature/* ]
   pull_request:
 
 jobs:
-  bdd:
+  run-bdd:
     runs-on: ubuntu-latest
-    env:
-      A11Y_SKIP_DOMAINS: 'opensource-demo.orangehrmlive.com'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+          node-version: 20
       - name: Install dependencies
         run: npm ci
-
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-
-      - name: Build TypeScript
+      - name: Create .env from secrets
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
+          echo "USER_EMAIL=${{ secrets.USER_EMAIL }}" >> .env
+          echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> .env
+      - name: Build Cucumber
         run: npm run bdd:build
-
-      - name: Run BDD
+      - name: Run Cucumber BDD tests
         run: npm run bdd:run
-
-      - name: Upload Cucumber report
-        if: always()
+      - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
           path: reports/cucumber-report.html
-
-      - name: Upload a11y results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: a11y-reports
-          path: reports/a11y/
