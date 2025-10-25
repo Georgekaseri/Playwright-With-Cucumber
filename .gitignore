@@ -6,8 +6,10 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-node_modules/
 /dist-cucumber/
 /reports/
-/.env
-/.DS_Store
+/.env/
+/.DS_Store/
+/!*.config.js/
+/*.js/
+/reports/

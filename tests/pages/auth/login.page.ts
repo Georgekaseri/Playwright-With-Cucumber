@@ -10,13 +10,13 @@ export class LoginPage extends BasePage {
     await this.page.getByPlaceholder('Username').fill(email);
     await this.page.getByPlaceholder('Password').fill(password);
     await Promise.all([
-      this.page.waitForURL(/dashboard/i),
+      this.page.waitForURL(/dashboard/i, { timeout: 5000 }),
       this.page.getByRole('button', { name: /login/i }).click(),
     ]);
   }
 
  async expectDashboard() {
-  await expect(this.page).toHaveURL(/dashboard/i);
+  await expect(this.page).toHaveURL(/dashboard/i, { timeout: 5000 });
 
   const dashboardHeading = this.page.locator('h6.oxd-topbar-header-breadcrumb-module');
   await expect(dashboardHeading).toBeVisible();

@@ -1,26 +1,29 @@
 {
-  "name": "playwright-with-cucumber",
-  "version": "1.0.0","scripts": {
-  "bdd": "npm run bdd:build && npm run bdd:run",
-  "bdd:build": "tsc -p tsconfig.cucumber.json",
-  "bdd:run": "A11Y_FAIL_ON=critical cucumber-js --require \"dist-cucumber/features/**/*.js\" --format progress --format html:reports/cucumber-report.html \"features/**/*.feature\""
-
-
-},
-  
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@axe-core/playwright": "^4.11.0",
-    "@cucumber/cucumber": "^12.2.0",
-    "@playwright/test": "^1.56.1",
-    "@types/node": "^24.9.1",
-    "dotenv": "^17.2.3",
-    "playwright": "^1.56.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "name": "playwright-with-cucumber",
+    "version": "1.0.0",
+    "description": "Playwright + Cucumber example project",
+    "main": "index.js",
+    "engines": {
+      "node": ">=18"
+    },
+    "scripts": {
+      "clean": "rm -rf dist-cucumber reports/a11y reports/cucumber-report.html playwright-report test-results",
+      "test:playwright": "playwright test",
+      "bdd": "npm run bdd:build && npm run bdd:run",
+      "bdd:build": "tsc -p tsconfig.cucumber.json",
+      "bdd:run": "A11Y_FAIL_ON=critical cucumber-js --require \"dist-cucumber/features/**/*.js\" --format progress --format html:reports/cucumber-report.html \"features/**/*.feature\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "@axe-core/playwright": "^4.11.0",
+      "@cucumber/cucumber": "^12.2.0",
+      "@playwright/test": "^1.56.1",
+      "@types/node": "^24.9.1",
+      "dotenv": "^17.2.3",
+      "playwright": "^1.56.1",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.9.3"
   }
 }
