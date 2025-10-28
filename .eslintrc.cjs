@@ -12,5 +12,6 @@ module.exports = {
   ignorePatterns: ['dist', 'playwright-report', 'test-results'],
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'playwright/expect-expect': 'off', // Disabled - we use assertions in page object methods
   },
 };
