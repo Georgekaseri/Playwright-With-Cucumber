@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": ["node", "@playwright/test"],
+    "strict": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "playwright.config.ts"]
+}
