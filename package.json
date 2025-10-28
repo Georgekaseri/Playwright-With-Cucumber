@@ -68,7 +68,6 @@
     "find-up": "^5.0.0",
     "flat-cache": "^4.0.1",
     "flatted": "^3.3.3",
-    "fsevents": "^2.3.2",
     "glob-parent": "^6.0.2",
     "globals": "^14.0.0",
     "graphemer": "^1.4.0",
@@ -124,6 +123,9 @@
     "word-wrap": "^1.2.5",
     "yn": "^3.1.1",
     "yocto-queue": "^0.1.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   },
   "description": ""
 }
