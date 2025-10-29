@@ -1,33 +1,105 @@
 name: e2e
+
 on:
   pull_request:
     branches: ["main"]
   push:
-    branches: ["**"]
+    branches: ["main"]
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  playwright:
+    name: Playwright tests
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
+
       - name: Install deps
-        run: |
-          npm ci
-          npx playwright install --with-deps
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
       - name: Lint
         run: npm run lint
-      - name: Run tests
+
+      - name: Run Playwright tests
         env:
-          ORANGEHRM_BASE_URL: ${{ secrets.ORANGEHRM_BASE_URL }}
-          ORANGEHRM_USERNAME: ${{ secrets.ORANGEHRM_USERNAME }}
-          ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
+          ORANGEHRM_BASE_URL: "https://opensource-demo.orangehrmlive.com"
+          ORANGEHRM_USERNAME: "Admin"
+          ORANGEHRM_PASSWORD: "admin123"
         run: npm test
+
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report
+
+  bdd:
+    name: Cucumber BDD
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: playwright
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # Choose tags based on event: PR => smoke; push to main => all
+      - name: Run BDD (smoke on PR, all on main)
+        env:
+          ORANGEHRM_BASE_URL: "https://opensource-demo.orangehrmlive.com"
+          ORANGEHRM_USERNAME: "Admin"
+          ORANGEHRM_PASSWORD: "admin123"
+          CI: "true"
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            npm run bdd:smoke
+          else
+            npm run bdd:all
+          fi
+
+      - name: Generate BDD HTML report
+        if: always()
+        run: npm run bdd:report
+
+      - name: Upload BDD report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-bdd-report
+          path: reports/cucumber-html
