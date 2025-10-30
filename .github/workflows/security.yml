@@ -1,15 +1,12 @@
 name: Security & Compliance
 
-# Temporarily disabled to fix issues
 on:
   workflow_dispatch:
-  # schedule:
-  #   # Run security scans daily
-  #   - cron: "0 6 * * *"
-  # push:
-  #   branches: [main]
-  # pull_request:
-  #   branches: [main]
+  schedule:
+    # Run security scans daily
+    - cron: "0 6 * * *"
+  push:
+    branches: [main]
 
 permissions:
   contents: read
