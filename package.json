@@ -70,7 +70,7 @@
     "brace-expansion": "^2.0.2",
     "braces": "^3.0.3",
     "callsites": "^3.1.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.6.2",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "concat-map": "^0.0.1",
