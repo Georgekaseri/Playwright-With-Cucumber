@@ -79,7 +79,7 @@
     "debug": "^4.4.3",
     "deep-is": "^0.1.4",
     "diff": "^4.0.2",
-    "escape-string-regexp": "^4.0.0",
+    "escape-string-regexp": "^5.0.0",
     "eslint-scope": "^8.4.0",
     "eslint-visitor-keys": "^3.4.3",
     "espree": "^10.4.0",
