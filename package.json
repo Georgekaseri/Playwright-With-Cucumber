@@ -21,6 +21,7 @@
     "bdd:report": "node scripts/generate-cucumber-report.js",
     "test:api": "npx playwright test --grep @api",
     "test:api:smoke": "npx playwright test --grep '@api.*@smoke|@smoke.*@api'",
+    "test:unit": "echo 'Unit tests not implemented yet' && exit 0",
     "test:health:quick": "npx playwright test --grep '@health.*@quick|@quick.*@health'",
     "test:health:full": "npx playwright test --grep @health",
     "test:performance": "npx playwright test --grep @performance",
@@ -40,6 +41,7 @@
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^12.2.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.56.1",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
@@ -49,6 +51,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.2.2",
     "joi": "^18.0.1",
+    "license-checker": "^25.0.1",
     "multiple-cucumber-html-reporter": "^3.9.3",
     "playwright": "^1.56.1",
     "prettier": "^3.6.2",

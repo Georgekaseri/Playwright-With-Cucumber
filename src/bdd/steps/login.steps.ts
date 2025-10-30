@@ -14,7 +14,7 @@ When(
   "I login with username {string} and password {string}",
   async function (this: CustomWorld, username: string, password: string) {
     await this.loginPage.login(username, password);
-  }
+  },
 );
 
 Then("I should see the dashboard", async function (this: CustomWorld) {

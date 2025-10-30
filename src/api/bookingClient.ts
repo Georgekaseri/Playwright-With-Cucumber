@@ -16,7 +16,7 @@ export interface BookingPayload {
 export class BookingClient {
   constructor(
     private request: APIRequestContext,
-    private baseURL: string
+    private baseURL: string,
   ) {}
 
   async createBooking(payload: BookingPayload) {
@@ -46,7 +46,7 @@ export class BookingClient {
     const { error } = schema.validate(body, { abortEarly: false });
     expect(
       error,
-      `Schema validation failed: ${error?.message}`
+      `Schema validation failed: ${error?.message}`,
     ).toBeUndefined();
 
     return body;
