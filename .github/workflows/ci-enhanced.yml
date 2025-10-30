@@ -96,7 +96,7 @@ jobs:
         run: npm run test:unit || echo "No unit tests yet"
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: always()
 
   # API Tests - fastest feedback
