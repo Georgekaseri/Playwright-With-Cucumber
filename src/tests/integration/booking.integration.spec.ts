@@ -8,7 +8,7 @@ test.describe("@integration API+UI Integration Tests", () => {
   test("@smoke should create booking via API and verify data integrity", async ({
     page,
   }) => {
-    // 1️⃣ Create booking using our API client
+    // Create booking using our API client
     const booking = await createBookingViaAPI();
 
     // Verify booking was created successfully
@@ -18,7 +18,7 @@ test.describe("@integration API+UI Integration Tests", () => {
 
     console.log(`✅ Booking created via API with ID: ${booking.bookingid}`);
 
-    // 2️⃣ Login to UI to demonstrate API+UI workflow
+    // Login to UI to demonstrate API+UI workflow
     const login = new LoginPage(page);
     await login.goto();
     await login.login(TEST_ENV.username, TEST_ENV.password);
@@ -26,7 +26,7 @@ test.describe("@integration API+UI Integration Tests", () => {
     const dash = new DashboardPage(page);
     await dash.assertLoaded();
 
-    // 3️⃣ Mock booking data display in UI (since OrangeHRM doesn't have booking management)
+    // Mock booking data display in UI (since OrangeHRM doesn't have booking management)
     if (process.env.MOCK === "1") {
       console.log("⚙️ MOCK mode enabled — simulating booking display in UI");
 
@@ -44,14 +44,14 @@ test.describe("@integration API+UI Integration Tests", () => {
           id: booking.bookingid,
           firstname: booking.booking.firstname,
           lastname: booking.booking.lastname,
-        },
+        }
       );
 
       // Verify the mocked booking display
       const bookingDisplay = page.locator("#api-booking-display");
       await expect(bookingDisplay).toBeVisible();
       await expect(bookingDisplay).toContainText(
-        `API Booking: Integration Test (ID: ${booking.bookingid})`,
+        `API Booking: Integration Test (ID: ${booking.bookingid})`
       );
 
       console.log("✅ Mock booking display verified in UI");
@@ -65,7 +65,7 @@ test.describe("@integration API+UI Integration Tests", () => {
     }
 
     console.log(
-      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
+      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`
     );
   });
 });
