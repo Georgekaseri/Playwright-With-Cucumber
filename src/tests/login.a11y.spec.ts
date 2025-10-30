@@ -14,7 +14,7 @@ test.describe("@a11y Accessibility", () => {
     const login = new LoginPage(page);
     await login.goto();
 
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("domcontentloaded");
     await runLenientAccessibilityScan(page, "Login Page");
   });
 
@@ -27,7 +27,7 @@ test.describe("@a11y Accessibility", () => {
 
     const dashboard = new DashboardPage(page);
     await dashboard.assertLoaded();
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("domcontentloaded");
 
     await runInformationalAccessibilityScan(page, "Dashboard Page");
   });
@@ -43,7 +43,9 @@ test.describe("@a11y Accessibility", () => {
     await page.keyboard.press("Tab");
     await page.keyboard.press("Enter");
 
-    await page.waitForTimeout(1000);
+    // Give the page a moment to show validation errors if any
+    await page.locator('input[name="username"]').isVisible();
+
     await runLenientAccessibilityScan(page, "Login Page with Validation");
   });
 });

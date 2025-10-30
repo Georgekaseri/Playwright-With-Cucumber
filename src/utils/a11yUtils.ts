@@ -4,7 +4,7 @@ import { createHtmlReport } from "axe-html-reporter";
 
 export async function runLenientAccessibilityScan(
   page: Page,
-  context = "page"
+  context = "page",
 ) {
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -14,7 +14,7 @@ export async function runLenientAccessibilityScan(
 
   if (results.violations.length) {
     console.log(
-      `${results.violations.length} accessibility issues found in ${context}`
+      `${results.violations.length} accessibility issues found in ${context}`,
     );
 
     const critical = results.violations.filter((v) => v.impact === "critical");
@@ -41,7 +41,7 @@ export async function runLenientAccessibilityScan(
       reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
     });
     console.log(
-      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
+      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`,
     );
   } catch (error) {
     console.log(`Could not generate HTML report: ${error}`);
@@ -49,11 +49,11 @@ export async function runLenientAccessibilityScan(
 
   // Only fail on critical issues
   const criticalOnly = results.violations.filter(
-    (v) => v.impact === "critical"
+    (v) => v.impact === "critical",
   );
   expect(
     criticalOnly.length,
-    `${criticalOnly.length} critical accessibility issues detected in ${context}`
+    `${criticalOnly.length} critical accessibility issues detected in ${context}`,
   ).toBe(0);
 
   return results;
@@ -61,7 +61,7 @@ export async function runLenientAccessibilityScan(
 
 export async function runInformationalAccessibilityScan(
   page: Page,
-  context = "page"
+  context = "page",
 ) {
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -71,7 +71,7 @@ export async function runInformationalAccessibilityScan(
 
   if (results.violations.length) {
     console.log(
-      `${results.violations.length} accessibility issues found in ${context} (for tracking)`
+      `${results.violations.length} accessibility issues found in ${context} (for tracking)`,
     );
 
     const critical = results.violations.filter((v) => v.impact === "critical");
@@ -98,7 +98,7 @@ export async function runInformationalAccessibilityScan(
       reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
     });
     console.log(
-      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
+      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`,
     );
   } catch (error) {
     console.log(`Could not generate HTML report: ${error}`);
