@@ -129,7 +129,7 @@ jobs:
 
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: test-suite-${{ needs.build.outputs.version }}
 
@@ -166,7 +166,7 @@ jobs:
 
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: test-suite-${{ needs.build.outputs.version }}
 
