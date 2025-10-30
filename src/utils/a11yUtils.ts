@@ -1,6 +1,5 @@
 import { Page, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { createHtmlReport } from "axe-html-reporter";
 
 export async function runLenientAccessibilityScan(
   page: Page,
@@ -33,18 +32,14 @@ export async function runLenientAccessibilityScan(
     console.log(`No accessibility violations in ${context}`);
   }
 
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
+  // Log summary
+  console.log(`Accessibility scan completed for ${context}`);
+  if (results.violations.length === 0) {
+    console.log(`✅ No accessibility violations found in ${context}`);
+  } else {
     console.log(
-      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`,
+      `⚠️ ${results.violations.length} accessibility issues found in ${context}`,
     );
-  } catch (error) {
-    console.log(`Could not generate HTML report: ${error}`);
   }
 
   // Only fail on critical issues
@@ -90,18 +85,14 @@ export async function runInformationalAccessibilityScan(
     console.log(`No accessibility violations in ${context}`);
   }
 
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
+  // Log summary
+  console.log(`Accessibility scan completed for ${context} (informational)`);
+  if (results.violations.length === 0) {
+    console.log(`✅ No accessibility violations found in ${context}`);
+  } else {
     console.log(
-      `Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`,
+      `📊 ${results.violations.length} accessibility issues found in ${context} (for tracking)`,
     );
-  } catch (error) {
-    console.log(`Could not generate HTML report: ${error}`);
   }
 
   console.log(`Accessibility audit complete for ${context} - no test failures`);

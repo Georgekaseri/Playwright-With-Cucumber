@@ -63,7 +63,7 @@ test.describe("System Health Checks @health", () => {
 // Staging environment specific tests
 test.describe("Staging Environment Health @staging", () => {
   test.skip(
-    ({}, _testInfo) => process.env.TEST_ENV !== "staging",
+    process.env.TEST_ENV !== "staging",
     "Staging tests only run in staging environment",
   );
 
@@ -79,7 +79,7 @@ test.describe("Staging Environment Health @staging", () => {
 // Production environment monitoring
 test.describe("Production Environment Health @production", () => {
   test.skip(
-    ({}, _testInfo) => process.env.TEST_ENV !== "production",
+    process.env.TEST_ENV !== "production",
     "Production tests only run in production environment",
   );
 

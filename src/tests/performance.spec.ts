@@ -116,7 +116,7 @@ test.describe("Performance Tests @performance", () => {
       );
 
       // Simulate Core Web Vitals collection
-      const performanceMetrics = await page.evaluate(() => {
+      const performanceMetrics = (await page.evaluate(() => {
         return new Promise((resolve) => {
           // Simplified performance metrics collection
           const navigation = performance.getEntriesByType(
@@ -136,13 +136,18 @@ test.describe("Performance Tests @performance", () => {
                 ?.startTime || 0,
           });
         });
-      });
+      })) as {
+        domContentLoaded: number;
+        loadComplete: number;
+        firstContentfulPaint: number;
+        largestContentfulPaint: number;
+      };
 
       console.log("Performance Metrics:", performanceMetrics);
 
       // Basic Core Web Vitals thresholds
-      expect(performanceMetrics.domContentLoaded).toBeLessThan(2500); // 2.5s for good LCP
-      expect(performanceMetrics.loadComplete).toBeLessThan(5000); // 5s total load time
+      expect(performanceMetrics.domContentLoaded).toBeLessThan(2500);
+      expect(performanceMetrics.loadComplete).toBeLessThan(5000);
     });
   });
 });
