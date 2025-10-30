@@ -28,7 +28,7 @@ Given(
       },
       additionalneeds: "Breakfast",
     };
-  }
+  },
 );
 
 When(
@@ -42,9 +42,9 @@ When(
 
     this.bookingAPI = new BookingClient(this.request, this.baseURL);
     this.bookingResponse = await this.bookingAPI.createBooking(
-      this.bookingPayload
+      this.bookingPayload,
     );
-  }
+  },
 );
 
 Then(
@@ -53,7 +53,7 @@ Then(
     expect(this.bookingResponse).toBeDefined();
     expect(this.bookingResponse).toHaveProperty("bookingid");
     expect(this.bookingResponse).toHaveProperty("booking");
-  }
+  },
 );
 
 Then(
@@ -64,7 +64,7 @@ Then(
 
     // Store for later use
     this.createdBookingId = this.bookingResponse.bookingid;
-  }
+  },
 );
 
 Then(
@@ -81,7 +81,7 @@ Then(
     expect(booking.additionalneeds).toBe("Breakfast");
 
     console.log(`✅ Created booking with ID: ${this.createdBookingId}`);
-  }
+  },
 );
 
 // Retrieve booking scenario
@@ -99,12 +99,12 @@ Given(
     const payload = BookingClient.createGeorgeKaseriBooking();
     this.bookingResponse = await this.bookingAPI.createBooking(payload);
     this.createdBookingId = this.bookingResponse.bookingid;
-  }
+  },
 );
 
 When("I retrieve the booking by ID", async function (this: CustomWorld) {
   this.retrievedBooking = await this.bookingAPI.getBooking(
-    this.createdBookingId
+    this.createdBookingId,
   );
 });
 
@@ -114,7 +114,7 @@ Then(
     expect(this.retrievedBooking).toBeDefined();
     expect(this.retrievedBooking.firstname).toBe("George");
     expect(this.retrievedBooking.lastname).toBe("Kaseri");
-  }
+  },
 );
 
 Then(
@@ -127,9 +127,9 @@ Then(
     expect(this.retrievedBooking.additionalneeds).toBe("Breakfast");
 
     console.log(
-      `✅ Successfully retrieved booking ID: ${this.createdBookingId}`
+      `✅ Successfully retrieved booking ID: ${this.createdBookingId}`,
     );
-  }
+  },
 );
 
 // Error handling scenario
@@ -160,14 +160,14 @@ When(
       this.bookingAPI = new BookingClient(this.request, this.baseURL);
       // Force the invalid payload to be passed (this is expected to fail)
       await this.bookingAPI.createBooking(
-        this.invalidPayload as BookingPayload
+        this.invalidPayload as BookingPayload,
       );
       this.requestSucceeded = true;
     } catch (error) {
       this.requestError = error as Error;
       this.requestSucceeded = false;
     }
-  }
+  },
 );
 
 Then("the API should reject the request", function (this: CustomWorld) {
@@ -177,7 +177,7 @@ Then("the API should reject the request", function (this: CustomWorld) {
 Then("an appropriate error should be returned", function (this: CustomWorld) {
   expect(this.requestError).toBeDefined();
   console.log(
-    `✅ Properly handled invalid request with error: ${this.requestError.message}`
+    `✅ Properly handled invalid request with error: ${this.requestError.message}`,
   );
 });
 
@@ -196,7 +196,7 @@ When("I submit the booking request", async function (this: CustomWorld) {
   this.bookingAPI = new BookingClient(this.request, this.baseURL);
   this.startTime = Date.now();
   this.bookingResponse = await this.bookingAPI.createBooking(
-    this.bookingPayload
+    this.bookingPayload,
   );
   this.duration = Date.now() - this.startTime;
 });
