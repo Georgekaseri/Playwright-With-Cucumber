@@ -14,7 +14,10 @@ test.describe("@a11y Accessibility", () => {
     const login = new LoginPage(page);
     await login.goto();
 
-    await page.waitForLoadState("domcontentloaded");
+    // Wait for page to fully load
+    await page.waitForLoadState("networkidle");
+
+    // Use lenient scan for external OrangeHRM site (only fail on critical issues)
     await runLenientAccessibilityScan(page, "Login Page");
   });
 
@@ -25,10 +28,12 @@ test.describe("@a11y Accessibility", () => {
     await login.goto();
     await login.login(TEST_ENV.username, TEST_ENV.password);
 
+    // Wait for dashboard to fully load before scanning
     const dashboard = new DashboardPage(page);
     await dashboard.assertLoaded();
-    await page.waitForLoadState("domcontentloaded");
+    await page.waitForLoadState("networkidle");
 
+    // Use informational scan for Dashboard - tracks issues without failing tests
     await runInformationalAccessibilityScan(page, "Dashboard Page");
   });
 
@@ -38,14 +43,14 @@ test.describe("@a11y Accessibility", () => {
     const login = new LoginPage(page);
     await login.goto();
 
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Enter");
+    // Test keyboard navigation
+    await page.keyboard.press("Tab"); // Focus username
+    await page.keyboard.press("Tab"); // Focus password
+    await page.keyboard.press("Tab"); // Focus login button
+    await page.keyboard.press("Enter"); // Try to submit
 
-    // Give the page a moment to show validation errors if any
-    await page.locator('input[name="username"]').isVisible();
-
+    // Should show validation message for empty fields
+    await page.waitForTimeout(1000);
     await runLenientAccessibilityScan(page, "Login Page with Validation");
   });
 });

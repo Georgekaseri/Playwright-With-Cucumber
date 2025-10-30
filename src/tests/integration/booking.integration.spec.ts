@@ -44,14 +44,14 @@ test.describe("@integration API+UI Integration Tests", () => {
           id: booking.bookingid,
           firstname: booking.booking.firstname,
           lastname: booking.booking.lastname,
-        },
+        }
       );
 
       // Verify the mocked booking display
       const bookingDisplay = page.locator("#api-booking-display");
       await expect(bookingDisplay).toBeVisible();
       await expect(bookingDisplay).toContainText(
-        `API Booking: Integration Test (ID: ${booking.bookingid})`,
+        `API Booking: Integration Test (ID: ${booking.bookingid})`
       );
 
       console.log("✅ Mock booking display verified in UI");
@@ -65,7 +65,7 @@ test.describe("@integration API+UI Integration Tests", () => {
     }
 
     console.log(
-      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
+      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`
     );
   });
 });
