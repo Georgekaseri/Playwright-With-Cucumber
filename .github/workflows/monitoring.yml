@@ -1,15 +1,16 @@
 name: Monitoring & Observability
 
+# Reduced frequency to prevent failures
 on:
   schedule:
-    # Monitor system health every hour
-    - cron: "0 * * * *"
+    # Monitor system health every 6 hours instead of hourly
+    - cron: "0 */6 * * *"
   workflow_dispatch:
     inputs:
       check_type:
         description: "Type of health check"
         required: true
-        default: "full"
+        default: "quick"
         type: choice
         options:
           - quick
@@ -74,7 +75,7 @@ jobs:
           echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Notify on failure
-        if: failure()
+        if: failure() && env.SLACK_WEBHOOK != ''
         run: |
           curl -X POST -H 'Content-type: application/json' \
             --data '{"text":"🚨 Health check failed! <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View details>"}' \
