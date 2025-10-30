@@ -18,5 +18,5 @@ report.generate({
   },
 });
 console.log(
-  "Cucumber HTML report generated at reports/cucumber-html/index.html"
+  "Cucumber HTML report generated at reports/cucumber-html/index.html",
 );
