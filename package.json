@@ -47,6 +47,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@cucumber/cucumber": "^12.2.0",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.56.1",
