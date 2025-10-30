@@ -1,6 +1,5 @@
 import { Page, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { createHtmlReport } from "axe-html-reporter";
 
 /**
  * Basic a11y scan with strict checking
@@ -19,16 +18,12 @@ export async function runAccessibilityScan(page: Page, context = "page") {
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate report
-  createHtmlReport({
-    results,
-    options: { projectKey: "OrangeHRM" },
-    outputDir: "reports/a11y",
-    reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-  });
-  console.log(
-    `📄 Accessibility report saved: reports/a11y/${context}-a11y-report.html`
-  );
+  // Log summary instead of HTML report
+  console.log(`📄 Accessibility scan completed for ${context}`);
+  console.log(`🔍 Found ${results.violations.length} violations`);
+  if (results.violations.length > 0) {
+    console.log("❌ Violations:", JSON.stringify(results.violations, null, 2));
+  }
 
   // Fail on critical/serious issues
   const critical = results.violations.filter(
@@ -92,19 +87,14 @@ export async function runLenientAccessibilityScan(
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate HTML report
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
+  // Log accessibility results instead of HTML report
+  console.log(`📄 Lenient accessibility scan completed for ${context}`);
+  console.log(`� Found ${results.violations.length} critical violations`);
+  if (results.violations.length > 0) {
     console.log(
-      `📄 Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
+      "❌ Critical violations:",
+      JSON.stringify(results.violations, null, 2)
     );
-  } catch (error) {
-    console.log(`⚠️  Could not generate HTML report: ${error}`);
   }
 
   // Only fail on critical issues
@@ -171,19 +161,13 @@ export async function runInformationalAccessibilityScan(
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate HTML report
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
-    console.log(
-      `📄 Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
-    );
-  } catch (error) {
-    console.log(`⚠️  Could not generate HTML report: ${error}`);
+  // Log accessibility results instead of HTML report
+  console.log(`📄 Informational accessibility scan completed for ${context}`);
+  console.log(
+    `� Found ${results.violations.length} violations (informational only)`
+  );
+  if (results.violations.length > 0) {
+    console.log("ℹ️  Violations:", JSON.stringify(results.violations, null, 2));
   }
 
   // Don't fail the test - just log results for tracking

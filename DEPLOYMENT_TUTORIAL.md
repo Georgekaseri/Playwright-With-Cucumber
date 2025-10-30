@@ -9,14 +9,16 @@ Go to: `https://github.com/Georgekaseri/Playwright-With-Cucumber/settings/enviro
 **Create two environments:**
 
 #### **Staging Environment:**
+
 ```
 Name: staging
-Protection rules: 
+Protection rules:
 - No restrictions (auto-deploy)
 - Deployment branches: main branch only
 ```
 
 #### **Production Environment:**
+
 ```
 Name: production
 Protection rules:
@@ -30,6 +32,7 @@ Protection rules:
 ## 🚀 **Practice Exercise 1: Staging-First Deployment**
 
 ### **Step 1: Make a change**
+
 ```bash
 # In your terminal
 cd /Users/george/Documents/Playwright-Cucumber
@@ -41,20 +44,23 @@ git commit -m "test: staging deployment workflow"
 ```
 
 ### **Step 2: Push to trigger staging**
+
 ```bash
 git push origin main
 ```
 
 ### **Step 3: Watch the workflow**
+
 1. Go to: `https://github.com/Georgekaseri/Playwright-With-Cucumber/actions`
 2. You should see "Continuous Deployment" running
 3. Watch these stages:
    - ✅ Build Application
-   - ✅ Security Scan  
+   - ✅ Security Scan
    - ✅ Deploy to Staging
    - ⏸️ Deploy to Production (waiting)
 
 ### **What happens:**
+
 - Your CD workflow automatically deploys to staging
 - Runs health checks and smoke tests
 - Stops before production (no tag created yet)
@@ -64,13 +70,16 @@ git push origin main
 ## 🏷️ **Practice Exercise 2: Tag-Based Release**
 
 ### **Step 1: Test staging**
+
 After staging deploys, verify it worked:
+
 ```bash
-# Check your staging environment 
+# Check your staging environment
 echo "✅ Staging looks good, ready for production"
 ```
 
 ### **Step 2: Create a release tag**
+
 ```bash
 # Create your first release
 git tag v1.0.0
@@ -78,13 +87,15 @@ git push origin v1.0.0
 ```
 
 ### **Step 3: Watch production approval**
+
 1. Go to GitHub Actions
 2. You'll see "Deploy to Production" waiting for approval
 3. **Click "Review deployments"**
-4. **Check "production"** 
+4. **Check "production"**
 5. **Click "Approve and deploy"**
 
 ### **What happens:**
+
 - Creates a GitHub release automatically
 - Deploys to production after your approval
 - Runs post-deployment verification
@@ -95,6 +106,7 @@ git push origin v1.0.0
 ## 🔒 **Practice Exercise 3: Manual Production Approval**
 
 ### **Step 1: Create another change**
+
 ```bash
 echo "# Another test $(date)" >> DEPLOYMENT_TEST.md
 git add DEPLOYMENT_TEST.md
@@ -103,12 +115,14 @@ git push origin main  # This only deploys to staging
 ```
 
 ### **Step 2: Create release**
+
 ```bash
 git tag v1.0.1
 git push origin v1.0.1
 ```
 
 ### **Step 3: Practice approval process**
+
 1. **DON'T approve immediately**
 2. Go to staging environment (if you had one set up)
 3. Test manually
@@ -116,8 +130,9 @@ git push origin v1.0.1
 5. **Only then approve production**
 
 ### **Approval checklist:**
+
 - [ ] Staging tests passed?
-- [ ] No errors in logs?  
+- [ ] No errors in logs?
 - [ ] Performance looks good?
 - [ ] Ready for users?
 
@@ -126,6 +141,7 @@ git push origin v1.0.1
 ## 🚨 **Practice Exercise 4: Emergency Override**
 
 ### **Step 1: Trigger emergency deploy**
+
 1. Go to: `https://github.com/Georgekaseri/Playwright-With-Cucumber/actions`
 2. Click "Continuous Deployment" workflow
 3. Click "Run workflow" button
@@ -135,18 +151,22 @@ git push origin v1.0.1
    - (This option bypasses normal staging process)
 
 ### **Step 2: Add emergency reason**
+
 In a real emergency, you'd specify:
+
 ```
 Reason: "Critical security patch for authentication bypass"
 ```
 
 ### **When to use:**
+
 - 🚨 Security vulnerabilities
-- 🚨 Data corruption bugs  
+- 🚨 Data corruption bugs
 - 🚨 Service outages
 - 🚨 Compliance issues
 
 **⚠️ Never use for:**
+
 - Regular features
 - Minor bugs
 - Performance improvements
@@ -159,6 +179,7 @@ Reason: "Critical security patch for authentication bypass"
 Your workflow already includes post-deployment checks. Let's enhance them:
 
 ### **Step 1: Add health check script**
+
 ```bash
 # Create a health check script
 cat > scripts/health-check.js << 'EOF'
@@ -189,7 +210,7 @@ const endpoints = [
 
 async function runHealthChecks() {
   console.log('🔍 Running post-deployment health checks...');
-  
+
   try {
     for (const endpoint of endpoints) {
       await healthCheck(endpoint);
@@ -210,12 +231,14 @@ chmod +x scripts/health-check.js
 ```
 
 ### **Step 2: Add to package.json**
+
 ```bash
 # Add health check script
 npm pkg set scripts.health:check="node scripts/health-check.js"
 ```
 
 ### **Step 3: Test it locally**
+
 ```bash
 npm run health:check
 ```
@@ -258,11 +281,13 @@ git push origin v1.1.0
 ## 📊 **Monitoring Your Deployments**
 
 ### **Key URLs to bookmark:**
+
 1. **Actions**: `https://github.com/Georgekaseri/Playwright-With-Cucumber/actions`
 2. **Environments**: `https://github.com/Georgekaseri/Playwright-With-Cucumber/deployments`
 3. **Releases**: `https://github.com/Georgekaseri/Playwright-With-Cucumber/releases`
 
 ### **What to watch:**
+
 - ✅ **Green builds** = Safe to deploy
 - ⏱️ **Pending approval** = Your decision needed
 - ❌ **Failed builds** = Don't deploy, investigate

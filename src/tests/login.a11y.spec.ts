@@ -51,7 +51,9 @@ test.describe("@a11y Accessibility", () => {
 
     // Should show validation message for empty fields
     // Use locator instead of waitForSelector to avoid linting warnings
-    const errorMessage = page.locator(".oxd-alert--error, .oxd-input-field-error-message");
+    const errorMessage = page.locator(
+      ".oxd-alert--error, .oxd-input-field-error-message",
+    );
     try {
       await errorMessage.waitFor({ timeout: 3000 });
     } catch {
