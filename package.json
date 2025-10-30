@@ -27,6 +27,8 @@
     "test:health:quick": "npx playwright test --grep '@health.*@quick|@quick.*@health'",
     "test:health:full": "npx playwright test --grep @health",
     "test:performance": "npx playwright test --grep @performance",
+    "test:a11y": "mkdir -p reports/a11y && npx playwright test --grep @a11y",
+    "test:a11y:smoke": "mkdir -p reports/a11y && npx playwright test --grep '@a11y.*@smoke|@smoke.*@a11y'",
     "test:staging": "cross-env TEST_ENV=staging npx playwright test --grep @staging",
     "test:production": "cross-env TEST_ENV=production npx playwright test --grep @production",
     "build": "echo 'Build step - add your build logic here'",
@@ -37,6 +39,7 @@
     "ci:validate": "npm run lint && npm run format:check && npm run security:audit",
     "ci:test:all": "npm run test && npm run bdd:all && npm run test:api",
     "ci:test:smoke": "npm run test -- --grep @smoke && npm run bdd:smoke && npm run test:api:smoke",
+    "ci:test:a11y": "npm run test:a11y",
     "ci:test:integration": "npm run test:integration && npm run test:integration:mock"
   },
   "keywords": [],
