@@ -1,4 +1,24 @@
-# 🚀 Enhanced CI/CD Pipeline Setup Guide
+# 🚀 Enhanced CI/CD Pipeline - Integration Tests Added ✅
+
+## ✅ Latest Enhancement: Integration Job Added
+
+### **New Integration Job in CI Pipeline** (.github/workflows/ci.yml)
+
+```yaml
+integration:
+  name: API+UI Integration
+  runs-on: ubuntu-latest
+  needs: [validation, api-tests]
+  timeout-minutes: 25
+  if: always() && needs.validation.result == 'success'
+```
+
+**🎯 Key Features:**
+
+- ✅ **Smart Conditional Execution**: Runs on main/develop pushes + manual trigger
+- ✅ **Dual Mode Testing**: Both real + mock API integration tests
+- ✅ **Early Pipeline Position**: Runs after validation but parallel with E2E
+- ✅ **Enhanced Workflow Dispatch**: Added "integration" option for manual runs
 
 ## ✅ What We've Implemented
 
@@ -6,6 +26,7 @@
 
 - ✅ **Validation Job**: Lint, format check, type checking, security audit
 - ✅ **API Tests**: Fast feedback with @api tagged tests
+- ✅ **Integration Tests**: API+UI integration with real/mock modes ⭐ **NEW!**
 - ✅ **E2E Tests**: Playwright tests with conditional execution
 - ✅ **BDD Tests**: Cucumber scenarios with smart tag selection
 - ✅ **Test Summary**: Consolidated reporting and failure detection
@@ -21,15 +42,16 @@
 
 - ✅ **Health Tests**: System monitoring (@health, @quick, @performance)
 - ✅ **API Tests**: Comprehensive service testing (@api, @smoke, @regression)
+- ✅ **Integration Tests**: Real API + UI workflows with mock fallback ⭐ **NEW!**
 - ✅ **Performance Tests**: Load time and Core Web Vitals measurement
 - ✅ **Enhanced BDD**: Business scenario validation with proper tagging
 
 ### 4. **Smart Test Execution**
 
 - ✅ **Pull Requests**: Smoke tests only for fast feedback
-- ✅ **Main Branch**: Full regression test suite
-- ✅ **Manual Trigger**: Choose specific test suites via workflow_dispatch
-- ✅ **Parallel Execution**: API, E2E, and BDD tests run simultaneously
+- ✅ **Main Branch**: Full regression test suite + integration tests ⭐ **UPDATED!**
+- ✅ **Manual Trigger**: Choose specific test suites including "integration" ⭐ **UPDATED!**
+- ✅ **Parallel Execution**: API, Integration, E2E, and BDD tests run optimally
 
 ## 🔧 GitHub Repository Configuration Required
 

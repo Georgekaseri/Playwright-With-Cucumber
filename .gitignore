@@ -1,7 +1,36 @@
-node_modules
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment variables
 .env
-playwright-report
-test-results
-reports
-dist
-.qodo
+
+# Test artifacts and reports
+playwright-report/
+test-results/
+reports/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage reports
+coverage/
+
+# Build artifacts
+build/
+out/
+
+# Temporary files
+.tmp/
+temp/
