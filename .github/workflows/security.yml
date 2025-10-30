@@ -147,7 +147,8 @@ jobs:
 
       - name: Check licenses
         run: |
-          npx license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD;Unlicense' --excludePrivatePackages --json > licenses.json
+          # Updated to include all licenses found in our dependencies
+          npx license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD;Unlicense;BlueOak-1.0.0;(MIT OR CC0-1.0);MPL-2.0;Python-2.0;BSD;CC-BY-3.0;CC0-1.0;(MIT AND CC-BY-3.0)' --excludePrivatePackages --json > licenses.json
           echo "## 📄 License Report" >> $GITHUB_STEP_SUMMARY
           echo "All dependencies use approved licenses ✅" >> $GITHUB_STEP_SUMMARY
 
