@@ -43,7 +43,7 @@ export class BookingClient {
 
   constructor(
     private request: APIRequestContext,
-    private baseURL: string
+    private baseURL: string,
   ) {}
 
   async createBooking(payload: BookingPayload): Promise<BookingResponse> {
@@ -66,12 +66,12 @@ export class BookingClient {
 
   async getBooking(bookingId: number): Promise<BookingPayload> {
     const response = await this.request.get(
-      `${this.baseURL}/booking/${bookingId}`
+      `${this.baseURL}/booking/${bookingId}`,
     );
 
     if (!response.ok()) {
       throw new Error(
-        `Failed to get booking with ID ${bookingId}: ${response.status()}`
+        `Failed to get booking with ID ${bookingId}: ${response.status()}`,
       );
     }
 
