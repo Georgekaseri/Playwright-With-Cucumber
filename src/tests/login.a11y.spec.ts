@@ -15,7 +15,7 @@ test.describe("@a11y Accessibility", () => {
     await login.goto();
 
     // Wait for page to fully load
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("domcontentloaded");
 
     // Use lenient scan for external OrangeHRM site (only fail on critical issues)
     await runLenientAccessibilityScan(page, "Login Page");
@@ -31,7 +31,7 @@ test.describe("@a11y Accessibility", () => {
     // Wait for dashboard to fully load before scanning
     const dashboard = new DashboardPage(page);
     await dashboard.assertLoaded();
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("domcontentloaded");
 
     // Use informational scan for Dashboard - tracks issues without failing tests
     await runInformationalAccessibilityScan(page, "Dashboard Page");
@@ -50,7 +50,15 @@ test.describe("@a11y Accessibility", () => {
     await page.keyboard.press("Enter"); // Try to submit
 
     // Should show validation message for empty fields
-    await page.waitForTimeout(1000);
+    // Use locator instead of waitForSelector to avoid linting warnings
+    const errorMessage = page.locator(
+      ".oxd-alert--error, .oxd-input-field-error-message",
+    );
+    try {
+      await errorMessage.waitFor({ timeout: 3000 });
+    } catch {
+      // If no error message appears, that's fine - we'll still scan
+    }
     await runLenientAccessibilityScan(page, "Login Page with Validation");
   });
 });

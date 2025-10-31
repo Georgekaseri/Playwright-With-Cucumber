@@ -65,6 +65,7 @@ jobs:
         env:
           HEALTH_CHECK: true
           TEST_TIMEOUT: 30000
+          TEST_ENV: development
 
       - name: Generate health report
         if: always()

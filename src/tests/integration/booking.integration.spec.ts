@@ -26,8 +26,13 @@ test.describe("@integration API+UI Integration Tests", () => {
     const dash = new DashboardPage(page);
     await dash.assertLoaded();
 
-    // Mock booking data display in UI (since OrangeHRM doesn't have booking management)
-    if (process.env.MOCK === "1") {
+    // Always verify dashboard functionality (unconditional expect)
+    await expect(page).toHaveURL(/.*dashboard/);
+
+    // Handle different modes
+    const mockMode = process.env.MOCK === "1";
+
+    if (mockMode) {
       console.log("⚙️ MOCK mode enabled — simulating booking display in UI");
 
       // Inject a mock booking display element
@@ -44,28 +49,64 @@ test.describe("@integration API+UI Integration Tests", () => {
           id: booking.bookingid,
           firstname: booking.booking.firstname,
           lastname: booking.booking.lastname,
-        }
+        },
       );
 
-      // Verify the mocked booking display
-      const bookingDisplay = page.locator("#api-booking-display");
-      await expect(bookingDisplay).toBeVisible();
-      await expect(bookingDisplay).toContainText(
-        `API Booking: Integration Test (ID: ${booking.bookingid})`
-      );
-
-      console.log("✅ Mock booking display verified in UI");
+      console.log("✅ Mock booking display injected in UI");
     } else {
       console.log("🔗 REAL mode — API+UI integration without mocking");
-
-      // In real mode, we just verify the UI is functional after API call
-      // Use the proper dashboard assertion instead of hardcoded selector
-      await dash.assertLoaded(); // This verifies the dashboard is loaded and functional
       console.log("✅ UI remains functional after API operations");
     }
 
+    // Verify mock booking display only if in mock mode (moved to separate test)
+    // This avoids conditional expects in the main flow
+
+    console.log("✅ Dashboard URL verification completed");
     console.log(
-      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`
+      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
     );
+  });
+
+  test("@smoke should verify mock booking display (mock mode only)", async ({
+    page,
+  }) => {
+    // Skip if not in mock mode
+    test.skip(process.env.MOCK !== "1", "Mock mode only test");
+
+    // This test only runs in mock mode and contains the conditional expects
+    const booking = await createBookingViaAPI();
+
+    const login = new LoginPage(page);
+    await login.goto();
+    await login.login(TEST_ENV.username, TEST_ENV.password);
+
+    const dash = new DashboardPage(page);
+    await dash.assertLoaded();
+
+    // Inject mock booking display
+    await page.evaluate(
+      (bookingData) => {
+        const bookingDiv = document.createElement("div");
+        bookingDiv.id = "api-booking-display";
+        bookingDiv.textContent = `API Booking: ${bookingData.firstname} ${bookingData.lastname} (ID: ${bookingData.id})`;
+        bookingDiv.style.cssText =
+          "position: fixed; top: 10px; right: 10px; background: green; color: white; padding: 10px; z-index: 9999;";
+        document.body.appendChild(bookingDiv);
+      },
+      {
+        id: booking.bookingid,
+        firstname: booking.booking.firstname,
+        lastname: booking.booking.lastname,
+      },
+    );
+
+    // Now we can safely use expects without conditional warnings
+    const bookingDisplay = page.locator("#api-booking-display");
+    await expect(bookingDisplay).toBeVisible();
+    await expect(bookingDisplay).toContainText(
+      `API Booking: Integration Test (ID: ${booking.bookingid})`,
+    );
+
+    console.log("✅ Mock booking display verified in UI");
   });
 });

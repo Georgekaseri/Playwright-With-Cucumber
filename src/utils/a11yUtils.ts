@@ -1,6 +1,5 @@
 import { Page, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { createHtmlReport } from "axe-html-reporter";
 
 /**
  * Basic a11y scan with strict checking
@@ -10,7 +9,7 @@ export async function runAccessibilityScan(page: Page, context = "page") {
 
   if (results.violations.length) {
     console.log(
-      `⚠️  ${results.violations.length} accessibility issues found in ${context}`
+      `⚠️  ${results.violations.length} accessibility issues found in ${context}`,
     );
     for (const v of results.violations) {
       console.log(`- ${v.id}: ${v.description} [impact: ${v.impact}]`);
@@ -19,24 +18,20 @@ export async function runAccessibilityScan(page: Page, context = "page") {
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate report
-  createHtmlReport({
-    results,
-    options: { projectKey: "OrangeHRM" },
-    outputDir: "reports/a11y",
-    reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-  });
-  console.log(
-    `📄 Accessibility report saved: reports/a11y/${context}-a11y-report.html`
-  );
+  // Log summary instead of HTML report
+  console.log(`📄 Accessibility scan completed for ${context}`);
+  console.log(`🔍 Found ${results.violations.length} violations`);
+  if (results.violations.length > 0) {
+    console.log("❌ Violations:", JSON.stringify(results.violations, null, 2));
+  }
 
   // Fail on critical/serious issues
   const critical = results.violations.filter(
-    (v) => v.impact === "critical" || v.impact === "serious"
+    (v) => v.impact === "critical" || v.impact === "serious",
   );
   expect(
     critical.length,
-    `${critical.length} serious/critical a11y issues detected`
+    `${critical.length} serious/critical a11y issues detected`,
   ).toBe(0);
 
   return results;
@@ -48,7 +43,7 @@ export async function runAccessibilityScan(page: Page, context = "page") {
  */
 export async function runLenientAccessibilityScan(
   page: Page,
-  context = "page"
+  context = "page",
 ) {
   // Run Axe scan
   const results = await new AxeBuilder({ page })
@@ -60,7 +55,7 @@ export async function runLenientAccessibilityScan(
   // Log detailed results
   if (results.violations.length) {
     console.log(
-      `⚠️  ${results.violations.length} accessibility issues found in ${context}`
+      `⚠️  ${results.violations.length} accessibility issues found in ${context}`,
     );
 
     // Group by impact level
@@ -92,28 +87,23 @@ export async function runLenientAccessibilityScan(
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate HTML report
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
+  // Log accessibility results instead of HTML report
+  console.log(`📄 Lenient accessibility scan completed for ${context}`);
+  console.log(`� Found ${results.violations.length} critical violations`);
+  if (results.violations.length > 0) {
     console.log(
-      `📄 Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
+      "❌ Critical violations:",
+      JSON.stringify(results.violations, null, 2),
     );
-  } catch (error) {
-    console.log(`⚠️  Could not generate HTML report: ${error}`);
   }
 
   // Only fail on critical issues
   const criticalOnly = results.violations.filter(
-    (v) => v.impact === "critical"
+    (v) => v.impact === "critical",
   );
   expect(
     criticalOnly.length,
-    `${criticalOnly.length} critical a11y issues detected in ${context}`
+    `${criticalOnly.length} critical a11y issues detected in ${context}`,
   ).toBe(0);
 
   return results;
@@ -125,7 +115,7 @@ export async function runLenientAccessibilityScan(
  */
 export async function runInformationalAccessibilityScan(
   page: Page,
-  context = "page"
+  context = "page",
 ) {
   // Run Axe scan
   const results = await new AxeBuilder({ page })
@@ -137,7 +127,7 @@ export async function runInformationalAccessibilityScan(
   // Log detailed results
   if (results.violations.length) {
     console.log(
-      `📊 ${results.violations.length} accessibility issues found in ${context} (for tracking)`
+      `📊 ${results.violations.length} accessibility issues found in ${context} (for tracking)`,
     );
 
     // Group by impact level
@@ -148,7 +138,7 @@ export async function runInformationalAccessibilityScan(
 
     if (critical.length) {
       console.log(
-        `🚨 Critical (${critical.length}) - would fail in strict mode:`
+        `🚨 Critical (${critical.length}) - would fail in strict mode:`,
       );
       critical.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
@@ -171,24 +161,18 @@ export async function runInformationalAccessibilityScan(
     console.log(`✅ No accessibility violations in ${context}`);
   }
 
-  // Generate HTML report
-  try {
-    createHtmlReport({
-      results,
-      options: { projectKey: "OrangeHRM" },
-      outputDir: "reports/a11y",
-      reportFileName: `${context.replace(/\s+/g, "_")}-a11y-report.html`,
-    });
-    console.log(
-      `📄 Accessibility report saved: reports/a11y/${context.replace(/\s+/g, "_")}-a11y-report.html`
-    );
-  } catch (error) {
-    console.log(`⚠️  Could not generate HTML report: ${error}`);
+  // Log accessibility results instead of HTML report
+  console.log(`📄 Informational accessibility scan completed for ${context}`);
+  console.log(
+    `� Found ${results.violations.length} violations (informational only)`,
+  );
+  if (results.violations.length > 0) {
+    console.log("ℹ️  Violations:", JSON.stringify(results.violations, null, 2));
   }
 
   // Don't fail the test - just log results for tracking
   console.log(
-    `📈 Accessibility audit complete for ${context} - no test failures`
+    `📈 Accessibility audit complete for ${context} - no test failures`,
   );
   return results;
 }

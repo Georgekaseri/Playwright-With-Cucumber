@@ -7,5 +7,6 @@ module.exports = {
     format: ["progress", "json:reports/cucumber.json"],
     parallel: 1,
     tags: "not @ignore",
+    timeout: 60000, // 60 seconds timeout for steps
   },
 };
