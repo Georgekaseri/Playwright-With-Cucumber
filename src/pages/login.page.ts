@@ -32,12 +32,43 @@ export class LoginPage {
   async goto() {
     await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`);
     await this.page.waitForLoadState("domcontentloaded");
+
+    // Wait for login form to be ready
+    await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
+    await expect(this.passwordInput).toBeVisible({ timeout: 10_000 });
+    await expect(this.loginBtn).toBeVisible({ timeout: 10_000 });
   }
 
   async login(username: string, password: string) {
+    // Wait for form to be fully loaded
+    await this.page.waitForLoadState("networkidle");
+
+    // Clear and fill username
+    await this.usernameInput.clear();
     await this.usernameInput.fill(username);
+    await expect(this.usernameInput).toHaveValue(username);
+
+    // Clear and fill password
+    await this.passwordInput.clear();
     await this.passwordInput.fill(password);
+    await expect(this.passwordInput).toHaveValue(password);
+
+    // Click login and wait for navigation
     await this.loginBtn.click();
+
+    // Wait for either dashboard or error
+    await this.page.waitForTimeout(2000); // Give time for redirect
+
+    // Check if we're still on login page (error case) or navigated (success)
+    const currentUrl = this.page.url();
+    if (currentUrl.includes("/auth/login")) {
+      // Still on login page, might be an error
+      console.log("Still on login page after login attempt");
+    } else {
+      // Navigated away from login page
+      console.log(`Navigated to: ${currentUrl}`);
+      await this.page.waitForLoadState("domcontentloaded");
+    }
   }
 
   async assertOnLoginPage() {

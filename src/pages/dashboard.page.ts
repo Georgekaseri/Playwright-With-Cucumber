@@ -7,58 +7,58 @@ export class DashboardPage {
     // Wait for navigation to complete
     await this.page.waitForLoadState("domcontentloaded");
 
-    // Primary check: URL should contain dashboard pattern
-    try {
-      await expect(this.page).toHaveURL(/.*dashboard/, { timeout: 10_000 });
-      return; // If URL check passes, we're good
-    } catch (e) {
-      // If URL doesn't contain dashboard, try other indicators
-      console.log("Dashboard URL check failed, trying navigation elements...");
+    console.log(`Current URL: ${this.page.url()}`);
+
+    // Check if we're actually logged in by looking for any post-login indicators
+    const currentUrl = this.page.url();
+
+    // If still on login page, fail immediately with clear message
+    if (currentUrl.includes("/auth/login")) {
+      throw new Error(
+        `Still on login page. Login may have failed. URL: ${currentUrl}`
+      );
     }
 
-    // Secondary checks: Look for OrangeHRM specific navigation elements
-    const navigationElements = [
-      this.page.locator(".oxd-main-menu"), // Main sidebar menu
-      this.page.locator(".oxd-topbar"), // Top navigation bar
-      this.page.locator(".oxd-navbar"), // Navigation bar
-      this.page.locator('[class*="sidebar"]'), // Any sidebar element
-      this.page.locator('[class*="menu"]'), // Any menu element
+    // If URL contains dashboard, we're good
+    if (currentUrl.includes("dashboard")) {
+      console.log("✅ Dashboard URL detected");
+      return;
+    }
+
+    // Try to find any OrangeHRM navigation elements that indicate successful login
+    const postLoginElements = [
+      this.page.locator(".oxd-main-menu"),
+      this.page.locator(".oxd-topbar"),
+      this.page.locator(".oxd-navbar"),
+      this.page.locator('[class*="sidebar"]'),
+      this.page.locator('[class*="menu"]'),
+      this.page.locator(".oxd-userdropdown"), // User dropdown indicates logged in
     ];
 
-    // Try to find at least one navigation element
-    for (const locator of navigationElements) {
+    for (const element of postLoginElements) {
       try {
-        await expect(locator).toBeVisible({ timeout: 3_000 });
-        console.log("Found navigation element, dashboard loaded");
-        return; // Found a navigation element, consider it loaded
+        await expect(element).toBeVisible({ timeout: 5_000 });
+        console.log("✅ Found post-login navigation element");
+        return;
       } catch (e) {
         continue;
       }
     }
 
-    // More lenient check: Just ensure we have some content loaded
-    try {
-      // Wait for any substantial page content (body with some content)
-      await this.page.waitForFunction(
-        () => {
-          const body = document.body;
-          return body && body.innerText.length > 100; // Page has substantial content
-        },
-        { timeout: 5_000 },
-      );
-
-      // Check that we're not on a blank or error page
-      const pageText = await this.page.textContent("body");
-      if (pageText && pageText.length > 100) {
-        console.log("Page has substantial content, considering loaded");
-        return;
-      }
-    } catch (e) {
-      console.log("Content-based check failed");
+    // Final check: make sure we're not on an error page
+    const pageText = await this.page.textContent("body");
+    if (
+      pageText &&
+      pageText.length > 100 &&
+      !pageText.includes("error") &&
+      !pageText.includes("Error")
+    ) {
+      console.log("✅ Page has content and no errors, considering logged in");
+      return;
     }
 
-    // Final fallback: Just wait a bit and assume it's loaded
-    console.log("All checks failed, using time-based fallback");
-    await this.page.waitForTimeout(2000);
+    throw new Error(
+      `Could not verify dashboard/post-login state. Current URL: ${currentUrl}`
+    );
   }
 }
