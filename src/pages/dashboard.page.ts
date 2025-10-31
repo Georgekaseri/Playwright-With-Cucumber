@@ -44,7 +44,7 @@ export class DashboardPage {
           const body = document.body;
           return body && body.innerText.length > 100; // Page has substantial content
         },
-        { timeout: 5_000 }
+        { timeout: 5_000 },
       );
 
       // Check that we're not on a blank or error page
