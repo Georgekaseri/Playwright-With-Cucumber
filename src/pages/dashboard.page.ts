@@ -7,42 +7,35 @@ export class DashboardPage {
     // Wait for navigation to complete
     await this.page.waitForLoadState("domcontentloaded");
 
-    // Try multiple dashboard indicators - OrangeHRM specific
-    const dashboardIndicators = [
-      // Dashboard heading variants
-      this.page.getByRole("heading", { name: /dashboard/i }),
-      this.page.locator("h1,h2,h3,h4,h5,h6").filter({ hasText: /dashboard/i }),
+    // Primary check: URL should contain dashboard pattern
+    try {
+      await expect(this.page).toHaveURL(/.*dashboard/, { timeout: 10_000 });
+      return; // If URL check passes, we're good
+    } catch (e) {
+      // If URL doesn't contain dashboard, try other indicators
+    }
 
-      // OrangeHRM specific elements
-      this.page
-        .locator(".oxd-topbar-header-breadcrumb h6")
-        .filter({ hasText: /dashboard/i }),
-      this.page.locator('[class*="dashboard"]').first(),
-
-      // Main navigation or content indicators
-      this.page.locator(".oxd-main-menu"),
-      this.page.locator(".oxd-navbar"),
-
-      // Fallback to body element if URL contains dashboard
-      this.page.locator("body"),
+    // Secondary checks: Look for OrangeHRM specific navigation elements
+    const navigationElements = [
+      this.page.locator(".oxd-main-menu"), // Main sidebar menu
+      this.page.locator(".oxd-topbar"), // Top navigation bar
+      this.page.locator(".oxd-navbar"), // Navigation bar
+      this.page.locator('[class*="sidebar"]'), // Any sidebar element
+      this.page.locator('[class*="menu"]'), // Any menu element
     ];
 
-    // Try each indicator with a shorter timeout
-    let found = false;
-    for (const locator of dashboardIndicators) {
+    // Try to find at least one navigation element
+    for (const locator of navigationElements) {
       try {
-        await expect(locator).toBeVisible({ timeout: 2_000 });
-        found = true;
-        break;
+        await expect(locator).toBeVisible({ timeout: 3_000 });
+        return; // Found a navigation element, consider it loaded
       } catch (e) {
-        // Continue to next locator
         continue;
       }
     }
 
-    // If none of the specific locators work, check URL pattern
-    if (!found) {
-      await expect(this.page).toHaveURL(/.*dashboard/, { timeout: 5_000 });
-    }
+    // Fallback: Check if we're not on login page anymore
+    const notOnLoginPage = this.page.locator('input[name="username"]');
+    await expect(notOnLoginPage).not.toBeVisible({ timeout: 5_000 });
   }
 }
