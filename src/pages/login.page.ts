@@ -41,7 +41,7 @@ export class LoginPage {
 
   async login(username: string, password: string) {
     // Wait for form to be fully loaded
-    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForLoadState("domcontentloaded");
 
     // Clear and fill username
     await this.usernameInput.clear();
@@ -56,8 +56,12 @@ export class LoginPage {
     // Click login and wait for navigation
     await this.loginBtn.click();
 
-    // Wait for either dashboard or error
-    await this.page.waitForTimeout(2000); // Give time for redirect
+    // Give more time for the login process
+    await this.page.waitForLoadState("domcontentloaded");
+
+    // Small delay to allow for navigation (disabling ESLint for this specific case)
+    // eslint-disable-next-line playwright/no-wait-for-timeout
+    await this.page.waitForTimeout(2000);
 
     // Check if we're still on login page (error case) or navigated (success)
     const currentUrl = this.page.url();

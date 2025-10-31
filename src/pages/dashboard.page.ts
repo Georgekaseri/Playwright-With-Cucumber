@@ -40,7 +40,7 @@ export class DashboardPage {
         await expect(element).toBeVisible({ timeout: 5_000 });
         console.log("✅ Found post-login navigation element");
         return;
-      } catch (e) {
+      } catch {
         continue;
       }
     }
