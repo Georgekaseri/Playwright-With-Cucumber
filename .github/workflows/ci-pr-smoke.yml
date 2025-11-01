@@ -1,0 +1,103 @@
+name: PR Smoke
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Smoke (UI + BDD + API + A11y + Visual)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-pw-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # UI smoke (Playwright)
+      - name: UI smoke
+        env:
+          ORANGEHRM_BASE_URL: ${{ secrets.ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ secrets.ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
+        run: npx playwright test --grep "@smoke"
+
+      # API smoke
+      - name: API smoke
+        run: npx playwright test --grep "@api && @smoke"
+
+      # BDD smoke
+      - name: BDD smoke
+        env:
+          TAGS: "@smoke and not @wip"
+          ORANGEHRM_BASE_URL: ${{ secrets.ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ secrets.ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
+        run: npm run bdd
+
+      # A11y smoke
+      - name: A11y smoke
+        run: npx playwright test --grep "@a11y && @smoke"
+
+      # Visual smoke (never update in CI)
+      - name: Visual smoke
+        env:
+          TAGS: "@visual and @smoke"
+          UPDATE_SNAPSHOTS: "0"
+          ORANGEHRM_BASE_URL: ${{ secrets.ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ secrets.ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
+        run: npm run test:visual --grep "@smoke"
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-playwright-report
+          path: playwright-report
+
+      - name: Comment with report link
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `✅ Smoke completed. Download reports from **Actions**: ${runUrl}`
+            });
+
+      - name: Summarize to PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.summary
+              .addHeading('PR Smoke Summary')
+              .addList([
+                'UI smoke, API smoke, BDD @smoke, A11y @smoke, Visual @smoke executed',
+                'Artifacts: playwright report attached'
+              ])
+              .write()

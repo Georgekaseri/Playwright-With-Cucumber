@@ -7,7 +7,7 @@ test.describe("Performance Tests @performance", () => {
       const startTime = Date.now();
       await page.goto(
         process.env.ORANGEHRM_BASE_URL ||
-          "https://opensource-demo.orangehrmlive.com",
+          "https://opensource-demo.orangehrmlive.com"
       );
       await page.waitForLoadState("domcontentloaded");
       const domLoadTime = Date.now() - startTime;
@@ -29,7 +29,7 @@ test.describe("Performance Tests @performance", () => {
   test("Login performance @performance", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com",
+        "https://opensource-demo.orangehrmlive.com"
     );
 
     await test.step("Measure login form interaction", async () => {
@@ -37,11 +37,11 @@ test.describe("Performance Tests @performance", () => {
 
       await page.fill(
         'input[name="username"]',
-        process.env.ORANGEHRM_USERNAME || "Admin",
+        process.env.ORANGEHRM_USERNAME || "Admin"
       );
       await page.fill(
         'input[name="password"]',
-        process.env.ORANGEHRM_PASSWORD || "admin123",
+        process.env.ORANGEHRM_PASSWORD || "admin123"
       );
       await page.click('button[type="submit"]');
 
@@ -60,24 +60,34 @@ test.describe("Performance Tests @performance", () => {
 
       page.on("response", async (response) => {
         const request = response.request();
-        const size = (await response.body()).length;
 
-        resourceTimings.push({
-          name: request.url(),
-          size: size,
-        });
+        // Skip redirect responses as they don't have body content
+        if (response.status() >= 300 && response.status() < 400) {
+          return;
+        }
+
+        try {
+          const size = (await response.body()).length;
+          resourceTimings.push({
+            name: request.url(),
+            size: size,
+          });
+        } catch (error) {
+          // Skip responses that can't provide body (e.g., some redirects, errors)
+          console.log(`Skipped resource: ${request.url()} - ${error}`);
+        }
       });
 
       await page.goto(
         process.env.ORANGEHRM_BASE_URL ||
-          "https://opensource-demo.orangehrmlive.com",
+          "https://opensource-demo.orangehrmlive.com"
       );
       await page.waitForLoadState("domcontentloaded");
 
       // Log resource statistics
       const totalSize = resourceTimings.reduce(
         (sum, resource) => sum + resource.size,
-        0,
+        0
       );
       console.log(`Total resources loaded: ${resourceTimings.length}`);
       console.log(`Total size: ${(totalSize / 1024).toFixed(2)} KB`);
@@ -92,7 +102,7 @@ test.describe("Performance Tests @performance", () => {
     await test.step("Monitor memory consumption", async () => {
       await page.goto(
         process.env.ORANGEHRM_BASE_URL ||
-          "https://opensource-demo.orangehrmlive.com",
+          "https://opensource-demo.orangehrmlive.com"
       );
 
       // Basic memory monitoring using CDP
@@ -112,7 +122,7 @@ test.describe("Performance Tests @performance", () => {
     await test.step("Collect Core Web Vitals", async () => {
       await page.goto(
         process.env.ORANGEHRM_BASE_URL ||
-          "https://opensource-demo.orangehrmlive.com",
+          "https://opensource-demo.orangehrmlive.com"
       );
 
       // Simulate Core Web Vitals collection
@@ -120,7 +130,7 @@ test.describe("Performance Tests @performance", () => {
         return new Promise((resolve) => {
           // Simplified performance metrics collection
           const navigation = performance.getEntriesByType(
-            "navigation",
+            "navigation"
           )[0] as PerformanceNavigationTiming;
 
           resolve({
