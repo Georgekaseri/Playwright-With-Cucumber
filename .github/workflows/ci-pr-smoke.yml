@@ -3,6 +3,8 @@ name: PR Smoke
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["feature/day07-advanced-ci"] # Temporary: for testing workflow
 
 permissions:
   contents: read
