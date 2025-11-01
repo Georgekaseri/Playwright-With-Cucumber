@@ -62,13 +62,14 @@ export class LoginPage {
         (url) => !url.toString().includes("/auth/login"),
         {
           timeout: 15000,
-        }
+        },
       );
       console.log(`✅ Login successful. Navigated to: ${this.page.url()}`);
     } catch (error) {
       const currentUrl = this.page.url();
       console.log(`Still on login page after login attempt`);
       console.log(`Current URL: ${currentUrl}`);
+      console.log(`Navigation timeout error: ${error}`);
 
       // Check for error messages
       const errorVisible = await this.errorAlert.isVisible();
