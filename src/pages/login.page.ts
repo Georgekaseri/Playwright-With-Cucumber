@@ -53,26 +53,33 @@ export class LoginPage {
     await this.passwordInput.fill(password);
     await expect(this.passwordInput).toHaveValue(password);
 
-    // Click login and wait for navigation
+    // Click login and wait for navigation with longer timeout for CI
     await this.loginBtn.click();
 
-    // Give more time for the login process
-    await this.page.waitForLoadState("domcontentloaded");
+    // Wait for either navigation or error with longer timeout for CI environments
+    try {
+      await this.page.waitForURL(
+        (url) => !url.toString().includes("/auth/login"),
+        {
+          timeout: 15000,
+        }
+      );
+      console.log(`✅ Login successful. Navigated to: ${this.page.url()}`);
+    } catch (error) {
+      const currentUrl = this.page.url();
+      console.log(`Still on login page after login attempt`);
+      console.log(`Current URL: ${currentUrl}`);
 
-    // Small delay to allow for navigation (disabling ESLint for this specific case)
-    // eslint-disable-next-line playwright/no-wait-for-timeout
-    await this.page.waitForTimeout(2000);
-
-    // Check if we're still on login page (error case) or navigated (success)
-    const currentUrl = this.page.url();
-    if (currentUrl.includes("/auth/login")) {
-      // Still on login page, might be an error
-      console.log("Still on login page after login attempt");
-    } else {
-      // Navigated away from login page
-      console.log(`Navigated to: ${currentUrl}`);
-      await this.page.waitForLoadState("domcontentloaded");
+      // Check for error messages
+      const errorVisible = await this.errorAlert.isVisible();
+      if (errorVisible) {
+        const errorText = await this.errorAlert.textContent();
+        console.log(`Login error: ${errorText}`);
+      }
     }
+
+    // Ensure page is fully loaded after login attempt
+    await this.page.waitForLoadState("domcontentloaded");
   }
 
   async assertOnLoginPage() {
