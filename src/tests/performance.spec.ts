@@ -1,8 +1,23 @@
 import { test, expect } from "@playwright/test";
+import { checkSiteHealth, skipIfSiteDown } from "../utils/siteHealthCheck";
 
 // Performance testing suite
 test.describe("Performance Tests @performance", () => {
+  let siteHealthy: boolean;
+
+  test.beforeAll(async () => {
+    const baseUrl =
+      process.env.ORANGEHRM_BASE_URL ||
+      "https://opensource-demo.orangehrmlive.com";
+    siteHealthy = await checkSiteHealth(baseUrl);
+  });
+
   test("Page load performance @performance @smoke", async ({ page }) => {
+    // Skip if external site is down
+    test.skip(
+      skipIfSiteDown(siteHealthy, "Performance test"),
+      "External OrangeHRM site is not available",
+    );
     await test.step("Measure initial page load", async () => {
       const startTime = Date.now();
       await page.goto(

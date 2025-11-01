@@ -6,11 +6,24 @@ import {
   runInformationalAccessibilityScan,
 } from "../utils/a11yUtils";
 import { TEST_ENV } from "../config/test-env";
+import { checkSiteHealth, skipIfSiteDown } from "../utils/siteHealthCheck";
 
 test.describe("@a11y Accessibility", () => {
+  let siteHealthy: boolean;
+
+  test.beforeAll(async () => {
+    siteHealthy = await checkSiteHealth(TEST_ENV.baseURL);
+  });
+
   test("@smoke should have no critical accessibility violations on Login page", async ({
     page,
   }) => {
+    // Skip if external site is down
+    test.skip(
+      skipIfSiteDown(siteHealthy, "Accessibility test"),
+      "External OrangeHRM site is not available",
+    );
+
     const login = new LoginPage(page);
     await login.goto();
 
@@ -24,6 +37,12 @@ test.describe("@a11y Accessibility", () => {
   test("@regression should have no critical accessibility violations on Dashboard page", async ({
     page,
   }) => {
+    // Skip if external site is down
+    test.skip(
+      skipIfSiteDown(siteHealthy, "Dashboard accessibility test"),
+      "External OrangeHRM site is not available",
+    );
+
     const login = new LoginPage(page);
     await login.goto();
     await login.login(TEST_ENV.username, TEST_ENV.password);
@@ -40,6 +59,12 @@ test.describe("@a11y Accessibility", () => {
   test("@smoke should validate keyboard navigation on Login page", async ({
     page,
   }) => {
+    // Skip if external site is down
+    test.skip(
+      skipIfSiteDown(siteHealthy, "Keyboard navigation test"),
+      "External OrangeHRM site is not available",
+    );
+
     const login = new LoginPage(page);
     await login.goto();
 

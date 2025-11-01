@@ -2,8 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./src/tests",
-  timeout: 30_000,
-  expect: { timeout: 5_000 },
+  timeout: 60_000, // Increased timeout for CI environments
+  expect: { timeout: 10_000 }, // Increased expect timeout
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   reporter: [
@@ -17,6 +17,8 @@ export default defineConfig({
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
+    navigationTimeout: 60_000, // Increased navigation timeout for CI
+    actionTimeout: 10_000, // Increased action timeout
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
 });

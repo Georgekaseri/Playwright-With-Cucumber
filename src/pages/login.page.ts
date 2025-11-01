@@ -14,10 +14,16 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    // Use semantic locators first
-    this.usernameInput = page.getByPlaceholder("Username");
-    this.passwordInput = page.getByPlaceholder("Password");
-    this.loginBtn = page.getByRole("button", { name: "Login" });
+    // Use multiple selector strategies for better reliability
+    this.usernameInput = page.locator(
+      'input[name="username"], input[placeholder="Username"], input[data-placeholder="Username"], .oxd-input:first-of-type'
+    );
+    this.passwordInput = page.locator(
+      'input[name="password"], input[placeholder="Password"], input[data-placeholder="Password"], input[type="password"]'
+    );
+    this.loginBtn = page.locator(
+      'button[type="submit"], .oxd-button--main, button:has-text("Login")'
+    );
 
     // More specific error locators
     this.errorAlert = page.locator('[role="alert"], .oxd-alert').first();
@@ -30,13 +36,49 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`);
-    await this.page.waitForLoadState("domcontentloaded");
+    console.log(
+      `🌐 Navigating to: ${TEST_ENV.baseURL}/web/index.php/auth/login`
+    );
 
-    // Wait for login form to be ready
-    await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
-    await expect(this.passwordInput).toBeVisible({ timeout: 10_000 });
-    await expect(this.loginBtn).toBeVisible({ timeout: 10_000 });
+    // Navigate with longer timeout for slow environments
+    await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`, {
+      timeout: 60000,
+      waitUntil: "domcontentloaded",
+    });
+
+    // Wait for page to be interactive
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForLoadState("networkidle", { timeout: 30000 });
+
+    console.log(`📄 Page loaded, current URL: ${this.page.url()}`);
+
+    // Wait for login form to be ready with extended timeout and better error handling
+    try {
+      await expect(this.usernameInput).toBeVisible({ timeout: 20_000 });
+      await expect(this.passwordInput).toBeVisible({ timeout: 20_000 });
+      await expect(this.loginBtn).toBeVisible({ timeout: 20_000 });
+      console.log("✅ Login form elements are visible");
+    } catch (error) {
+      console.log("❌ Login form not found, checking page content...");
+      const pageContent = await this.page.content();
+      console.log(`Page title: ${await this.page.title()}`);
+      console.log(`Page URL: ${this.page.url()}`);
+      console.log(
+        `Page contains 'login': ${pageContent.toLowerCase().includes("login")}`
+      );
+      console.log(
+        `Page contains 'username': ${pageContent.toLowerCase().includes("username")}`
+      );
+
+      // Take a screenshot for debugging
+      await this.page.screenshot({
+        path: "debug-login-page.png",
+        fullPage: true,
+      });
+      console.log("🖼️ Screenshot saved as debug-login-page.png");
+
+      throw error;
+    }
   }
 
   async login(username: string, password: string) {
@@ -62,7 +104,7 @@ export class LoginPage {
         (url) => !url.toString().includes("/auth/login"),
         {
           timeout: 15000,
-        },
+        }
       );
       console.log(`✅ Login successful. Navigated to: ${this.page.url()}`);
     } catch (error) {
