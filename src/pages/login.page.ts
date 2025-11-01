@@ -14,10 +14,16 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    // Use semantic locators first
-    this.usernameInput = page.getByPlaceholder("Username");
-    this.passwordInput = page.getByPlaceholder("Password");
-    this.loginBtn = page.getByRole("button", { name: "Login" });
+    // Use multiple selector strategies for better reliability
+    this.usernameInput = page.locator(
+      'input[name="username"], input[placeholder="Username"], input[data-placeholder="Username"], .oxd-input:first-of-type'
+    );
+    this.passwordInput = page.locator(
+      'input[name="password"], input[placeholder="Password"], input[data-placeholder="Password"], input[type="password"]'
+    );
+    this.loginBtn = page.locator(
+      'button[type="submit"], .oxd-button--main, button:has-text("Login")'
+    );
 
     // More specific error locators
     this.errorAlert = page.locator('[role="alert"], .oxd-alert').first();
@@ -30,13 +36,49 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`);
-    await this.page.waitForLoadState("domcontentloaded");
+    console.log(
+      `🌐 Navigating to: ${TEST_ENV.baseURL}/web/index.php/auth/login`
+    );
 
-    // Wait for login form to be ready
-    await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
-    await expect(this.passwordInput).toBeVisible({ timeout: 10_000 });
-    await expect(this.loginBtn).toBeVisible({ timeout: 10_000 });
+    // Navigate with longer timeout for slow environments
+    await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`, {
+      timeout: 60000,
+      waitUntil: "domcontentloaded",
+    });
+
+    // Wait for page to be interactive
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForLoadState("networkidle", { timeout: 30000 });
+
+    console.log(`📄 Page loaded, current URL: ${this.page.url()}`);
+
+    // Wait for login form to be ready with extended timeout and better error handling
+    try {
+      await expect(this.usernameInput).toBeVisible({ timeout: 20_000 });
+      await expect(this.passwordInput).toBeVisible({ timeout: 20_000 });
+      await expect(this.loginBtn).toBeVisible({ timeout: 20_000 });
+      console.log("✅ Login form elements are visible");
+    } catch (error) {
+      console.log("❌ Login form not found, checking page content...");
+      const pageContent = await this.page.content();
+      console.log(`Page title: ${await this.page.title()}`);
+      console.log(`Page URL: ${this.page.url()}`);
+      console.log(
+        `Page contains 'login': ${pageContent.toLowerCase().includes("login")}`
+      );
+      console.log(
+        `Page contains 'username': ${pageContent.toLowerCase().includes("username")}`
+      );
+
+      // Take a screenshot for debugging
+      await this.page.screenshot({
+        path: "debug-login-page.png",
+        fullPage: true,
+      });
+      console.log("🖼️ Screenshot saved as debug-login-page.png");
+
+      throw error;
+    }
   }
 
   async login(username: string, password: string) {
@@ -53,26 +95,34 @@ export class LoginPage {
     await this.passwordInput.fill(password);
     await expect(this.passwordInput).toHaveValue(password);
 
-    // Click login and wait for navigation
+    // Click login and wait for navigation with longer timeout for CI
     await this.loginBtn.click();
 
-    // Give more time for the login process
-    await this.page.waitForLoadState("domcontentloaded");
+    // Wait for either navigation or error with longer timeout for CI environments
+    try {
+      await this.page.waitForURL(
+        (url) => !url.toString().includes("/auth/login"),
+        {
+          timeout: 15000,
+        }
+      );
+      console.log(`✅ Login successful. Navigated to: ${this.page.url()}`);
+    } catch (error) {
+      const currentUrl = this.page.url();
+      console.log(`Still on login page after login attempt`);
+      console.log(`Current URL: ${currentUrl}`);
+      console.log(`Navigation timeout error: ${error}`);
 
-    // Small delay to allow for navigation (disabling ESLint for this specific case)
-    // eslint-disable-next-line playwright/no-wait-for-timeout
-    await this.page.waitForTimeout(2000);
-
-    // Check if we're still on login page (error case) or navigated (success)
-    const currentUrl = this.page.url();
-    if (currentUrl.includes("/auth/login")) {
-      // Still on login page, might be an error
-      console.log("Still on login page after login attempt");
-    } else {
-      // Navigated away from login page
-      console.log(`Navigated to: ${currentUrl}`);
-      await this.page.waitForLoadState("domcontentloaded");
+      // Check for error messages
+      const errorVisible = await this.errorAlert.isVisible();
+      if (errorVisible) {
+        const errorText = await this.errorAlert.textContent();
+        console.log(`Login error: ${errorText}`);
+      }
     }
+
+    // Ensure page is fully loaded after login attempt
+    await this.page.waitForLoadState("domcontentloaded");
   }
 
   async assertOnLoginPage() {

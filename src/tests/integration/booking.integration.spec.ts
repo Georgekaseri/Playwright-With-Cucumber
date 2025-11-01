@@ -3,11 +3,24 @@ import { createBookingViaAPI } from "../../utils/apiUtils";
 import { LoginPage } from "../../pages/login.page";
 import { DashboardPage } from "../../pages/dashboard.page";
 import { TEST_ENV } from "../../config/test-env";
+import { checkSiteHealth, skipIfSiteDown } from "../../utils/siteHealthCheck";
 
 test.describe("@integration API+UI Integration Tests", () => {
+  let siteHealthy: boolean;
+
+  test.beforeAll(async () => {
+    siteHealthy = await checkSiteHealth(TEST_ENV.baseURL);
+  });
+
   test("@smoke should create booking via API and verify data integrity", async ({
     page,
   }) => {
+    // Skip if external site is down
+    test.skip(
+      skipIfSiteDown(siteHealthy, "API+UI integration test"),
+      "External OrangeHRM site is not available",
+    );
+
     // Create booking using our API client
     const booking = await createBookingViaAPI();
 
