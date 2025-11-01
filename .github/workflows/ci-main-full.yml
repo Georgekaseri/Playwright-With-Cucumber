@@ -2,7 +2,7 @@ name: Main Full Matrix
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 concurrency:
   group: main-${{ github.sha }}
@@ -16,15 +16,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [ chromium, firefox, webkit ]
-        shard: [ "1/2", "2/2" ]   # split UI tests into 2 shards per browser
+        browser: [chromium, firefox, webkit]
+        shard: ["1/2", "2/2"] # split UI tests into 2 shards per browser
 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - name: Install deps
         run: npm ci
       - name: Cache Playwright browsers
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - name: Install deps
         run: npm ci
       - name: Cache Playwright browsers
@@ -100,7 +100,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - name: Install deps
         run: |
           npm ci

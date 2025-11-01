@@ -2,7 +2,7 @@ name: PR Smoke
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 concurrency:
   group: pr-${{ github.event.pull_request.number }}
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install deps
         run: npm ci
