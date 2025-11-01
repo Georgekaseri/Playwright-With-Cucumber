@@ -25,6 +25,12 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Lint check
+        run: npm run lint:ci
+
+      - name: Format check
+        run: npm run format:check
+
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         with:
