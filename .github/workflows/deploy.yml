@@ -1,0 +1,150 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main # Production deployment
+      - staging # Staging deployment
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
+      skip_tests:
+        description: "Skip tests before deployment"
+        required: false
+        default: false
+        type: boolean
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  # Pre-deployment validation
+  pre-deploy-tests:
+    if: ${{ !inputs.skip_tests }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-suite: [smoke, api, a11y]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run ${{ matrix.test-suite }} tests
+        run: |
+          case "${{ matrix.test-suite }}" in
+            "smoke") npm run test:health:quick ;;
+            "api") npm run test:api:smoke ;;
+            "a11y") npm run test:a11y:smoke ;;
+          esac
+
+  # Staging deployment
+  deploy-staging:
+    needs: [pre-deploy-tests]
+    if: always() && (github.ref == 'refs/heads/staging' || inputs.environment == 'staging')
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for staging
+        run: npm run build:staging
+
+      - name: Deploy to staging
+        run: |
+          echo "🚀 Deploying to STAGING environment"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          # Add your staging deployment commands here
+          # Examples:
+          # - Upload to staging server
+          # - Deploy to staging Docker container
+          # - Update staging environment variables
+
+      - name: Run post-deploy staging tests
+        run: |
+          echo "🧪 Running post-deployment tests on STAGING"
+          cross-env TEST_ENV=staging npm run test:health:quick
+
+  # Production deployment
+  deploy-production:
+    needs: [pre-deploy-tests]
+    if: always() && (github.ref == 'refs/heads/main' || inputs.environment == 'production')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for production
+        run: npm run build:production
+
+      - name: Deploy to production
+        run: |
+          echo "🚀 Deploying to PRODUCTION environment"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          # Add your production deployment commands here
+          # Examples:
+          # - Upload to production server
+          # - Deploy to production Docker container
+          # - Update production environment variables
+          # - Notify team of deployment
+
+      - name: Run post-deploy production tests
+        run: |
+          echo "🧪 Running post-deployment tests on PRODUCTION"
+          cross-env TEST_ENV=production npm run test:health:quick
+
+  # Deployment notification
+  notify-deployment:
+    needs: [deploy-staging, deploy-production]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment notification
+        run: |
+          if [[ "${{ needs.deploy-staging.result }}" == "success" ]]; then
+            echo "✅ STAGING deployment successful"
+          fi
+          if [[ "${{ needs.deploy-production.result }}" == "success" ]]; then
+            echo "✅ PRODUCTION deployment successful"
+          fi
+          # Add notification logic (Slack, Teams, email, etc.)
