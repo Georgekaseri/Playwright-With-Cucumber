@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload UI report (${{ matrix.browser }}-${{ matrix.shard }})
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ui-${{ matrix.browser }}-${{ matrix.shard }}-report
           path: playwright-report
@@ -85,7 +85,7 @@ jobs:
         run: npm run bdd:report
       - name: Upload BDD report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: bdd-regression-report
           path: reports/cucumber-html
@@ -122,7 +122,7 @@ jobs:
 
       - name: Upload report bundle
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: api-a11y-visual-report
           path: |
