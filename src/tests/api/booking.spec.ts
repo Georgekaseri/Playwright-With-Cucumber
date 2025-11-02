@@ -104,11 +104,9 @@ test.describe("@api Booking API Tests", () => {
     expect(Array.isArray(bookings)).toBe(true);
     expect(bookings.length).toBeGreaterThan(0);
 
-    // Validate booking list structure
-    if (bookings.length > 0) {
-      expect(bookings[0]).toHaveProperty("bookingid");
-      expect(typeof bookings[0].bookingid).toBe("number");
-    }
+    // Validate booking list structure - we can safely check the first element since we verified length > 0
+    expect(bookings[0]).toHaveProperty("bookingid");
+    expect(typeof bookings[0].bookingid).toBe("number");
 
     console.log(`📋 Found ${bookings.length} bookings in the system`);
 

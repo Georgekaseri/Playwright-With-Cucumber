@@ -62,32 +62,32 @@ test.describe("System Health Checks @health", () => {
 
 // Staging environment specific tests
 test.describe("Staging Environment Health @staging", () => {
-  test.skip(
-    process.env.TEST_ENV !== "staging",
-    "Staging tests only run in staging environment",
-  );
+  // Using conditional test assignment to skip at definition time based on environment
+  // eslint-disable-next-line playwright/no-standalone-expect -- Test is conditionally defined based on env
+  const stagingTest = process.env.TEST_ENV === "staging" ? test : test.skip;
 
-  test("Staging specific health check @health @staging", async ({ page }) => {
+  stagingTest("Staging specific health check @health @staging", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
         "https://opensource-demo.orangehrmlive.com",
     );
+    // eslint-disable-next-line playwright/no-standalone-expect -- Test is conditionally defined, ESLint doesn't recognize stagingTest
     await expect(page).toHaveTitle(/OrangeHRM/);
   });
 });
 
 // Production environment monitoring
 test.describe("Production Environment Health @production", () => {
-  test.skip(
-    process.env.TEST_ENV !== "production",
-    "Production tests only run in production environment",
-  );
+  // Using conditional test assignment to skip at definition time based on environment
+  // eslint-disable-next-line playwright/no-standalone-expect -- Test is conditionally defined based on env
+  const productionTest = process.env.TEST_ENV === "production" ? test : test.skip;
 
-  test("Production health check @health @production", async ({ page }) => {
+  productionTest("Production health check @health @production", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
         "https://opensource-demo.orangehrmlive.com",
     );
+    // eslint-disable-next-line playwright/no-standalone-expect -- Test is conditionally defined, ESLint doesn't recognize productionTest
     await expect(page).toHaveTitle(/OrangeHRM/);
   });
 });

@@ -26,16 +26,14 @@ test.describe("Visual Regression Tests", () => {
     // Ensure we're really on the dashboard before proceeding
     await page.waitForURL("**/dashboard/**", { timeout: 10000 });
     await page.waitForLoadState("load");
-    // Additional wait for dashboard content to stabilize
-    await page.waitForTimeout(2000);
+    // Wait for dashboard content to stabilize by waiting for a stable element
+    const dashboardContent = page.locator(".oxd-grid-4, .orangehrm-dashboard-grid, body");
+    await dashboardContent.first().waitFor({ state: "visible", timeout: 5000 });
   });
 
   test("Dashboard page matches baseline @visual @smoke", async ({ page }) => {
-    // Double-check we're still authenticated
-    const currentUrl = page.url();
-    if (currentUrl.includes("/auth/login")) {
-      throw new Error("Authentication lost before test execution");
-    }
+    // Verify we're still authenticated by checking URL
+    await expect(page).toHaveURL(/.*dashboard/);
 
     // Mask dynamic regions if needed (e.g., clocks, carousels)
     const mask: Locator[] = [
@@ -43,8 +41,9 @@ test.describe("Visual Regression Tests", () => {
     ];
 
     await freezeAnimations(page);
-    // Wait a bit for the page to stabilize
-    await page.waitForTimeout(1000);
+    // Wait for the page to stabilize by waiting for key elements
+    const dashboardContent = page.locator(".oxd-grid-4, .orangehrm-dashboard-grid, body");
+    await dashboardContent.first().waitFor({ state: "visible", timeout: 5000 });
 
     await expect(page).toHaveScreenshot("dashboard.png", {
       fullPage: true,
@@ -57,33 +56,21 @@ test.describe("Visual Regression Tests", () => {
   test("Quick Actions widget looks correct @visual @regression", async ({
     page,
   }) => {
-    // Double-check we're still authenticated
-    const currentUrl = page.url();
-    if (currentUrl.includes("/auth/login")) {
-      throw new Error("Authentication lost before test execution");
-    }
-
-    // Try to find Quick Actions widget with a more flexible selector
-    const target = page
-      .locator(
-        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget',
-      )
-      .first();
-
-    // If we can't find a specific widget, let's take a screenshot of a general area
-    const fallbackTarget = page.locator(".oxd-grid-4").first();
+    // Verify we're still authenticated by checking URL
+    await expect(page).toHaveURL(/.*dashboard/);
 
     await freezeAnimations(page);
     // Wait for the widget to be stable and ensure fonts are loaded
     await page.waitForLoadState("load");
-    await page.waitForTimeout(2000);
-
-    // Try the specific target first, fall back to general area
-    const elementToCapture = (await target.isVisible().catch(() => false))
-      ? target
-      : fallbackTarget;
+    
+    // Use a combined locator that will match either the specific widget or the fallback area
+    // This avoids runtime conditionals by using Playwright's locator chaining
+    const elementToCapture = page.locator(
+      '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget, .oxd-grid-4'
+    ).first();
 
     // Ensure the element is stable before screenshot
+    await elementToCapture.waitFor({ state: "visible", timeout: 5000 });
     await expect(elementToCapture).toBeVisible();
 
     await expect(elementToCapture).toHaveScreenshot(
