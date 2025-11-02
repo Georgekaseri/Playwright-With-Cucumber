@@ -25,7 +25,9 @@ test.describe("Visual Regression Tests", () => {
 
     // Ensure we're really on the dashboard before proceeding
     await page.waitForURL("**/dashboard/**", { timeout: 10000 });
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("load");
+    // Additional wait for dashboard content to stabilize
+    await page.waitForTimeout(2000);
   });
 
   test("Dashboard page matches baseline @visual @smoke", async ({ page }) => {
