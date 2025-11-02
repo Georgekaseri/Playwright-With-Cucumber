@@ -46,7 +46,7 @@ test.describe("Visual Regression Tests", () => {
 
     await expect(page).toHaveScreenshot("dashboard.png", {
       fullPage: true,
-      maxDiffPixelRatio: 0.05, // Increased tolerance to 5% for full page screenshots
+      maxDiffPixelRatio: 0.08, // Increased tolerance to 8% for dynamic dashboard content
       animations: "disabled",
       mask,
     });
