@@ -4,7 +4,7 @@ import { DashboardPage } from "../pages/dashboard.page";
 import { TEST_ENV } from "../config/test-env";
 
 // Utility to freeze animations/transitions for deterministic screenshots
-async function freezeAnimations(page: any) {
+async function freezeAnimations(page: import("@playwright/test").Page) {
   await page.addStyleTag({
     content: `
       * { transition-duration: 0s !important; animation-duration: 0s !important; }
@@ -66,7 +66,7 @@ test.describe("Visual Regression Tests", () => {
     // Try to find Quick Actions widget with a more flexible selector
     const target = page
       .locator(
-        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget'
+        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget',
       )
       .first();
 
@@ -75,7 +75,7 @@ test.describe("Visual Regression Tests", () => {
 
     await freezeAnimations(page);
     // Wait for the widget to be stable and ensure fonts are loaded
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("load");
     await page.waitForTimeout(2000);
 
     // Try the specific target first, fall back to general area
@@ -92,7 +92,7 @@ test.describe("Visual Regression Tests", () => {
         maxDiffPixelRatio: 0.05, // Increased tolerance to 5% for more stability
         animations: "disabled",
         threshold: 0.2, // Additional threshold for pixel-level differences
-      }
+      },
     );
   });
 });

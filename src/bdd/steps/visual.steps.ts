@@ -1,8 +1,7 @@
-import { Given, Then } from "@cucumber/cucumber";
+import { Given } from "@cucumber/cucumber";
 import type { CustomWorld } from "../support/world";
 import { LoginPage } from "../../pages/login.page";
 import { TEST_ENV } from "../../config/test-env";
-import { expect, type Locator } from "@playwright/test";
 
 // NOTE: Visual testing with Playwright's toHaveScreenshot() only works within
 // Playwright's test context, not Cucumber. Use npm run test:visual instead.
@@ -25,12 +24,13 @@ Given(
     await login.goto();
     await freezeAnimations(this.page);
     await login.login(TEST_ENV.username, TEST_ENV.password);
-    // Wait for network to settle and main heading visible with longer timeout
-    await this.page.waitForLoadState("networkidle");
-    await expect(
-      this.page.getByRole("heading", { name: "Dashboard" })
-    ).toBeVisible({ timeout: 10000 });
-  }
+    // Wait for load state and main heading visible with longer timeout
+    await this.page.waitForLoadState("load");
+    // Wait for dashboard to be loaded
+    await this.page
+      .getByRole("heading", { name: "Dashboard" })
+      .waitFor({ timeout: 10000 });
+  },
 );
 
 // DISABLED: Playwright's toHaveScreenshot() doesn't work in Cucumber context
