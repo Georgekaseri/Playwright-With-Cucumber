@@ -30,7 +30,7 @@ Given(
     await this.page
       .getByRole("heading", { name: "Dashboard" })
       .waitFor({ timeout: 10000 });
-  },
+  }
 );
 
 // DISABLED: Playwright's toHaveScreenshot() doesn't work in Cucumber context
