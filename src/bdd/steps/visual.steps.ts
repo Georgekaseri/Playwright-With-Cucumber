@@ -1,4 +1,4 @@
-import { Given } from "@cucumber/cucumber";
+import { Given, Then } from "@cucumber/cucumber";
 import type { CustomWorld } from "../support/world";
 import { LoginPage } from "../../pages/login.page";
 import { TEST_ENV } from "../../config/test-env";
@@ -36,22 +36,23 @@ Given(
 // DISABLED: Playwright's toHaveScreenshot() doesn't work in Cucumber context
 // Use the Playwright visual tests instead: npm run test:visual
 
-/*
+// These steps are marked as pending since visual testing is not supported in Cucumber
 Then(
   "the full page should match the baseline {string}",
-  async function (this: CustomWorld, name: string) {
-    // This will fail because toHaveScreenshot() must be called during Playwright test
-    console.log("Visual testing not supported in Cucumber - use npm run test:visual instead");
-    throw new Error("Visual testing with Cucumber is not supported. Use Playwright visual tests instead.");
-  }
+  function (baseline: string) {
+    console.log(
+      `Visual testing not supported in Cucumber - use npm run test:visual instead (baseline: ${baseline})`,
+    );
+    return "pending";
+  },
 );
 
 Then(
   "the widget {string} should match the baseline",
-  async function (this: CustomWorld, widgetRole: string) {
-    // This will fail because toHaveScreenshot() must be called during Playwright test
-    console.log("Visual testing not supported in Cucumber - use npm run test:visual instead");
-    throw new Error("Visual testing with Cucumber is not supported. Use Playwright visual tests instead.");
-  }
+  function (widgetName: string) {
+    console.log(
+      `Visual testing not supported in Cucumber - use npm run test:visual instead (widget: ${widgetName})`,
+    );
+    return "pending";
+  },
 );
-*/

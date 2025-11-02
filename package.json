@@ -15,7 +15,7 @@
     "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.js --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "bdd": "cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress --format json:reports/cucumber.json",
+    "bdd": "cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress --format json:reports/cucumber.json --tags \"not @visual-disabled and not @ignore\"",
     "bdd:headed": "cross-env HEADLESS=0 cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress",
     "bdd:smoke": "cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress --format json:reports/cucumber.json --tags \"@smoke\"",
     "bdd:regression": "cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress --format json:reports/cucumber.json --tags \"@regression\"",
