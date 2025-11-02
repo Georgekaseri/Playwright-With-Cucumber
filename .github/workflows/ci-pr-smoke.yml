@@ -62,12 +62,11 @@ jobs:
       # Visual smoke (never update in CI)
       - name: Visual smoke
         env:
-          TAGS: "@visual and @smoke"
           UPDATE_SNAPSHOTS: "0"
           ORANGEHRM_BASE_URL: ${{ secrets.ORANGEHRM_BASE_URL }}
           ORANGEHRM_USERNAME: ${{ secrets.ORANGEHRM_USERNAME }}
           ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
-        run: npm run test:visual --grep "@smoke"
+        run: npx playwright test --grep "@visual.*@smoke|@smoke.*@visual"
 
       - name: Upload HTML report
         if: always()
