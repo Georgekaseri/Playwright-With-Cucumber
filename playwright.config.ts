@@ -45,6 +45,13 @@ export default defineConfig({
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
+        launchOptions: {
+          firefoxUserPrefs: {
+            "media.navigator.streams.fake": true,
+            "media.navigator.permission.disabled": true,
+          },
+          args: ["--no-sandbox"],
+        },
       },
     },
     {
