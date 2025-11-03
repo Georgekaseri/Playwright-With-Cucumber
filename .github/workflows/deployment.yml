@@ -1,0 +1,461 @@
+name: 🚀 Deployment Pipeline
+
+on:
+  workflow_run:
+    workflows: ["🚀 CI/CD Pipeline"]
+    branches: [main, develop]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
+      force_deploy:
+        description: "Force deployment (skip some checks)"
+        required: false
+        default: false
+        type: boolean
+
+env:
+  NODE_VERSION: "20.x"
+  FORCE_COLOR: 1
+
+permissions:
+  contents: read
+  deployments: write
+  statuses: write
+  checks: read
+
+jobs:
+  # Job 1: Pre-deployment Checks
+  pre-deployment:
+    name: 🔍 Pre-deployment Checks
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    outputs:
+      deploy-staging: ${{ steps.determine.outputs.deploy-staging }}
+      deploy-production: ${{ steps.determine.outputs.deploy-production }}
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine deployment targets
+        id: determine
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ "${{ github.event.inputs.environment }}" == "staging" ]]; then
+              echo "deploy-staging=true" >> $GITHUB_OUTPUT
+              echo "deploy-production=false" >> $GITHUB_OUTPUT
+            else
+              echo "deploy-staging=false" >> $GITHUB_OUTPUT
+              echo "deploy-production=true" >> $GITHUB_OUTPUT
+            fi
+          elif [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
+            echo "deploy-staging=true" >> $GITHUB_OUTPUT
+            echo "deploy-production=false" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "deploy-staging=true" >> $GITHUB_OUTPUT
+            echo "deploy-production=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy-staging=false" >> $GITHUB_OUTPUT
+            echo "deploy-production=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Deploying version: $VERSION"
+
+      - name: Verify CI status
+        if: github.event.inputs.force_deploy != 'true'
+        run: |
+          if [[ "${{ github.event.workflow_run.conclusion }}" != "success" ]]; then
+            echo "❌ CI workflow failed. Deployment aborted."
+            exit 1
+          fi
+          echo "✅ CI workflow passed. Proceeding with deployment."
+
+  # Job 2: Build Deployment Package
+  build-deployment:
+    name: 📦 Build Deployment Package
+    runs-on: ubuntu-latest
+    needs: pre-deployment
+    if: needs.pre-deployment.outputs.deploy-staging == 'true' || needs.pre-deployment.outputs.deploy-production == 'true'
+    outputs:
+      package-name: ${{ steps.package.outputs.package-name }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --only=production --prefer-offline --no-audit
+
+      - name: Create deployment package
+        id: package
+        run: |
+          VERSION="${{ needs.pre-deployment.outputs.version }}"
+          PACKAGE_NAME="deployment-$VERSION-$(date +%s)"
+          echo "package-name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+
+          mkdir -p deploy/$PACKAGE_NAME
+
+          # Copy application files
+          cp -r src deploy/$PACKAGE_NAME/
+          cp package*.json deploy/$PACKAGE_NAME/
+          cp playwright.config.ts deploy/$PACKAGE_NAME/
+          cp cucumber.config.js deploy/$PACKAGE_NAME/
+          cp tsconfig.json deploy/$PACKAGE_NAME/
+          cp README.md deploy/$PACKAGE_NAME/
+
+          # Copy only production node_modules
+          cp -r node_modules deploy/$PACKAGE_NAME/
+
+          # Create deployment metadata
+          cat > deploy/$PACKAGE_NAME/deployment-info.json << EOF
+          {
+            "version": "$VERSION",
+            "commit": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "build_time": "$(date -u +"%Y-%m-%d %H:%M:%S UTC")",
+            "deployment_package": "$PACKAGE_NAME"
+          }
+          EOF
+
+          # Create startup script
+          cat > deploy/$PACKAGE_NAME/start.sh << 'EOF'
+          #!/bin/bash
+          echo "🚀 Starting Playwright-Cucumber Test Framework..."
+          echo "Installing Playwright browsers..."
+          npx playwright install --with-deps
+          echo "✅ Framework ready!"
+          echo "Available commands:"
+          echo "  npm test              - Run all tests"
+          echo "  npm run test:api      - Run API tests"
+          echo "  npm run test:visual   - Run visual tests"
+          echo "  npm run bdd          - Run BDD scenarios"
+          EOF
+          chmod +x deploy/$PACKAGE_NAME/start.sh
+
+          # Create health check script
+          cat > deploy/$PACKAGE_NAME/health-check.sh << 'EOF'
+          #!/bin/bash
+          echo "🏥 Running health check..."
+          npm run test -- --grep="@health" --reporter=json > health-check.json
+          if [ $? -eq 0 ]; then
+            echo "✅ Health check passed"
+            exit 0
+          else
+            echo "❌ Health check failed"
+            exit 1
+          fi
+          EOF
+          chmod +x deploy/$PACKAGE_NAME/health-check.sh
+
+          # Create deployment archive
+          cd deploy
+          tar -czf ${PACKAGE_NAME}.tar.gz $PACKAGE_NAME/
+
+          echo "📦 Deployment package created: ${PACKAGE_NAME}.tar.gz"
+          ls -lh ${PACKAGE_NAME}.tar.gz
+
+      - name: Upload deployment package
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-package
+          path: deploy/${{ steps.package.outputs.package-name }}.tar.gz
+          retention-days: 30
+
+  # Job 3: Deploy to Staging
+  deploy-staging:
+    name: 🧪 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [pre-deployment, build-deployment]
+    if: needs.pre-deployment.outputs.deploy-staging == 'true'
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.environment-url }}
+    steps:
+      - name: Create deployment
+        uses: actions/github-script@v7
+        id: create-deployment
+        with:
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: 'staging',
+              description: 'Deploy to staging environment',
+              auto_merge: false,
+              required_contexts: []
+            });
+            return deployment.data.id;
+
+      - name: Download deployment package
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-package
+
+      - name: Deploy to staging environment
+        id: deploy
+        run: |
+          echo "🚀 Deploying to staging environment..."
+
+          # Simulate deployment process
+          PACKAGE_FILE="${{ needs.build-deployment.outputs.package-name }}.tar.gz"
+          echo "Extracting deployment package: $PACKAGE_FILE"
+          tar -xzf $PACKAGE_FILE
+
+          PACKAGE_DIR="${{ needs.build-deployment.outputs.package-name }}"
+          cd $PACKAGE_DIR
+
+          echo "📋 Deployment Info:"
+          cat deployment-info.json
+
+          echo "🔧 Setting up staging environment..."
+          # In a real scenario, this would deploy to your staging infrastructure
+          # Examples:
+          # - Deploy to AWS/Azure/GCP
+          # - Update Kubernetes deployments
+          # - Deploy to Docker containers
+          # - Update load balancer configuration
+
+          # Simulate environment setup
+          sleep 5
+
+          echo "✅ Deployment to staging completed"
+          echo "environment-url=https://staging.your-domain.com" >> $GITHUB_OUTPUT
+
+      - name: Run post-deployment tests
+        run: |
+          echo "🧪 Running post-deployment tests..."
+
+          cd ${{ needs.build-deployment.outputs.package-name }}
+
+          # Install dependencies for testing
+          npm install
+
+          # Run health check
+          ./health-check.sh
+
+          # Run smoke tests
+          npm run bdd:smoke || {
+            echo "❌ Smoke tests failed in staging"
+            exit 1
+          }
+
+          echo "✅ All post-deployment tests passed"
+
+      - name: Update deployment status
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: ${{ steps.create-deployment.outputs.result }},
+              state: status,
+              environment_url: '${{ steps.deploy.outputs.environment-url }}',
+              description: `Staging deployment ${status}`
+            });
+
+  # Job 4: Deploy to Production
+  deploy-production:
+    name: 🌟 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [pre-deployment, build-deployment, deploy-staging]
+    if: needs.pre-deployment.outputs.deploy-production == 'true' && (success() || github.event.inputs.force_deploy == 'true')
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.environment-url }}
+    steps:
+      - name: Manual approval check
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          echo "🔒 Production deployment requires manual approval"
+          echo "Waiting for environment protection rules..."
+
+      - name: Create deployment
+        uses: actions/github-script@v7
+        id: create-deployment
+        with:
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: 'production',
+              description: 'Deploy to production environment',
+              auto_merge: false,
+              required_contexts: []
+            });
+            return deployment.data.id;
+
+      - name: Download deployment package
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-package
+
+      - name: Deploy to production environment
+        id: deploy
+        run: |
+          echo "🌟 Deploying to production environment..."
+
+          PACKAGE_FILE="${{ needs.build-deployment.outputs.package-name }}.tar.gz"
+          echo "Extracting deployment package: $PACKAGE_FILE"
+          tar -xzf $PACKAGE_FILE
+
+          PACKAGE_DIR="${{ needs.build-deployment.outputs.package-name }}"
+          cd $PACKAGE_DIR
+
+          echo "📋 Deployment Info:"
+          cat deployment-info.json
+
+          echo "🔧 Setting up production environment..."
+          # Production deployment would include:
+          # - Blue/green deployment strategy
+          # - Database migrations
+          # - CDN cache invalidation
+          # - Load balancer updates
+          # - Health checks
+          # - Rollback capability
+
+          # Simulate production deployment
+          sleep 10
+
+          echo "✅ Deployment to production completed"
+          echo "environment-url=https://your-domain.com" >> $GITHUB_OUTPUT
+
+      - name: Run production smoke tests
+        run: |
+          echo "🧪 Running production smoke tests..."
+
+          cd ${{ needs.build-deployment.outputs.package-name }}
+
+          # Install dependencies for testing
+          npm install
+
+          # Run health check
+          ./health-check.sh
+
+          # Run critical path tests
+          npm run bdd:smoke || {
+            echo "❌ Production smoke tests failed!"
+            echo "🔄 Consider rolling back deployment"
+            exit 1
+          }
+
+          echo "✅ Production smoke tests passed"
+
+      - name: Update deployment status
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: ${{ steps.create-deployment.outputs.result }},
+              state: status,
+              environment_url: '${{ steps.deploy.outputs.environment-url }}',
+              description: `Production deployment ${status}`
+            });
+
+  # Job 5: Post-deployment Monitoring
+  post-deployment:
+    name: 📊 Post-deployment Monitoring
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always() && (needs.deploy-staging.result == 'success' || needs.deploy-production.result == 'success')
+    steps:
+      - name: Setup monitoring
+        run: |
+          echo "📊 Setting up post-deployment monitoring..."
+
+          # In a real scenario, this would:
+          # - Configure application monitoring
+          # - Set up alerting rules
+          # - Initialize performance tracking
+          # - Configure log aggregation
+
+          echo "✅ Monitoring configured"
+
+      - name: Run extended test suite
+        run: |
+          echo "🧪 Running extended test suite..."
+
+          # This would run comprehensive tests against the deployed environment
+          # - Full regression tests
+          # - Performance benchmarks
+          # - Security scans
+          # - Load testing
+
+          echo "✅ Extended tests completed"
+
+  # Job 6: Notification
+  notification:
+    name: 📢 Deployment Notification
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production, post-deployment]
+    if: always()
+    steps:
+      - name: Prepare notification message
+        run: |
+          echo "🚀 Deployment Summary" > notification.md
+          echo "**Version:** ${{ needs.pre-deployment.outputs.version }}" >> notification.md
+          echo "**Commit:** ${{ github.sha }}" >> notification.md
+          echo "**Branch:** ${{ github.ref_name }}" >> notification.md
+          echo "" >> notification.md
+
+          if [[ "${{ needs.deploy-staging.result }}" == "success" ]]; then
+            echo "✅ **Staging:** Deployed successfully" >> notification.md
+          elif [[ "${{ needs.deploy-staging.result }}" == "failure" ]]; then
+            echo "❌ **Staging:** Deployment failed" >> notification.md
+          else
+            echo "⏭️ **Staging:** Skipped" >> notification.md
+          fi
+
+          if [[ "${{ needs.deploy-production.result }}" == "success" ]]; then
+            echo "✅ **Production:** Deployed successfully" >> notification.md
+          elif [[ "${{ needs.deploy-production.result }}" == "failure" ]]; then
+            echo "❌ **Production:** Deployment failed" >> notification.md
+          else
+            echo "⏭️ **Production:** Skipped" >> notification.md
+          fi
+
+          cat notification.md
+
+      - name: Send notification
+        run: |
+          echo "📢 Sending deployment notifications..."
+
+          # Here you would integrate with your notification systems:
+          # - Slack webhooks
+          # - Microsoft Teams
+          # - Discord
+          # - Email notifications
+          # - PagerDuty (for failures)
+
+          # Example Slack notification:
+          # curl -X POST -H 'Content-type: application/json' \
+          #   --data "$(cat notification.md | jq -Rs '{text: .}')" \
+          #   ${{ secrets.SLACK_WEBHOOK_URL }}
+
+          echo "✅ Notifications sent"

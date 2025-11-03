@@ -1,0 +1,86 @@
+# Dependabot Configuration
+# This file configures automated dependency updates
+
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "@your-team/maintainers"
+    assignees:
+      - "@your-username"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    ignore:
+      # Ignore major version updates for these packages
+      - dependency-name: "playwright"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@cucumber/cucumber"
+        update-types: ["version-update:semver-major"]
+    groups:
+      playwright:
+        patterns:
+          - "playwright*"
+          - "@playwright/*"
+      cucumber:
+        patterns:
+          - "*cucumber*"
+          - "@cucumber/*"
+      testing:
+        patterns:
+          - "*test*"
+          - "*spec*"
+          - "jest*"
+          - "mocha*"
+          - "chai*"
+      linting:
+        patterns:
+          - "eslint*"
+          - "@typescript-eslint/*"
+          - "prettier*"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "@your-team/maintainers"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "github-actions"
+      - "automated"
+
+  # Enable version updates for Docker (if using Dockerfile)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "@your-team/maintainers"
+    commit-message:
+      prefix: "docker"
+    labels:
+      - "docker"
+      - "automated"

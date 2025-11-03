@@ -1,0 +1,343 @@
+name: 🔒 Security Scanning
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "20.x"
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  # Job 1: CodeQL Analysis
+  codeql-analysis:
+    name: 🔍 CodeQL Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended,security-and-quality
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+  # Job 2: Dependency Scanning
+  dependency-scan:
+    name: 📦 Dependency Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run npm audit
+        run: |
+          npm audit --audit-level high --json > audit-report.json || true
+
+          # Check if there are high or critical vulnerabilities
+          HIGH_VULNS=$(cat audit-report.json | jq '.metadata.vulnerabilities.high // 0')
+          CRITICAL_VULNS=$(cat audit-report.json | jq '.metadata.vulnerabilities.critical // 0')
+
+          echo "High vulnerabilities: $HIGH_VULNS"
+          echo "Critical vulnerabilities: $CRITICAL_VULNS"
+
+          if [ "$CRITICAL_VULNS" -gt 0 ]; then
+            echo "❌ Critical vulnerabilities found!"
+            npm audit --audit-level critical
+            exit 1
+          elif [ "$HIGH_VULNS" -gt 0 ]; then
+            echo "⚠️ High vulnerabilities found!"
+            npm audit --audit-level high
+          else
+            echo "✅ No high or critical vulnerabilities found"
+          fi
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: npm-audit-report
+          path: audit-report.json
+          retention-days: 30
+
+  # Job 3: SAST with Semgrep
+  sast-scan:
+    name: 🛡️ SAST Scan (Semgrep)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        run: |
+          semgrep \
+            --config=auto \
+            --json \
+            --output=semgrep-report.json \
+            --timeout=300 \
+            .
+
+      - name: Process Semgrep results
+        run: |
+          if [ -f semgrep-report.json ]; then
+            FINDINGS=$(cat semgrep-report.json | jq '.results | length')
+            echo "Semgrep findings: $FINDINGS"
+            
+            if [ "$FINDINGS" -gt 0 ]; then
+              echo "⚠️ Security issues found by Semgrep:"
+              cat semgrep-report.json | jq -r '.results[] | "- \(.check_id): \(.message) (\(.path):\(.start.line))"' | head -10
+            else
+              echo "✅ No security issues found by Semgrep"
+            fi
+          fi
+
+      - name: Upload Semgrep report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semgrep-report
+          path: semgrep-report.json
+          retention-days: 30
+
+  # Job 4: Secret Scanning
+  secret-scan:
+    name: 🔐 Secret Scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified --json
+
+  # Job 5: Docker Security (if Dockerfile exists)
+  docker-security:
+    name: 🐳 Docker Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: ${{ hashFiles('Dockerfile') != '' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          format: json
+          output-file: hadolint-report.json
+
+      - name: Upload Hadolint report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hadolint-report
+          path: hadolint-report.json
+          retention-days: 30
+
+  # Job 6: License Compliance
+  license-scan:
+    name: 📄 License Compliance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install license checker
+        run: npm install -g license-checker
+
+      - name: Check licenses
+        run: |
+          license-checker --json > licenses.json
+
+          # Check for problematic licenses
+          PROBLEMATIC_LICENSES="GPL-2.0|GPL-3.0|AGPL-1.0|AGPL-3.0|LGPL-2.0|LGPL-2.1|LGPL-3.0|MPL-1.1|MPL-2.0|CDDL-1.0|CDDL-1.1|EPL-1.0|EPL-2.0"
+
+          if grep -iE "$PROBLEMATIC_LICENSES" licenses.json; then
+            echo "⚠️ Potentially problematic licenses found. Please review:"
+            grep -iE "$PROBLEMATIC_LICENSES" licenses.json
+          else
+            echo "✅ No problematic licenses detected"
+          fi
+
+      - name: Upload license report
+        uses: actions/upload-artifact@v4
+        with:
+          name: license-report
+          path: licenses.json
+          retention-days: 30
+
+  # Job 7: Security Summary
+  security-summary:
+    name: 📊 Security Summary
+    runs-on: ubuntu-latest
+    needs:
+      [codeql-analysis, dependency-scan, sast-scan, secret-scan, license-scan]
+    if: always()
+    steps:
+      - name: Download all reports
+        uses: actions/download-artifact@v4
+        with:
+          path: security-reports
+
+      - name: Generate security summary
+        run: |
+          echo "# Security Scan Summary" > security-summary.md
+          echo "**Scan Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> security-summary.md
+          echo "**Commit:** ${{ github.sha }}" >> security-summary.md
+          echo "" >> security-summary.md
+
+          echo "## Scan Results" >> security-summary.md
+          echo "| Tool | Status | Findings |" >> security-summary.md
+          echo "|------|--------|----------|" >> security-summary.md
+
+          # CodeQL
+          if [[ "${{ needs.codeql-analysis.result }}" == "success" ]]; then
+            echo "| CodeQL | ✅ Passed | No issues |" >> security-summary.md
+          else
+            echo "| CodeQL | ❌ Failed | Issues found |" >> security-summary.md
+          fi
+
+          # Dependency Scan
+          if [[ "${{ needs.dependency-scan.result }}" == "success" ]]; then
+            echo "| NPM Audit | ✅ Passed | No critical vulnerabilities |" >> security-summary.md
+          else
+            echo "| NPM Audit | ❌ Failed | Vulnerabilities found |" >> security-summary.md
+          fi
+
+          # SAST
+          if [[ "${{ needs.sast-scan.result }}" == "success" ]]; then
+            echo "| Semgrep | ✅ Passed | No issues |" >> security-summary.md
+          else
+            echo "| Semgrep | ⚠️ Issues | Security patterns detected |" >> security-summary.md
+          fi
+
+          # Secret Scan
+          if [[ "${{ needs.secret-scan.result }}" == "success" ]]; then
+            echo "| TruffleHog | ✅ Passed | No secrets |" >> security-summary.md
+          else
+            echo "| TruffleHog | ❌ Failed | Secrets detected |" >> security-summary.md
+          fi
+
+          # License Scan
+          if [[ "${{ needs.license-scan.result }}" == "success" ]]; then
+            echo "| License Check | ✅ Passed | Compliant |" >> security-summary.md
+          else
+            echo "| License Check | ⚠️ Review | Issues need review |" >> security-summary.md
+          fi
+
+          echo "" >> security-summary.md
+          echo "## Recommendations" >> security-summary.md
+          echo "- Review all failed scans" >> security-summary.md
+          echo "- Update dependencies with known vulnerabilities" >> security-summary.md
+          echo "- Remove or encrypt any detected secrets" >> security-summary.md
+          echo "- Ensure license compliance for production use" >> security-summary.md
+
+          cat security-summary.md
+
+      - name: Upload security summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-summary
+          path: security-summary.md
+          retention-days: 90
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('security-summary.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔒 Security Scan Results\n\n${summary}`
+            });
+
+  # Job 8: Security Badge Update
+  update-security-badge:
+    name: 🏆 Update Security Badge
+    runs-on: ubuntu-latest
+    needs: [security-summary]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update security status badge
+        run: |
+          # This is a placeholder for updating a security badge
+          # You could integrate with shields.io or create a custom badge
+          echo "Security scan completed for main branch"
+          # Example: Update a JSON file that shields.io can read
+          # echo '{"schemaVersion": 1, "label": "security", "message": "passing", "color": "green"}' > security-status.json

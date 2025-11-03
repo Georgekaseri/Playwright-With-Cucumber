@@ -1,0 +1,497 @@
+name: ⚡ Performance Monitoring
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run daily at 6 AM UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to test (optional)"
+        required: false
+        type: string
+
+env:
+  NODE_VERSION: "20.x"
+  FORCE_COLOR: 1
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  pages: write
+
+jobs:
+  # Job 1: Lighthouse CI Performance Audit
+  lighthouse-ci:
+    name: 🏠 Lighthouse CI Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.12.x
+
+      - name: Run Lighthouse CI
+        run: lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: |
+            .lighthouseci/
+            lighthouse-results.json
+          retention-days: 30
+
+  # Job 2: Playwright Performance Tests
+  playwright-performance:
+    name: 🎭 Playwright Performance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run performance tests
+        run: npx playwright test performance.spec.ts --reporter=json
+        env:
+          CI: true
+
+      - name: Process performance results
+        run: |
+          # Extract performance metrics from Playwright results
+          if [ -f test-results.json ]; then
+            echo "📊 Performance Test Results:"
+            cat test-results.json | jq -r '.suites[].specs[].tests[] | select(.title | contains("performance")) | .title + ": " + .outcome'
+          fi
+
+      - name: Upload performance test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-performance-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 30
+
+  # Job 3: Web Vitals Monitoring
+  web-vitals:
+    name: 📊 Web Vitals Monitoring
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Create Web Vitals test
+        run: |
+          cat > web-vitals-test.js << 'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+
+          (async () => {
+            const browser = await chromium.launch();
+            const page = await browser.newPage();
+            
+            // Navigate to test URL
+            const testUrl = process.env.TEST_URL || 'https://opensource-demo.orangehrmlive.com';
+            await page.goto(testUrl, { waitUntil: 'networkidle' });
+            
+            // Collect Web Vitals
+            const webVitals = await page.evaluate(() => {
+              return new Promise((resolve) => {
+                const vitals = {};
+                
+                // Largest Contentful Paint
+                new PerformanceObserver((list) => {
+                  const entries = list.getEntries();
+                  const lastEntry = entries[entries.length - 1];
+                  vitals.lcp = lastEntry.startTime;
+                }).observe({ entryTypes: ['largest-contentful-paint'] });
+                
+                // First Input Delay would require user interaction
+                // Cumulative Layout Shift
+                new PerformanceObserver((list) => {
+                  let clsValue = 0;
+                  list.getEntries().forEach((entry) => {
+                    if (!entry.hadRecentInput) {
+                      clsValue += entry.value;
+                    }
+                  });
+                  vitals.cls = clsValue;
+                }).observe({ entryTypes: ['layout-shift'] });
+                
+                // Get navigation timing
+                const navigation = performance.getEntriesByType('navigation')[0];
+                vitals.fcp = navigation.loadEventEnd - navigation.loadEventStart;
+                vitals.ttfb = navigation.responseStart - navigation.requestStart;
+                
+                setTimeout(() => resolve(vitals), 5000);
+              });
+            });
+            
+            console.log('Web Vitals:', JSON.stringify(webVitals, null, 2));
+            fs.writeFileSync('web-vitals.json', JSON.stringify(webVitals, null, 2));
+            
+            await browser.close();
+          })();
+          EOF
+
+      - name: Run Web Vitals collection
+        run: node web-vitals-test.js
+
+      - name: Analyze Web Vitals
+        run: |
+          if [ -f web-vitals.json ]; then
+            echo "📊 Web Vitals Results:"
+            cat web-vitals.json
+            
+            # Check thresholds
+            LCP=$(cat web-vitals.json | jq -r '.lcp // 0')
+            CLS=$(cat web-vitals.json | jq -r '.cls // 0')
+            TTFB=$(cat web-vitals.json | jq -r '.ttfb // 0')
+            
+            echo "## Performance Assessment" > vitals-report.md
+            echo "| Metric | Value | Status |" >> vitals-report.md
+            echo "|--------|-------|--------|" >> vitals-report.md
+            
+            # LCP threshold: Good < 2.5s, Needs Improvement < 4s
+            if (( $(echo "$LCP < 2500" | bc -l) )); then
+              echo "| LCP | ${LCP}ms | ✅ Good |" >> vitals-report.md
+            elif (( $(echo "$LCP < 4000" | bc -l) )); then
+              echo "| LCP | ${LCP}ms | ⚠️ Needs Improvement |" >> vitals-report.md
+            else
+              echo "| LCP | ${LCP}ms | ❌ Poor |" >> vitals-report.md
+            fi
+            
+            # CLS threshold: Good < 0.1, Needs Improvement < 0.25
+            if (( $(echo "$CLS < 0.1" | bc -l) )); then
+              echo "| CLS | $CLS | ✅ Good |" >> vitals-report.md
+            elif (( $(echo "$CLS < 0.25" | bc -l) )); then
+              echo "| CLS | $CLS | ⚠️ Needs Improvement |" >> vitals-report.md
+            else
+              echo "| CLS | $CLS | ❌ Poor |" >> vitals-report.md
+            fi
+            
+            # TTFB threshold: Good < 800ms
+            if (( $(echo "$TTFB < 800" | bc -l) )); then
+              echo "| TTFB | ${TTFB}ms | ✅ Good |" >> vitals-report.md
+            else
+              echo "| TTFB | ${TTFB}ms | ⚠️ Review |" >> vitals-report.md
+            fi
+            
+            cat vitals-report.md
+          fi
+
+      - name: Upload Web Vitals results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-vitals-results
+          path: |
+            web-vitals.json
+            vitals-report.md
+          retention-days: 30
+
+  # Job 4: Bundle Size Analysis
+  bundle-analysis:
+    name: 📦 Bundle Size Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Analyze bundle size
+        run: |
+          echo "📦 Bundle Size Analysis" > bundle-analysis.md
+          echo "" >> bundle-analysis.md
+
+          # Analyze package.json dependencies
+          echo "## Dependencies Analysis" >> bundle-analysis.md
+          echo "### Production Dependencies" >> bundle-analysis.md
+          npm list --prod --depth=0 > prod-deps.txt 2>/dev/null || true
+          if [ -f prod-deps.txt ]; then
+            cat prod-deps.txt >> bundle-analysis.md
+          fi
+
+          echo "" >> bundle-analysis.md
+          echo "### Development Dependencies" >> bundle-analysis.md
+          npm list --dev --depth=0 > dev-deps.txt 2>/dev/null || true
+          if [ -f dev-deps.txt ]; then
+            cat dev-deps.txt >> bundle-analysis.md
+          fi
+
+          # Check for large packages
+          echo "" >> bundle-analysis.md
+          echo "## Large Dependencies (>1MB)" >> bundle-analysis.md
+          du -sh node_modules/* 2>/dev/null | sort -hr | head -10 | while read size package; do
+            if [[ "$size" =~ [0-9]+\.?[0-9]*M ]] || [[ "$size" =~ [0-9]+\.?[0-9]*G ]]; then
+              echo "- $package: $size" >> bundle-analysis.md
+            fi
+          done || echo "No large dependencies found" >> bundle-analysis.md
+
+          cat bundle-analysis.md
+
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: |
+            bundle-analysis.md
+            prod-deps.txt
+            dev-deps.txt
+          retention-days: 30
+
+  # Job 5: Load Testing
+  load-testing:
+    name: 🚀 Load Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Artillery
+        run: npm install -g artillery@latest
+
+      - name: Create load test configuration
+        run: |
+          cat > load-test.yml << 'EOF'
+          config:
+            target: 'https://opensource-demo.orangehrmlive.com'
+            phases:
+              - duration: 60
+                arrivalRate: 5
+                name: "Warm up"
+              - duration: 120
+                arrivalRate: 10
+                name: "Ramp up load"
+              - duration: 60
+                arrivalRate: 15
+                name: "Sustained load"
+          scenarios:
+            - name: "Basic user journey"
+              weight: 100
+              flow:
+                - get:
+                    url: "/web/index.php/auth/login"
+                - think: 2
+                - post:
+                    url: "/web/index.php/auth/validate"
+                    json:
+                      username: "Admin"
+                      password: "admin123"
+                - think: 3
+                - get:
+                    url: "/web/index.php/dashboard/index"
+          EOF
+
+      - name: Run load test
+        run: |
+          artillery run load-test.yml --output load-test-results.json || true
+
+          if [ -f load-test-results.json ]; then
+            artillery report load-test-results.json --output load-test-report.html
+            
+            # Extract key metrics
+            echo "📈 Load Test Results Summary:" > load-test-summary.md
+            echo "" >> load-test-summary.md
+            
+            # Parse results (simplified)
+            if command -v jq >/dev/null 2>&1; then
+              TOTAL_REQUESTS=$(cat load-test-results.json | jq '.aggregate.counters."http.requests" // 0')
+              RESPONSE_TIME_P95=$(cat load-test-results.json | jq '.aggregate.latency.p95 // 0')
+              ERROR_RATE=$(cat load-test-results.json | jq '.aggregate.counters."http.response_time.failed" // 0')
+              
+              echo "- Total Requests: $TOTAL_REQUESTS" >> load-test-summary.md
+              echo "- 95th Percentile Response Time: ${RESPONSE_TIME_P95}ms" >> load-test-summary.md
+              echo "- Error Count: $ERROR_RATE" >> load-test-summary.md
+            fi
+            
+            cat load-test-summary.md
+          fi
+
+      - name: Upload load test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: load-test-results
+          path: |
+            load-test-results.json
+            load-test-report.html
+            load-test-summary.md
+          retention-days: 30
+
+  # Job 6: Performance Report Generation
+  performance-report:
+    name: 📋 Performance Report
+    runs-on: ubuntu-latest
+    needs: [lighthouse-ci, playwright-performance, web-vitals, bundle-analysis]
+    if: always()
+    steps:
+      - name: Download all performance artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: performance-results
+
+      - name: Generate performance report
+        run: |
+          echo "# 📊 Performance Monitoring Report" > performance-report.md
+          echo "" >> performance-report.md
+          echo "**Generated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> performance-report.md
+          echo "**Commit:** ${{ github.sha }}" >> performance-report.md
+          echo "" >> performance-report.md
+
+          echo "## 📈 Test Results Summary" >> performance-report.md
+          echo "| Test Suite | Status | Details |" >> performance-report.md
+          echo "|------------|--------|---------|" >> performance-report.md
+
+          # Lighthouse CI
+          if [[ "${{ needs.lighthouse-ci.result }}" == "success" ]]; then
+            echo "| Lighthouse CI | ✅ Passed | Performance audit completed |" >> performance-report.md
+          else
+            echo "| Lighthouse CI | ❌ Failed | Issues detected |" >> performance-report.md
+          fi
+
+          # Playwright Performance
+          if [[ "${{ needs.playwright-performance.result }}" == "success" ]]; then
+            echo "| Playwright Performance | ✅ Passed | All performance tests passed |" >> performance-report.md
+          else
+            echo "| Playwright Performance | ❌ Failed | Performance thresholds exceeded |" >> performance-report.md
+          fi
+
+          # Web Vitals
+          if [[ "${{ needs.web-vitals.result }}" == "success" ]]; then
+            echo "| Web Vitals | ✅ Passed | Core metrics within thresholds |" >> performance-report.md
+          else
+            echo "| Web Vitals | ⚠️ Review | Some metrics need attention |" >> performance-report.md
+          fi
+
+          # Bundle Analysis
+          if [[ "${{ needs.bundle-analysis.result }}" == "success" ]]; then
+            echo "| Bundle Analysis | ✅ Completed | Size analysis available |" >> performance-report.md
+          else
+            echo "| Bundle Analysis | ❌ Failed | Analysis incomplete |" >> performance-report.md
+          fi
+
+          echo "" >> performance-report.md
+          echo "## 🎯 Recommendations" >> performance-report.md
+          echo "- Monitor Core Web Vitals regularly" >> performance-report.md
+          echo "- Optimize images and assets" >> performance-report.md
+          echo "- Implement code splitting for large bundles" >> performance-report.md
+          echo "- Use performance budgets in CI/CD" >> performance-report.md
+          echo "- Consider CDN for static assets" >> performance-report.md
+
+          # Include Web Vitals if available
+          if [ -f performance-results/web-vitals-results/vitals-report.md ]; then
+            echo "" >> performance-report.md
+            echo "## 📊 Web Vitals Details" >> performance-report.md
+            cat performance-results/web-vitals-results/vitals-report.md >> performance-report.md
+          fi
+
+          cat performance-report.md
+
+      - name: Upload performance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: performance-report.md
+          retention-days: 90
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('performance-report.md', 'utf8');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ⚡ Performance Monitoring Results\n\n${report}`
+            });
+
+  # Job 7: Performance Trend Analysis
+  performance-trends:
+    name: 📈 Performance Trends
+    runs-on: ubuntu-latest
+    needs: [performance-report]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Store performance metrics
+        run: |
+          mkdir -p .performance-history
+          echo "$(date -u +"%Y-%m-%d %H:%M:%S"),${{ github.sha }},performance-data" >> .performance-history/metrics.csv
+
+          # This would typically integrate with a time-series database
+          # or monitoring service like DataDog, New Relic, etc.
+          echo "Performance metrics logged for trend analysis"

@@ -1,0 +1,214 @@
+name: 🔍 Pull Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: "20.x"
+  FORCE_COLOR: 1
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  statuses: write
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: PR Information and Validation
+  pr-info:
+    name: 📋 PR Information
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    outputs:
+      has-tests: ${{ steps.check-tests.outputs.has-tests }}
+      files-changed: ${{ steps.changed-files.outputs.any_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            src/**
+            tests/**
+            *.config.*
+            package*.json
+
+      - name: Check for test files
+        id: check-tests
+        run: |
+          if find . -name "*.spec.ts" -o -name "*.test.ts" -o -name "*.steps.ts" | grep -q .; then
+            echo "has-tests=true" >> $GITHUB_OUTPUT
+          else
+            echo "has-tests=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: PR Size Check
+        run: |
+          CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files_count }}"
+          if [ "$CHANGED_FILES" -gt 50 ]; then
+            echo "⚠️ Large PR detected: $CHANGED_FILES files changed"
+            echo "Consider splitting into smaller PRs for easier review"
+          else
+            echo "✅ PR size acceptable: $CHANGED_FILES files changed"
+          fi
+
+  # Job 2: Fast Quality Checks
+  quick-quality:
+    name: ⚡ Quick Quality Checks
+    runs-on: ubuntu-latest
+    needs: pr-info
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: TypeScript compilation
+        run: npx tsc --noEmit
+
+  # Job 3: Security Scan
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    needs: pr-info
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Run security audit
+        run: npm audit --audit-level moderate
+
+  # Job 4: Essential Tests
+  test-essential:
+    name: 🧪 Essential Tests
+    runs-on: ubuntu-latest
+    needs: [quick-quality]
+    strategy:
+      matrix:
+        test-type: [unit, api, bdd-smoke]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Playwright browsers
+        if: matrix.test-type != 'unit'
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Unit Tests
+        if: matrix.test-type == 'unit'
+        run: npm run test -- --grep="@health"
+
+      - name: Run API Tests
+        if: matrix.test-type == 'api'
+        run: npm run test:api
+
+      - name: Run BDD Smoke Tests
+        if: matrix.test-type == 'bdd-smoke'
+        run: npm run bdd:smoke
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr-${{ matrix.test-type }}-results
+          path: |
+            playwright-report/
+            test-results/
+            reports/
+          retention-days: 3
+
+  # Job 5: Comment on PR with Results
+  pr-comment:
+    name: 💬 PR Comment
+    runs-on: ubuntu-latest
+    needs: [test-essential]
+    if: always() && github.event.pull_request.draft == false
+    steps:
+      - name: Create PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const testResults = '${{ needs.test-essential.result }}';
+
+            let comment = '## 🧪 PR Test Results\n\n';
+
+            if (testResults === 'success') {
+              comment += '✅ **All essential tests passed!**\n\n';
+              comment += '- Unit Tests: ✅ Passed\n';
+              comment += '- API Tests: ✅ Passed\n';
+              comment += '- BDD Smoke Tests: ✅ Passed\n';
+            } else {
+              comment += '❌ **Some tests failed**\n\n';
+              comment += 'Please check the test results and fix any issues.\n';
+            }
+
+            comment += '\n---\n';
+            comment += `🔗 [View detailed test reports](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  # Job 6: Final Status Check
+  pr-status:
+    name: 🏁 PR Status
+    runs-on: ubuntu-latest
+    needs: [test-essential]
+    if: always()
+    steps:
+      - name: Check test results
+        run: |
+          if [[ "${{ needs.test-essential.result }}" == "success" ]]; then
+            echo "✅ All tests passed - PR ready for review!"
+            exit 0
+          else
+            echo "❌ Tests failed - please fix issues before merging"
+            exit 1
+          fi
