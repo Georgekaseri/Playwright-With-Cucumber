@@ -21,15 +21,6 @@ export default defineConfig({
     viewport: { width: 1280, height: 800 },
     deviceScaleFactor: 1,
     colorScheme: "light",
-    // disable animations/fonts jitter and improve CI performance
-    launchOptions: {
-      args: [
-        "--font-render-hinting=none",
-        "--disable-web-security",
-        "--disable-features=TranslateUI",
-        "--disable-ipc-flooding-protection",
-      ],
-    },
     // Increased timeouts for CI
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
@@ -39,6 +30,14 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
+        launchOptions: {
+          args: [
+            "--font-render-hinting=none",
+            "--disable-web-security",
+            "--disable-features=TranslateUI",
+            "--disable-ipc-flooding-protection",
+          ],
+        },
       },
     },
     {
@@ -58,6 +57,9 @@ export default defineConfig({
       name: "webkit",
       use: {
         ...devices["Desktop Safari"],
+        launchOptions: {
+          args: ["--font-render-hinting=none"],
+        },
       },
     },
   ],
