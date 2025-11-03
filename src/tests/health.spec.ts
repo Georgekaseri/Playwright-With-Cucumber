@@ -4,7 +4,7 @@ test.describe("System Health Checks @health", () => {
   test("Application is accessible @health @quick @smoke", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
 
     await expect(page).toHaveTitle(/OrangeHRM/);
@@ -17,7 +17,7 @@ test.describe("System Health Checks @health", () => {
   test("API endpoints are responsive @health @api", async ({ request }) => {
     const response = await request.get(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
     expect(response.status()).toBe(200);
   });
@@ -26,7 +26,7 @@ test.describe("System Health Checks @health", () => {
     // Navigate and attempt login flow
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
 
     // Check login form elements exist
@@ -44,7 +44,7 @@ test.describe("System Health Checks @health", () => {
     const startTime = Date.now();
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
     await page.waitForLoadState("domcontentloaded");
     const loadTime = Date.now() - startTime;
@@ -59,13 +59,13 @@ test.describe("System Health Checks @health", () => {
 test.describe("Staging Environment Health @staging", () => {
   test.skip(
     process.env.TEST_ENV !== "staging",
-    "Staging tests only run in staging environment"
+    "Staging tests only run in staging environment",
   );
 
   test("Staging specific health check @health @staging", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
     await expect(page).toHaveTitle(/OrangeHRM/);
   });
@@ -75,13 +75,13 @@ test.describe("Staging Environment Health @staging", () => {
 test.describe("Production Environment Health @production", () => {
   test.skip(
     process.env.TEST_ENV !== "production",
-    "Production tests only run in production environment"
+    "Production tests only run in production environment",
   );
 
   test("Production health check @health @production", async ({ page }) => {
     await page.goto(
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com"
+        "https://opensource-demo.orangehrmlive.com",
     );
     await expect(page).toHaveTitle(/OrangeHRM/);
   });
