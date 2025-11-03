@@ -56,8 +56,7 @@ export class LoginPage {
     // Give more time for the login process
     await this.page.waitForLoadState("domcontentloaded");
 
-    // Small delay to allow for navigation (disabling ESLint for this specific case)
-    // eslint-disable-next-line playwright/no-wait-for-timeout
+    // Small delay to allow for navigation
     await this.page.waitForTimeout(2000);
 
     // Check if we're still on login page (error case) or navigated (success)

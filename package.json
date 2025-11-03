@@ -17,8 +17,8 @@
     "bdd:headed": "cross-env HEADLESS=0 npm run bdd",
     "bdd:smoke": "cucumber-js src/bdd/features --require \"src/bdd/steps/**/*.ts\" --require \"src/bdd/support/**/*.ts\" --require-module ts-node/register --format progress --tags \"@smoke\"",
     "bdd:report": "node scripts/generate-cucumber-report.js",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.js",
-    "lint:fix": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.js --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

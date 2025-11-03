@@ -101,6 +101,11 @@ jobs:
             cat test-results.json | jq -r '.suites[].specs[].tests[] | select(.title | contains("performance")) | .title + ": " + .outcome'
           fi
 
+      - name: Ensure directories exist for artifacts
+        run: |
+          mkdir -p test-results
+          mkdir -p playwright-report
+
       - name: Upload performance test results
         uses: actions/upload-artifact@v4
         if: always()
