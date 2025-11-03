@@ -158,7 +158,7 @@ jobs:
         run: npm ci --prefer-offline --no-audit
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps ${{ matrix.browser }}
+        run: npx playwright install --with-deps
 
       - name: Run E2E tests
         run: npx playwright test --project=${{ matrix.browser }} --shard=${{ matrix.shard }}/2
