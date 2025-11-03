@@ -190,7 +190,7 @@ jobs:
       url: ${{ steps.deploy.outputs.environment-url }}
     steps:
       - name: Create deployment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         id: create-deployment
         with:
           script: |
@@ -262,7 +262,7 @@ jobs:
 
       - name: Update deployment status
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
@@ -292,7 +292,7 @@ jobs:
           echo "Waiting for environment protection rules..."
 
       - name: Create deployment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         id: create-deployment
         with:
           script: |
@@ -365,7 +365,7 @@ jobs:
 
       - name: Update deployment status
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
