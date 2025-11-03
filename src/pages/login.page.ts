@@ -10,16 +10,13 @@ export class LoginPage {
   readonly usernameValidation: Locator;
   readonly passwordValidation: Locator;
 
-  private readonly timeout = 5_000;
+  private readonly timeout = 5000;
 
   constructor(page: Page) {
     this.page = page;
-    // Use semantic locators first
     this.usernameInput = page.getByPlaceholder("Username");
     this.passwordInput = page.getByPlaceholder("Password");
     this.loginBtn = page.getByRole("button", { name: "Login" });
-
-    // More specific error locators
     this.errorAlert = page.locator('[role="alert"], .oxd-alert').first();
     this.usernameValidation = page
       .locator("[data-v-957b4417] .oxd-input-field-error-message")

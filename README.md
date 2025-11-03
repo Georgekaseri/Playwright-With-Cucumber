@@ -1,18 +1,290 @@
-# 🎭 Playwright + Cucumber Test Automation Framework
+# Playwright + Cucumber Test Automation Framework
 
-A comprehensive end-to-end testing framework combining **Playwright** for browser automation and **Cucumber** for behavior-driven development (BDD), featuring advanced testing patterns and robust CI/CD capabilities.
+A comprehensive end-to-end testing framework that combines Playwright for browser automation with Cucumber for behavior-driven development. This project demonstrates modern testing practices with TypeScript, providing a solid foundation for enterprise-level test automation.
+
+## Overview
+
+This framework includes multiple testing approaches:
+
+**Core Framework**
+
+- Playwright for cross-browser automation (Chromium, Firefox, WebKit)
+- Cucumber.js for BDD with Gherkin syntax
+- TypeScript for type safety and better development experience
+- Page Object Model for maintainable test architecture
+
+**Testing Types**
+
+- API Testing: RESTful API validation with custom clients
+- Visual Regression Testing: Screenshot comparison for UI consistency
+- Accessibility Testing: WCAG compliance validation
+- Performance Testing: Page load metrics and optimization validation
+- Health Check Testing: System monitoring and uptime validation
+- Integration Testing: End-to-end workflow validation
+
+**Architecture Features**
+
+- Environment-based configuration for different test environments
+- Custom utilities for API clients and accessibility scanning
+- Comprehensive reporting with JSON output and visual artifacts
+- Mock integration support for flexible testing scenarios
+- Tag-based execution for granular test selection
+
+## Project Structure
+
+```
+src/
+├── pages/                    # Page Object Models
+│   ├── login.page.ts        # Login page interactions
+│   └── dashboard.page.ts    # Dashboard page interactions
+├── tests/                   # Playwright test files
+│   ├── login.spec.ts       # Login functionality tests
+│   ├── health.spec.ts      # System health checks
+│   ├── performance.spec.ts # Performance monitoring
+│   ├── visual.spec.ts      # Visual regression tests
+│   ├── login.a11y.spec.ts  # Accessibility tests
+│   ├── api/                # API-specific tests
+│   │   └── booking.spec.ts
+│   └── integration/        # Integration test suites
+│       └── booking.integration.spec.ts
+├── bdd/                    # Cucumber BDD implementation
+│   ├── features/           # Gherkin feature files
+│   │   ├── login.feature
+│   │   ├── visual.feature
+│   │   └── api-booking.feature
+│   ├── steps/              # Step definitions
+│   │   ├── login.steps.ts
+│   │   ├── visual.steps.ts
+│   │   └── api-booking.steps.ts
+│   └── support/            # BDD support files
+│       ├── hooks.ts        # Test lifecycle hooks
+│       └── world.ts        # Shared test context
+├── api/                    # API clients and utilities
+│   └── bookingClient.ts    # RESTful API client
+├── config/                 # Configuration management
+│   └── test-env.ts         # Environment-specific settings
+└── utils/                  # Utility functions
+    ├── apiUtils.ts         # API helper functions
+    └── a11yUtils.ts        # Accessibility testing utilities
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn
+
+### Installation
+
+```bash
+git clone <repository-url>
+cd Playwright-Cucumber
+npm install
+npx playwright install
+```
+
+### Environment Setup
+
+Copy the example environment file and configure your settings:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your configuration:
+
+```env
+ORANGEHRM_BASE_URL=https://opensource-demo.orangehrmlive.com
+ORANGEHRM_USERNAME=Admin
+ORANGEHRM_PASSWORD=admin123
+TEST_ENV=development
+HEADLESS=true
+```
+
+## Running Tests
+
+### Basic Commands
+
+```bash
+# Run all tests
+npm test
+
+# Run with browser UI visible
+npm run test:headed
+
+# Run in debug mode
+npm run test:debug
+
+# Run with Playwright UI
+npm run test:ui
+```
+
+### Test Categories
+
+```bash
+# API tests
+npm run test:api
+
+# Visual regression tests
+npm run test:visual
+
+# Accessibility tests
+npm run test:a11y
+
+# Performance tests
+npm run test:performance
+
+# Integration tests
+npm run test:integration
+```
+
+### BDD/Cucumber Tests
+
+```bash
+# Run all BDD scenarios
+npm run bdd
+
+# Run smoke test scenarios
+npm run bdd:smoke
+
+# Run regression scenarios
+npm run bdd:regression
+
+# Run with browser visible
+npm run bdd:headed
+```
+
+### Tag-based Execution
+
+```bash
+# Run specific test types using tags
+npx playwright test --grep "@smoke"
+npx playwright test --grep "@api"
+npx playwright test --grep "@regression"
+npx playwright test --grep "@visual"
+```
+
+## Test Types
+
+### API Testing
+
+Validates RESTful APIs with custom booking client. Tests include HTTP status validation, JSON response verification, and API workflow integration.
+
+### Visual Regression Testing
+
+Captures and compares screenshots across different browsers and viewports. Automatically manages baselines and detects visual changes.
+
+### Accessibility Testing
+
+Uses axe-core to validate WCAG 2.1 AA compliance. Includes keyboard navigation testing and screen reader compatibility checks.
+
+### Performance Testing
+
+Monitors page load times and Core Web Vitals. Enforces performance budgets with CI-friendly thresholds.
+
+### Integration Testing
+
+Tests complete user workflows that span multiple systems, including API and UI interactions.
+
+## Configuration
+
+### Playwright Configuration
+
+The `playwright.config.ts` file contains browser settings, test directories, and reporting options.
+
+### Cucumber Configuration
+
+The `cucumber.config.js` file defines feature file locations, step definitions, and output formats.
+
+### Environment Management
+
+The `src/config/test-env.ts` file handles environment-specific configurations and credentials.
+
+## Development
+
+### Code Quality
+
+```bash
+# Run linting
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+
+# Format code
+npm run format
+
+# Check formatting
+npm run format:check
+```
+
+### Debugging
+
+```bash
+# Debug specific tests
+npm run test:debug
+
+# Run with Playwright inspector
+npm run test:ui
+
+# Run BDD tests with browser visible
+npm run bdd:headed
+```
+
+## Reporting
+
+Test results are generated in multiple formats:
+
+- HTML reports for Playwright tests
+- JSON reports for Cucumber scenarios
+- Screenshots and videos for failed tests
+- Accessibility scan results
+
+View reports:
+
+```bash
+# View Playwright report
+npx playwright show-report
+
+# Generate Cucumber report
+npm run bdd:report
+```
+
+## Best Practices
+
+- Use Page Object Model for UI interactions
+- Tag tests appropriately for easy filtering
+- Keep test data in environment files
+- Use meaningful test descriptions
+- Implement proper wait strategies
+- Handle test cleanup in hooks
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests to ensure they pass
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
 
 ## 🚀 What We Built
 
 This repository showcases a production-ready test automation framework with:
 
 ### 🎯 **Core Framework**
+
 - **Playwright** for cross-browser automation (Chromium, Firefox, WebKit)
 - **Cucumber.js** for BDD with Gherkin syntax
 - **TypeScript** for type safety and better developer experience
 - **Page Object Model (POM)** for maintainable test architecture
 
 ### 🧪 **Testing Types & Patterns**
+
 - **🔍 API Testing** - RESTful API validation with custom booking client
 - **🎨 Visual Regression Testing** - Screenshot comparison for UI consistency
 - **♿ Accessibility Testing** - WCAG compliance with axe-core integration
@@ -21,6 +293,7 @@ This repository showcases a production-ready test automation framework with:
 - **🔗 Integration Testing** - API + UI workflow validation
 
 ### 🏗️ **Advanced Architecture**
+
 - **Environment-based Configuration** - Flexible test environment management
 - **Custom Utilities** - Reusable API clients and accessibility scanners
 - **Comprehensive Reporting** - JSON reports with visual artifacts
@@ -28,6 +301,7 @@ This repository showcases a production-ready test automation framework with:
 - **Tag-based Execution** - Granular test selection with @smoke, @regression, @api tags
 
 ### 🔧 **Developer Experience**
+
 - **ESLint** + **Prettier** for code quality and consistency
 - **Cross-platform Support** - Works on macOS, Linux, and Windows
 - **Multiple Execution Modes** - Headed, headless, debug, and UI modes
@@ -83,7 +357,8 @@ This repository showcases a production-ready test automation framework with:
 ## 🚀 Quick Start
 
 ### Prerequisites
-- **Node.js** 18+ 
+
+- **Node.js** 18+
 - **npm** or **yarn**
 - **Git**
 
@@ -190,6 +465,7 @@ npm run test:update-visual    # Update screenshot baselines
 ## 🧪 Test Types Deep Dive
 
 ### 🔍 **API Testing**
+
 - **RESTful API validation** with custom booking client
 - **HTTP status code verification**
 - **JSON response validation**
@@ -202,6 +478,7 @@ expect(booking.bookingid).toBeGreaterThan(0);
 ```
 
 ### 🎨 **Visual Regression Testing**
+
 - **Cross-browser screenshot comparison**
 - **Responsive design validation**
 - **Animation freeze for consistent captures**
@@ -209,10 +486,11 @@ expect(booking.bookingid).toBeGreaterThan(0);
 
 ```typescript
 // Example: Visual comparison
-await expect(page).toHaveScreenshot('dashboard.png');
+await expect(page).toHaveScreenshot("dashboard.png");
 ```
 
 ### ♿ **Accessibility Testing**
+
 - **WCAG 2.1 AA compliance**
 - **Axe-core integration**
 - **Keyboard navigation testing**
@@ -220,10 +498,11 @@ await expect(page).toHaveScreenshot('dashboard.png');
 
 ```typescript
 // Example: Accessibility scan
-await runAccessibilityScan(page, 'Login Page');
+await runAccessibilityScan(page, "Login Page");
 ```
 
 ### ⚡ **Performance Testing**
+
 - **Page load time monitoring**
 - **Core Web Vitals tracking**
 - **Performance budget enforcement**
@@ -236,6 +515,7 @@ expect(loadTime).toBeLessThan(5000);
 ```
 
 ### 🔗 **Integration Testing**
+
 - **End-to-end user workflows**
 - **API + UI data consistency**
 - **Cross-system validation**
@@ -276,6 +556,7 @@ npm run bdd:headed            # BDD with browser UI
 ## 🏆 Key Features Implemented
 
 ### ✨ **Advanced Testing Patterns**
+
 - **✅ Page Object Model** - Maintainable page abstractions
 - **✅ Custom Utilities** - Reusable API and accessibility helpers
 - **✅ Environment Management** - Flexible configuration system
@@ -283,6 +564,7 @@ npm run bdd:headed            # BDD with browser UI
 - **✅ Tag-based Execution** - Granular test selection
 
 ### 🎯 **Comprehensive Test Coverage**
+
 - **✅ Functional Testing** - Core application workflows
 - **✅ API Testing** - RESTful service validation
 - **✅ Visual Testing** - UI consistency verification
@@ -291,6 +573,7 @@ npm run bdd:headed            # BDD with browser UI
 - **✅ Integration Testing** - End-to-end workflows
 
 ### 🔧 **Developer Experience**
+
 - **✅ TypeScript Support** - Type safety and IntelliSense
 - **✅ Multiple Execution Modes** - Headed, headless, debug, UI
 - **✅ Comprehensive Scripts** - Easy-to-use npm commands
@@ -298,6 +581,7 @@ npm run bdd:headed            # BDD with browser UI
 - **✅ Rich Reporting** - HTML reports with screenshots/videos
 
 ### 🎭 **BDD Implementation**
+
 - **✅ Gherkin Features** - Business-readable test scenarios
 - **✅ Step Definitions** - Reusable test building blocks
 - **✅ Custom World** - Shared test context and utilities

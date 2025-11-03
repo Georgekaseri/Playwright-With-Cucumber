@@ -4,7 +4,6 @@ import { BookingClient } from "../../api/bookingClient";
 test.describe("@api Booking API Tests", () => {
   const baseURL = "https://restful-booker.herokuapp.com";
 
-  // Using your exact payload specification
   const georgeKaseriPayload = {
     firstname: "George",
     lastname: "Kaseri",
@@ -21,10 +20,8 @@ test.describe("@api Booking API Tests", () => {
     const req = await request.newContext();
     const bookingAPI = new BookingClient(req, baseURL);
 
-    // Create booking with your exact payload
     const response = await bookingAPI.createBooking(georgeKaseriPayload);
 
-    // Validate response structure matches your specification
     expect(response).toHaveProperty("bookingid");
     expect(response).toHaveProperty("booking");
     expect(typeof response.bookingid).toBe("number");
