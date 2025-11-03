@@ -1,4 +1,4 @@
-name: 🔍 Pull Request Validation
+name: Pull Request Validation
 
 on:
   pull_request:
@@ -22,7 +22,7 @@ concurrency:
 jobs:
   # Job 1: PR Information and Validation
   pr-info:
-    name: 📋 PR Information
+    name: PR Information
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     outputs:
@@ -65,7 +65,7 @@ jobs:
 
   # Job 2: Fast Quality Checks
   quick-quality:
-    name: ⚡ Quick Quality Checks
+    name: Quick Quality Checks
     runs-on: ubuntu-latest
     needs: pr-info
     if: github.event.pull_request.draft == false
@@ -93,7 +93,7 @@ jobs:
 
   # Job 3: Security Scan
   security-scan:
-    name: 🔒 Security Scan
+    name: Security Scan
     runs-on: ubuntu-latest
     needs: pr-info
     if: github.event.pull_request.draft == false
@@ -115,7 +115,7 @@ jobs:
 
   # Job 4: Essential Tests
   test-essential:
-    name: 🧪 Essential Tests
+    name: Essential Tests
     runs-on: ubuntu-latest
     needs: [quick-quality]
     strategy:
@@ -163,7 +163,7 @@ jobs:
 
   # Job 5: Comment on PR with Results
   pr-comment:
-    name: 💬 PR Comment
+    name: PR Comment
     runs-on: ubuntu-latest
     needs: [test-essential]
     if: always() && github.event.pull_request.draft == false
@@ -198,7 +198,7 @@ jobs:
 
   # Job 6: Final Status Check
   pr-status:
-    name: 🏁 PR Status
+    name: PR Status
     runs-on: ubuntu-latest
     needs: [test-essential]
     if: always()

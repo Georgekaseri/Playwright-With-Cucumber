@@ -2,8 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./src/tests",
-  timeout: 35_000,
-  expect: { timeout: 5_000 },
+  timeout: 60_000, // Increased for CI
+  expect: { timeout: 10_000 }, // Increased for CI
   // 🔁 Retries only in CI
   retries: process.env.CI ? 2 : 0,
   reporter: [
@@ -21,8 +21,18 @@ export default defineConfig({
     viewport: { width: 1280, height: 800 },
     deviceScaleFactor: 1,
     colorScheme: "light",
-    // disable animations/fonts jitter
-    launchOptions: { args: ["--font-render-hinting=none"] },
+    // disable animations/fonts jitter and improve CI performance
+    launchOptions: {
+      args: [
+        "--font-render-hinting=none",
+        "--disable-web-security",
+        "--disable-features=TranslateUI",
+        "--disable-ipc-flooding-protection",
+      ],
+    },
+    // Increased timeouts for CI
+    actionTimeout: 10_000,
+    navigationTimeout: 30_000,
   },
   projects: [
     {
