@@ -6,6 +6,9 @@ export default defineConfig({
   expect: { timeout: 10_000 }, // Increased for CI
   // 🔁 Retries only in CI
   retries: process.env.CI ? 2 : 0,
+  // 🚀 Workers configuration for better performance
+  workers: process.env.CI ? 4 : "50%", // CI: 4 workers, Local: 50% of cores
+  fullyParallel: true, // Run tests in parallel across files
   reporter: [
     ["list"],
     ["html", { outputFolder: "playwright-report", open: "never" }],
@@ -58,7 +61,8 @@ export default defineConfig({
       use: {
         ...devices["Desktop Safari"],
         launchOptions: {
-          args: ["--font-render-hinting=none"],
+          // WebKit doesn't support --font-render-hinting=none
+          // Use WebKit-specific options if needed
         },
       },
     },
