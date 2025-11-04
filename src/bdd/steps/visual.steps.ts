@@ -1,7 +1,7 @@
 import { Given, Then } from "@cucumber/cucumber";
 import type { CustomWorld } from "../support/world";
 import { LoginPage } from "../../pages/login.page";
-import { TEST_ENV } from "../../config/test-env";
+import { CONFIG } from "../../config/config";
 
 // NOTE: Visual testing with Playwright's toHaveScreenshot() only works within
 // Playwright's test context, not Cucumber. Use npm run test:visual instead.
@@ -23,7 +23,7 @@ Given(
     const login = new LoginPage(this.page);
     await login.goto();
     await freezeAnimations(this.page);
-    await login.login(TEST_ENV.username, TEST_ENV.password);
+    await login.login(CONFIG.username, CONFIG.password);
     // Wait for load state and main heading visible with longer timeout
     await this.page.waitForLoadState("load");
     // Wait for dashboard to be loaded

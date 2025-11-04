@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
 import { DashboardPage } from "../pages/dashboard.page";
-import { TEST_ENV } from "../config/test-env";
+import { CONFIG } from "../config/config";
 
 test.describe("Auth", () => {
   test("can login and reach Dashboard", async ({ page }) => {
@@ -9,7 +9,7 @@ test.describe("Auth", () => {
     const dash = new DashboardPage(page);
 
     await login.goto();
-    await login.login(TEST_ENV.username, TEST_ENV.password);
+    await login.login(CONFIG.username, CONFIG.password);
     await dash.assertLoaded();
   });
 });

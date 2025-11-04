@@ -1,0 +1,10 @@
+{
+  "baseURL": "https://opensource-demo.orangehrmlive.com",
+  "username": "Admin",
+  "password": "admin123",
+  "environment": "qa",
+  "azure": {
+    "keyVaultEnabled": false,
+    "keyVaultUri": "https://qa-keyvault.vault.azure.net/"
+  }
+}

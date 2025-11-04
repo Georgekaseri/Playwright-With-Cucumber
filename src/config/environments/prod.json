@@ -1,0 +1,10 @@
+{
+  "baseURL": "https://prod.orangehrm.company.net",
+  "username": "",
+  "password": "",
+  "environment": "prod",
+  "azure": {
+    "keyVaultEnabled": true,
+    "keyVaultUri": "https://prod-keyvault.vault.azure.net/"
+  }
+}

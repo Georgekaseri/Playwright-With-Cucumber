@@ -1,21 +1,35 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# Azure DevOps Pipeline Configuration
+# This file is kept for compatibility - main CI/CD runs on GitHub Actions
 
 trigger:
-- main
+  branches:
+    include:
+      - main
+      - develop
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "ubuntu-latest"
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+variables:
+  nodeVersion: "20.x"
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+stages:
+  - stage: Test
+    displayName: "Run Tests"
+    jobs:
+      - job: TestJob
+        displayName: "Test Job"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "$(nodeVersion)"
+            displayName: "Install Node.js"
+
+          - script: npm ci
+            displayName: "Install dependencies"
+
+          - script: npm run lint
+            displayName: "Lint code"
+
+          - script: npm run test:dev
+            displayName: "Run tests"

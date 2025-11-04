@@ -79,7 +79,7 @@ Then(
     expect(booking.bookingdates.checkout).toBe("2019-01-01");
     expect(booking.additionalneeds).toBe("Breakfast");
 
-    console.log(`✅ Created booking with ID: ${this.createdBookingId}`);
+    console.log(`Created booking with ID: ${this.createdBookingId}`);
   },
 );
 
@@ -125,9 +125,7 @@ Then(
     expect(this.retrievedBooking.bookingdates.checkout).toBe("2019-01-01");
     expect(this.retrievedBooking.additionalneeds).toBe("Breakfast");
 
-    console.log(
-      `✅ Successfully retrieved booking ID: ${this.createdBookingId}`,
-    );
+    console.log(`Successfully retrieved booking ID: ${this.createdBookingId}`);
   },
 );
 
@@ -176,7 +174,7 @@ Then("the API should reject the request", function (this: CustomWorld) {
 Then("an appropriate error should be returned", function (this: CustomWorld) {
   expect(this.requestError).toBeDefined();
   console.log(
-    `✅ Properly handled invalid request with error: ${this.requestError.message}`,
+    `Properly handled invalid request with error: ${this.requestError.message}`,
   );
 });
 
@@ -202,7 +200,7 @@ When("I submit the booking request", async function (this: CustomWorld) {
 
 Then("the API should respond within 5 seconds", function (this: CustomWorld) {
   expect(this.duration).toBeLessThan(5000);
-  console.log(`⚡ API response time: ${this.duration}ms`);
+  console.log(`API response time: ${this.duration}ms`);
 });
 
 Then("the response should be successful", function (this: CustomWorld) {
@@ -231,5 +229,5 @@ Then("the service should be available", function (this: CustomWorld) {
 });
 
 Then("return a healthy status", function (this: CustomWorld) {
-  console.log("✅ API service is healthy and available");
+  console.log("API service is healthy and available");
 });

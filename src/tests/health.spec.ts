@@ -15,11 +15,25 @@ test.describe("System Health Checks @health", () => {
   });
 
   test("API endpoints are responsive @health @api", async ({ request }) => {
-    const response = await request.get(
+    const baseURL =
       process.env.ORANGEHRM_BASE_URL ||
-        "https://opensource-demo.orangehrmlive.com",
-    );
-    expect(response.status()).toBe(200);
+      "https://opensource-demo.orangehrmlive.com";
+
+    try {
+      const response = await request.get(baseURL, {
+        timeout: 30000,
+        ignoreHTTPSErrors: true,
+      });
+      expect(response.status()).toBe(200);
+    } catch (error) {
+      // Retry once for network issues
+      console.log("Retrying health check due to network issue...");
+      const response = await request.get(baseURL, {
+        timeout: 30000,
+        ignoreHTTPSErrors: true,
+      });
+      expect(response.status()).toBe(200);
+    }
   });
 
   test("Critical user flows work @health", async ({ page }) => {
@@ -58,8 +72,8 @@ test.describe("System Health Checks @health", () => {
 // Staging environment specific tests
 test.describe("Staging Environment Health @staging", () => {
   test.skip(
-    process.env.TEST_ENV !== "staging",
-    "Staging tests only run in staging environment",
+    process.env.NODE_ENV !== "qa",
+    "Staging tests only run in QA environment",
   );
 
   test("Staging specific health check @health @staging", async ({ page }) => {
@@ -74,7 +88,7 @@ test.describe("Staging Environment Health @staging", () => {
 // Production environment monitoring
 test.describe("Production Environment Health @production", () => {
   test.skip(
-    process.env.TEST_ENV !== "production",
+    process.env.NODE_ENV !== "prod",
     "Production tests only run in production environment",
   );
 

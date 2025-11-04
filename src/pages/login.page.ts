@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { TEST_ENV } from "../config/test-env";
+import { CONFIG } from "../config/config";
 
 export class LoginPage {
   readonly page: Page;
@@ -27,45 +27,33 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto(`${TEST_ENV.baseURL}/web/index.php/auth/login`);
+    await this.page.goto(`${CONFIG.baseURL}/web/index.php/auth/login`);
     await this.page.waitForLoadState("domcontentloaded");
 
-    // Wait for login form to be ready
     await expect(this.usernameInput).toBeVisible({ timeout: 10_000 });
     await expect(this.passwordInput).toBeVisible({ timeout: 10_000 });
     await expect(this.loginBtn).toBeVisible({ timeout: 10_000 });
   }
 
   async login(username: string, password: string) {
-    // Wait for form to be fully loaded
     await this.page.waitForLoadState("domcontentloaded");
 
-    // Clear and fill username
     await this.usernameInput.clear();
     await this.usernameInput.fill(username);
     await expect(this.usernameInput).toHaveValue(username);
 
-    // Clear and fill password
     await this.passwordInput.clear();
     await this.passwordInput.fill(password);
     await expect(this.passwordInput).toHaveValue(password);
 
-    // Click login and wait for navigation
     await this.loginBtn.click();
-
-    // Give more time for the login process
     await this.page.waitForLoadState("domcontentloaded");
-
-    // Small delay to allow for navigation
     await this.page.waitForTimeout(2000);
 
-    // Check if we're still on login page (error case) or navigated (success)
     const currentUrl = this.page.url();
     if (currentUrl.includes("/auth/login")) {
-      // Still on login page, might be an error
       console.log("Still on login page after login attempt");
     } else {
-      // Navigated away from login page
       console.log(`Navigated to: ${currentUrl}`);
       await this.page.waitForLoadState("domcontentloaded");
     }

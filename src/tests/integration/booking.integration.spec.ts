@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { createBookingViaAPI } from "../../utils/apiUtils";
 import { LoginPage } from "../../pages/login.page";
 import { DashboardPage } from "../../pages/dashboard.page";
-import { TEST_ENV } from "../../config/test-env";
+import { CONFIG } from "../../config/config";
 
 test.describe("@integration API+UI Integration Tests", () => {
   test("@smoke should create booking via API and verify data integrity", async ({
@@ -16,7 +16,7 @@ test.describe("@integration API+UI Integration Tests", () => {
 
     const login = new LoginPage(page);
     await login.goto();
-    await login.login(TEST_ENV.username, TEST_ENV.password);
+    await login.login(CONFIG.username, CONFIG.password);
 
     const dash = new DashboardPage(page);
     await dash.assertLoaded();
@@ -42,18 +42,18 @@ test.describe("@integration API+UI Integration Tests", () => {
         },
       );
 
-      console.log("✅ Mock booking display injected in UI");
+      console.log("Mock booking display injected in UI");
     } else {
-      console.log("🔗 REAL mode — API+UI integration without mocking");
-      console.log("✅ UI remains functional after API operations");
+      console.log("REAL mode — API+UI integration without mocking");
+      console.log("UI remains functional after API operations");
     }
 
     // Verify mock booking display only if in mock mode (moved to separate test)
     // This avoids conditional expects in the main flow
 
-    console.log("✅ Dashboard URL verification completed");
+    console.log("Dashboard URL verification completed");
     console.log(
-      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
+      `Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
     );
   });
 
@@ -68,7 +68,7 @@ test.describe("@integration API+UI Integration Tests", () => {
 
     const login = new LoginPage(page);
     await login.goto();
-    await login.login(TEST_ENV.username, TEST_ENV.password);
+    await login.login(CONFIG.username, CONFIG.password);
 
     const dash = new DashboardPage(page);
     await dash.assertLoaded();
@@ -97,6 +97,6 @@ test.describe("@integration API+UI Integration Tests", () => {
       `API Booking: Integration Test (ID: ${booking.bookingid})`,
     );
 
-    console.log("✅ Mock booking display verified in UI");
+    console.log("Mock booking display verified in UI");
   });
 });
