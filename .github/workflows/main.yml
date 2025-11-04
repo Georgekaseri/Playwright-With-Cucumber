@@ -89,7 +89,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results-${{ matrix.browser }}
+          name: test-results-${{ matrix.browser }}-${{ matrix.environment }}-${{ github.run_id }}
           path: |
             test-results/
             playwright-report/
@@ -140,7 +140,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: visual-test-results
+          name: visual-test-results-${{ matrix.environment }}-${{ github.run_id }}
           path: |
             test-results/
             src/__screenshots__/
@@ -186,7 +186,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: bdd-test-results
+          name: bdd-test-results-${{ github.run_id }}
           path: |
             reports/
           retention-days: 7
@@ -227,7 +227,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: accessibility-test-results
+          name: accessibility-test-results-${{ matrix.environment }}-${{ github.run_id }}
           path: |
             test-results/
             reports/a11y/
