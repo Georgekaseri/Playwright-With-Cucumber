@@ -42,18 +42,18 @@ test.describe("@integration API+UI Integration Tests", () => {
         },
       );
 
-      console.log("✅ Mock booking display injected in UI");
+      console.log("Mock booking display injected in UI");
     } else {
-      console.log("🔗 REAL mode — API+UI integration without mocking");
-      console.log("✅ UI remains functional after API operations");
+      console.log("REAL mode — API+UI integration without mocking");
+      console.log("UI remains functional after API operations");
     }
 
     // Verify mock booking display only if in mock mode (moved to separate test)
     // This avoids conditional expects in the main flow
 
-    console.log("✅ Dashboard URL verification completed");
+    console.log("Dashboard URL verification completed");
     console.log(
-      `🎯 Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
+      `Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
     );
   });
 
@@ -97,6 +97,6 @@ test.describe("@integration API+UI Integration Tests", () => {
       `API Booking: Integration Test (ID: ${booking.bookingid})`,
     );
 
-    console.log("✅ Mock booking display verified in UI");
+    console.log("Mock booking display verified in UI");
   });
 });

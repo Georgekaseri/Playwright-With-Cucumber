@@ -36,7 +36,7 @@ test.describe("@api Booking API Tests", () => {
     expect(response.booking.bookingdates.checkout).toBe("2019-01-01");
     expect(response.booking.additionalneeds).toBe("Breakfast");
 
-    console.log(`✅ Created booking with ID: ${response.bookingid}`);
+    console.log(`Created booking with ID: ${response.bookingid}`);
 
     await req.dispose();
   });
@@ -61,7 +61,7 @@ test.describe("@api Booking API Tests", () => {
     expect(retrievedBooking.bookingdates.checkout).toBe("2019-01-01");
     expect(retrievedBooking.additionalneeds).toBe("Breakfast");
 
-    console.log(`✅ Successfully retrieved booking ID: ${bookingId}`);
+    console.log(`Successfully retrieved booking ID: ${bookingId}`);
 
     await req.dispose();
   });
@@ -144,7 +144,7 @@ test.describe("@api Booking API Tests", () => {
     const healthResponse = await req.get(`${baseURL}/ping`);
     expect(healthResponse.status()).toBe(201);
 
-    console.log("✅ API service is healthy and available");
+    console.log("API service is healthy and available");
 
     await req.dispose();
   });
@@ -160,7 +160,7 @@ test.describe("@api Booking API Tests", () => {
     expect(response.booking.firstname).toBe("George");
     expect(response.booking.lastname).toBe("Kaseri");
 
-    console.log("✅ Utility method works correctly");
+    console.log("Utility method works correctly");
 
     await req.dispose();
   });

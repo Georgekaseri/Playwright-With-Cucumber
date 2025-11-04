@@ -1,7 +1,7 @@
 import { test, expect, type Locator } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
 import { DashboardPage } from "../pages/dashboard.page";
-import { TEST_ENV } from "../config/test-env";
+import { CONFIG } from "../config/config";
 
 // Utility to freeze animations/transitions for deterministic screenshots
 async function freezeAnimations(page: import("@playwright/test").Page) {
@@ -18,32 +18,25 @@ test.describe("Visual Regression Tests", () => {
     const login = new LoginPage(page);
     await login.goto();
     await freezeAnimations(page);
-    await login.login(TEST_ENV.username, TEST_ENV.password);
+    await login.login(CONFIG.username, CONFIG.password);
 
     const dashboard = new DashboardPage(page);
     await dashboard.assertLoaded();
 
-    // Ensure we're really on the dashboard before proceeding
     await page.waitForURL("**/dashboard/**", { timeout: 10000 });
     await page.waitForLoadState("load");
-    // Additional wait for dashboard content to stabilize
     await page.waitForTimeout(2000);
   });
 
   test("Dashboard page matches baseline @visual @smoke", async ({ page }) => {
-    // Double-check we're still authenticated
     const currentUrl = page.url();
     if (currentUrl.includes("/auth/login")) {
       throw new Error("Authentication lost before test execution");
     }
 
-    // Mask dynamic regions if needed (e.g., clocks, carousels)
-    const mask: Locator[] = [
-      // example: page.locator('.some-dynamic-thing')
-    ];
+    const mask: Locator[] = [];
 
     await freezeAnimations(page);
-    // Wait a bit for the page to stabilize
     await page.waitForTimeout(1000);
 
     await expect(page).toHaveScreenshot("dashboard.png", {
@@ -66,7 +59,7 @@ test.describe("Visual Regression Tests", () => {
     // Try to find Quick Actions widget with a more flexible selector
     const target = page
       .locator(
-        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget',
+        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget'
       )
       .first();
 
@@ -92,7 +85,7 @@ test.describe("Visual Regression Tests", () => {
         maxDiffPixelRatio: 0.05, // Increased tolerance to 5% for more stability
         animations: "disabled",
         threshold: 0.2, // Additional threshold for pixel-level differences
-      },
+      }
     );
   });
 });

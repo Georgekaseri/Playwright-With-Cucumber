@@ -9,20 +9,20 @@ export async function runAccessibilityScan(page: Page, context = "page") {
 
   if (results.violations.length) {
     console.log(
-      `⚠️  ${results.violations.length} accessibility issues found in ${context}`,
+      `Warning: ${results.violations.length} accessibility issues found in ${context}`,
     );
     for (const v of results.violations) {
       console.log(`- ${v.id}: ${v.description} [impact: ${v.impact}]`);
     }
   } else {
-    console.log(`✅ No accessibility violations in ${context}`);
+    console.log(`No accessibility violations in ${context}`);
   }
 
   // Log summary instead of HTML report
-  console.log(`📄 Accessibility scan completed for ${context}`);
-  console.log(`🔍 Found ${results.violations.length} violations`);
+  console.log(`Accessibility scan completed for ${context}`);
+  console.log(`Found ${results.violations.length} violations`);
   if (results.violations.length > 0) {
-    console.log("❌ Violations:", JSON.stringify(results.violations, null, 2));
+    console.log("Violations:", JSON.stringify(results.violations, null, 2));
   }
 
   // Fail on critical/serious issues
@@ -50,12 +50,12 @@ export async function runLenientAccessibilityScan(
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
 
-  console.log(`🔍 Accessibility scan completed for ${context}`);
+  console.log(`Accessibility scan completed for ${context}`);
 
   // Log detailed results
   if (results.violations.length) {
     console.log(
-      `⚠️  ${results.violations.length} accessibility issues found in ${context}`,
+      `Warning: ${results.violations.length} accessibility issues found in ${context}`,
     );
 
     // Group by impact level
@@ -65,34 +65,34 @@ export async function runLenientAccessibilityScan(
     const minor = results.violations.filter((v) => v.impact === "minor");
 
     if (critical.length) {
-      console.log(`🚨 Critical (${critical.length}):`);
+      console.log(`Critical (${critical.length}):`);
       critical.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (serious.length) {
-      console.log(`⚠️  Serious (${serious.length}):`);
+      console.log(`Serious (${serious.length}):`);
       serious.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (moderate.length) {
-      console.log(`📋 Moderate (${moderate.length}):`);
+      console.log(`Moderate (${moderate.length}):`);
       moderate.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (minor.length) {
-      console.log(`📝 Minor (${minor.length}):`);
+      console.log(`Minor (${minor.length}):`);
       minor.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
   } else {
-    console.log(`✅ No accessibility violations in ${context}`);
+    console.log(`No accessibility violations in ${context}`);
   }
 
   // Log accessibility results instead of HTML report
-  console.log(`📄 Lenient accessibility scan completed for ${context}`);
-  console.log(`� Found ${results.violations.length} critical violations`);
+  console.log(`Lenient accessibility scan completed for ${context}`);
+  console.log(`Found ${results.violations.length} critical violations`);
   if (results.violations.length > 0) {
     console.log(
-      "❌ Critical violations:",
+      "Critical violations:",
       JSON.stringify(results.violations, null, 2),
     );
   }
@@ -122,12 +122,12 @@ export async function runInformationalAccessibilityScan(
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
 
-  console.log(`🔍 Accessibility scan completed for ${context} (informational)`);
+  console.log(`Accessibility scan completed for ${context} (informational)`);
 
   // Log detailed results
   if (results.violations.length) {
     console.log(
-      `📊 ${results.violations.length} accessibility issues found in ${context} (for tracking)`,
+      `${results.violations.length} accessibility issues found in ${context} (for tracking)`,
     );
 
     // Group by impact level
@@ -137,42 +137,38 @@ export async function runInformationalAccessibilityScan(
     const minor = results.violations.filter((v) => v.impact === "minor");
 
     if (critical.length) {
-      console.log(
-        `🚨 Critical (${critical.length}) - would fail in strict mode:`,
-      );
+      console.log(`Critical (${critical.length}) - would fail in strict mode:`);
       critical.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (serious.length) {
-      console.log(`⚠️  Serious (${serious.length}) - informational:`);
+      console.log(`Serious (${serious.length}) - informational:`);
       serious.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (moderate.length) {
-      console.log(`📋 Moderate (${moderate.length}) - informational:`);
+      console.log(`Moderate (${moderate.length}) - informational:`);
       moderate.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
 
     if (minor.length) {
-      console.log(`📝 Minor (${minor.length}) - informational:`);
+      console.log(`Minor (${minor.length}) - informational:`);
       minor.forEach((v) => console.log(`  - ${v.id}: ${v.description}`));
     }
   } else {
-    console.log(`✅ No accessibility violations in ${context}`);
+    console.log(`No accessibility violations in ${context}`);
   }
 
   // Log accessibility results instead of HTML report
-  console.log(`📄 Informational accessibility scan completed for ${context}`);
+  console.log(`Informational accessibility scan completed for ${context}`);
   console.log(
-    `� Found ${results.violations.length} violations (informational only)`,
+    `Found ${results.violations.length} violations (informational only)`,
   );
   if (results.violations.length > 0) {
-    console.log("ℹ️  Violations:", JSON.stringify(results.violations, null, 2));
+    console.log("Violations:", JSON.stringify(results.violations, null, 2));
   }
 
   // Don't fail the test - just log results for tracking
-  console.log(
-    `📈 Accessibility audit complete for ${context} - no test failures`,
-  );
+  console.log(`Accessibility audit complete for ${context} - no test failures`);
   return results;
 }

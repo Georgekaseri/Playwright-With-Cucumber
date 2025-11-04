@@ -1,0 +1,10 @@
+{
+  "baseURL": "https://qa.orangehrm.company.net",
+  "username": "qa-admin",
+  "password": "qa-password",
+  "environment": "qa",
+  "azure": {
+    "keyVaultEnabled": true,
+    "keyVaultUri": "https://qa-keyvault.vault.azure.net/"
+  }
+}

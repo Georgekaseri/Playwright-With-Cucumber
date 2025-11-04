@@ -1,13 +1,13 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import type { CustomWorld } from "../support/world";
-import { TEST_ENV } from "../../config/test-env";
+import { CONFIG } from "../../config/config";
 
 Given("I am on the OrangeHRM login page", async function (this: CustomWorld) {
   await this.loginPage.goto();
 });
 
 When("I login with valid credentials", async function (this: CustomWorld) {
-  await this.loginPage.login(TEST_ENV.username, TEST_ENV.password);
+  await this.loginPage.login(CONFIG.username, CONFIG.password);
 });
 
 When(

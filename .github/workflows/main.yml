@@ -6,6 +6,16 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to run tests against"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
 
 env:
   NODE_VERSION: "20.x"
@@ -17,6 +27,8 @@ jobs:
     strategy:
       matrix:
         browser: [chromium, firefox, webkit]
+        environment: [dev, qa]
+    environment: ${{ matrix.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,21 +55,35 @@ jobs:
         run: npm run test:api -- --project=${{ matrix.browser }}
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
+          API_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_API_BASE_URL || matrix.environment == 'qa' && secrets.QA_API_BASE_URL || secrets.PROD_API_BASE_URL }}
+          API_KEY: ${{ matrix.environment == 'dev' && secrets.DEV_API_KEY || matrix.environment == 'qa' && secrets.QA_API_KEY || secrets.PROD_API_KEY }}
 
       - name: Run health tests
         run: npx playwright test src/tests/health.spec.ts --project=${{ matrix.browser }}
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
 
       - name: Run login tests
         run: npx playwright test src/tests/login.spec.ts --project=${{ matrix.browser }}
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Run integration tests
         run: npm run test:integration -- --project=${{ matrix.browser }}
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          API_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_API_BASE_URL || matrix.environment == 'qa' && secrets.QA_API_BASE_URL || secrets.PROD_API_BASE_URL }}
+          API_KEY: ${{ matrix.environment == 'dev' && secrets.DEV_API_KEY || matrix.environment == 'qa' && secrets.QA_API_KEY || secrets.PROD_API_KEY }}
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -72,6 +98,10 @@ jobs:
   visual-tests:
     name: Visual Regression Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev]
+    environment: ${{ matrix.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -92,11 +122,19 @@ jobs:
         run: npx playwright test src/tests/visual.spec.ts --project=chromium --grep "Dashboard" --update-snapshots
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Run visual tests (skip failing login form for now)
         run: npx playwright test src/tests/visual.spec.ts --project=chromium --grep "Dashboard"
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Upload visual test results
         uses: actions/upload-artifact@v4
@@ -111,6 +149,10 @@ jobs:
   bdd-tests:
     name: BDD Cucumber Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev]
+    environment: ${{ matrix.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -131,6 +173,10 @@ jobs:
         run: npm run bdd:smoke
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Generate BDD reports
         run: npm run report:cucumber
@@ -148,6 +194,10 @@ jobs:
   accessibility-tests:
     name: Accessibility Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev]
+    environment: ${{ matrix.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -168,6 +218,10 @@ jobs:
         run: npm run test:a11y -- --project=chromium
         env:
           CI: true
+          NODE_ENV: ${{ matrix.environment }}
+          ORANGEHRM_BASE_URL: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_BASE_URL || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_BASE_URL || secrets.PROD_ORANGEHRM_BASE_URL }}
+          ORANGEHRM_USERNAME: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_USERNAME || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_USERNAME || secrets.PROD_ORANGEHRM_USERNAME }}
+          ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Upload accessibility results
         uses: actions/upload-artifact@v4
