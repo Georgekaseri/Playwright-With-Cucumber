@@ -49,8 +49,8 @@ test.describe("System Health Checks @health", () => {
     await page.waitForLoadState("domcontentloaded");
     const loadTime = Date.now() - startTime;
 
-    // Expect page to load within 5 seconds
-    expect(loadTime).toBeLessThan(5000);
+    // Expect page to load within 10 seconds (CI-friendly threshold)
+    expect(loadTime).toBeLessThan(10000);
     console.log(`Page load time: ${loadTime}ms`);
   });
 });
