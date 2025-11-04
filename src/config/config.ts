@@ -33,7 +33,7 @@ const env: EnvName = (process.env.NODE_ENV as EnvName) || "dev";
 const filePath = path.resolve(__dirname, `./environments/${env}.json`);
 if (!fs.existsSync(filePath)) {
   throw new Error(
-    `Error: Environment config file not found for ${env}: ${filePath}`
+    `Error: Environment config file not found for ${env}: ${filePath}`,
   );
 }
 
@@ -66,7 +66,7 @@ const validateConfig = () => {
   if (CONFIG.azure.keyVaultEnabled) {
     if (!CONFIG.azure.keyVaultUri) {
       throw new Error(
-        "Error: Azure Key Vault URI is required when Key Vault is enabled"
+        "Error: Azure Key Vault URI is required when Key Vault is enabled",
       );
     }
     if (
@@ -76,7 +76,7 @@ const validateConfig = () => {
         !CONFIG.azure.clientSecret)
     ) {
       console.warn(
-        "Warning: Azure Key Vault credentials missing in CI environment"
+        "Warning: Azure Key Vault credentials missing in CI environment",
       );
     }
   }
@@ -85,7 +85,7 @@ const validateConfig = () => {
   if (CONFIG.env !== "prod" && !CONFIG.isCI) {
     console.log(`Loaded configuration for [${CONFIG.env}] environment`);
     console.log(
-      `Azure Key Vault: ${CONFIG.azure.keyVaultEnabled ? "Enabled" : "Disabled"}`
+      `Azure Key Vault: ${CONFIG.azure.keyVaultEnabled ? "Enabled" : "Disabled"}`,
     );
   } else {
     console.log(`Loaded configuration for [${CONFIG.env}] environment`);

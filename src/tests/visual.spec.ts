@@ -59,7 +59,7 @@ test.describe("Visual Regression Tests", () => {
     // Try to find Quick Actions widget with a more flexible selector
     const target = page
       .locator(
-        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget'
+        '.orangehrm-todo-list, .quickLaunch, [data-v-*="quick"], .dashboard-widget',
       )
       .first();
 
@@ -85,7 +85,7 @@ test.describe("Visual Regression Tests", () => {
         maxDiffPixelRatio: 0.05, // Increased tolerance to 5% for more stability
         animations: "disabled",
         threshold: 0.2, // Additional threshold for pixel-level differences
-      }
+      },
     );
   });
 });

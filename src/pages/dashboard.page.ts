@@ -10,7 +10,7 @@ export class DashboardPage {
 
     if (currentUrl.includes("/auth/login")) {
       throw new Error(
-        `Still on login page. Login may have failed. URL: ${currentUrl}`
+        `Still on login page. Login may have failed. URL: ${currentUrl}`,
       );
     }
 
@@ -46,7 +46,7 @@ export class DashboardPage {
     }
 
     throw new Error(
-      `Could not verify dashboard/post-login state. Current URL: ${currentUrl}`
+      `Could not verify dashboard/post-login state. Current URL: ${currentUrl}`,
     );
   }
 }
