@@ -27,6 +27,8 @@ export default defineConfig({
     // Increased timeouts for CI
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
+    // 🔒 Ignore HTTPS errors for test environments
+    ignoreHTTPSErrors: true,
   },
   projects: [
     {
