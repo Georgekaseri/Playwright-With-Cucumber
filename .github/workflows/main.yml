@@ -2,7 +2,7 @@ name: Playwright-Cucumber CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/day08-secrets-config]
   pull_request:
     branches: [main]
   workflow_dispatch:
