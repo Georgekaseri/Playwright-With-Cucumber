@@ -1,0 +1,35 @@
+# Azure DevOps Pipeline Configuration
+# This file is kept for compatibility - main CI/CD runs on GitHub Actions
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  nodeVersion: "20.x"
+
+stages:
+  - stage: Test
+    displayName: "Run Tests"
+    jobs:
+      - job: TestJob
+        displayName: "Test Job"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "$(nodeVersion)"
+            displayName: "Install Node.js"
+
+          - script: npm ci
+            displayName: "Install dependencies"
+
+          - script: npm run lint
+            displayName: "Lint code"
+
+          - script: npm run test:dev
+            displayName: "Run tests"
