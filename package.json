@@ -42,6 +42,8 @@
     "ci:bdd": "npm run bdd:smoke && npm run bdd:report",
     "ci:api": "npm run test:api",
     "ci:enhanced": "npm run test:enhanced",
+    "test:visual:chromium": "playwright test --project=chromium --grep @visual",
+    "test:visual:update": "playwright test --project=chromium --grep @visual --update-snapshots",
     "config:dev": "cross-env NODE_ENV=dev",
     "config:qa": "cross-env NODE_ENV=qa",
     "config:prod": "cross-env NODE_ENV=prod",
