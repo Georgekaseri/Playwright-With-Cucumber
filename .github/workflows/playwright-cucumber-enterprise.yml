@@ -1,0 +1,307 @@
+name: 🔵 Playwright • Cucumber Enterprise CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  # 🧪 UI Testing Suite
+  ui-tests:
+    name: 🧪 UI • ${{ matrix.browser }} • ${{ matrix.env }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        env: [dev, qa]
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          echo "::group::Install npm dependencies"
+          npm ci
+          echo "::endgroup::"
+
+      - name: 🎭 Install Playwright browsers
+        run: |
+          echo "::group::Install Playwright browsers & dependencies"
+          npx playwright install --with-deps ${{ matrix.browser }}
+          echo "::endgroup::"
+
+      - name: ▶️ Run UI tests
+        env:
+          NODE_ENV: ${{ matrix.env }}
+        run: |
+          echo "::group::Running UI test suite"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            npx playwright test --project=${{ matrix.browser }} --grep "@smoke"
+          else
+            npx playwright test --project=${{ matrix.browser }}
+          fi
+          echo "::endgroup::"
+
+      - name: ⬆️ Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 🔎 Playwright Report • ${{ matrix.browser }} • ${{ matrix.env }}
+          path: playwright-report/
+          retention-days: 7
+
+  # 🥒 BDD Cucumber Testing
+  bdd-tests:
+    name: 🥒 BDD Cucumber • ${{ matrix.env }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [dev, qa]
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          echo "::group::Install npm dependencies"
+          npm ci
+          echo "::endgroup::"
+
+      - name: 🎭 Install Playwright browsers
+        run: |
+          echo "::group::Install Playwright browsers for BDD tests"
+          npx playwright install --with-deps chromium
+          echo "::endgroup::"
+
+      - name: ▶️ Run BDD Cucumber tests
+        env:
+          NODE_ENV: ${{ matrix.env }}
+        run: |
+          echo "::group::Running BDD Cucumber test suite"
+          npm run bdd
+          echo "::endgroup::"
+
+      - name: 📊 Generate Cucumber report
+        if: always()
+        run: |
+          echo "::group::Generate Cucumber HTML report"
+          npm run bdd:report
+          echo "::endgroup::"
+
+      - name: ⬆️ Upload Cucumber report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 🥒 Cucumber Report • ${{ matrix.env }}
+          path: reports/
+          retention-days: 7
+
+  # 🚀 API Testing Suite
+  api-tests:
+    name: 🚀 API • Senior SDET • ${{ matrix.env }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        env: [dev, qa]
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          echo "::group::Install npm dependencies"
+          npm ci
+          echo "::endgroup::"
+
+      - name: ▶️ Run API tests with Senior SDET standards
+        env:
+          NODE_ENV: ${{ matrix.env }}
+        run: |
+          echo "::group::Running API test suite with Senior SDET standards"
+          npm run test:api
+          echo "::endgroup::"
+
+      - name: ⬆️ Upload API test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 🚀 API Test Results • ${{ matrix.env }}
+          path: playwright-report/
+          retention-days: 7
+
+  # ⚡ Enhanced Parallelization Tests
+  enhanced-tests:
+    name: ⚡ Enhanced • Day 9 • ${{ matrix.config }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [dev, qa]
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          echo "::group::Install npm dependencies"
+          npm ci
+          echo "::endgroup::"
+
+      - name: 🎭 Install Playwright browsers
+        run: |
+          echo "::group::Install Playwright browsers for enhanced testing"
+          npx playwright install --with-deps
+          echo "::endgroup::"
+
+      - name: ▶️ Run enhanced parallelization tests
+        env:
+          NODE_ENV: ${{ matrix.config }}
+        run: |
+          echo "::group::Running enhanced test suite with intelligent worker management"
+          npm run test:enhanced:${{ matrix.config }}
+          echo "::endgroup::"
+
+      - name: ⬆️ Upload enhanced test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ⚡ Enhanced Test Results • ${{ matrix.config }}
+          path: playwright-report/
+          retention-days: 7
+
+  # 🏁 Summary
+  summary:
+    name: 🏁 CI Summary
+    runs-on: ubuntu-latest
+    needs: [ui-tests, bdd-tests, api-tests, enhanced-tests]
+    if: always()
+
+    steps:
+      - name: 🧾 Generate comprehensive CI summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const jobs = [
+              { name: 'UI Tests', status: '${{ needs.ui-tests.result }}', icon: '🧪' },
+              { name: 'BDD Cucumber', status: '${{ needs.bdd-tests.result }}', icon: '🥒' },
+              { name: 'API Testing', status: '${{ needs.api-tests.result }}', icon: '🚀' },
+              { name: 'Enhanced Parallelization', status: '${{ needs.enhanced-tests.result }}', icon: '⚡' }
+            ]
+            
+            const overallStatus = jobs.every(job => job.status === 'success') ? 'success' : 
+                                 jobs.some(job => job.status === 'failure') ? 'failure' : 'mixed'
+            
+            const statusIcon = overallStatus === 'success' ? '✅' : overallStatus === 'failure' ? '❌' : '⚠️'
+            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+            
+            const tableRows = [
+              [{data:'Test Suite', header:true}, {data:'Status', header:true}, {data:'Details', header:true}]
+            ]
+            
+            jobs.forEach(job => {
+              const jobStatusIcon = job.status === 'success' ? '✅' : job.status === 'failure' ? '❌' : '⚠️'
+              tableRows.push([
+                job.icon + ' ' + job.name,
+                jobStatusIcon + ' ' + job.status.toUpperCase(),
+                '[View Details](' + runUrl + ')'
+              ])
+            })
+            
+            core.summary
+              .addHeading(`🏁 Day 9 Enterprise Test Framework CI Summary – ${statusIcon} ${overallStatus.toUpperCase()}`)
+              .addTable(tableRows)
+              .addSeparator()
+              .addHeading('📊 Test Coverage Overview')
+              .addList([
+                '🧪 **UI Testing**: Cross-browser compatibility (Chromium, Firefox, WebKit)',
+                '🥒 **BDD Cucumber**: Business-driven development with Gherkin scenarios',
+                '🚀 **API Testing**: Senior SDET standards with schema validation',
+                '⚡ **Enhanced Parallelization**: Intelligent worker management and test sharding'
+              ])
+              .addSeparator()
+              .addHeading('🔧 Enterprise Features')
+              .addList([
+                '📊 **Test Data Management**: Role-based users and environment configurations',
+                '🏗️ **Advanced Parallelization**: System resource detection and optimal distribution',
+                '👨‍💻 **Senior SDET Standards**: Production-grade API testing with cleanup',
+                '📈 **Performance Monitoring**: Response time tracking and resource management',
+                '🔍 **Health Checks**: Service availability and contract validation',
+                '🎯 **Production Ready**: Enterprise-grade error handling and observability'
+              ])
+              .addQuote('🚀 All artifacts and detailed reports are available in the Actions tab above.')
+              .write()
+
+      - name: 💬 Comment on PR with results
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const overallStatus = ['${{ needs.ui-tests.result }}', '${{ needs.bdd-tests.result }}', 
+                                  '${{ needs.api-tests.result }}', '${{ needs.enhanced-tests.result }}']
+                                  .every(status => status === 'success') ? 'success' : 'failure'
+            
+            const statusIcon = overallStatus === 'success' ? '✅' : '❌'
+            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+            
+            const comment = `## ${statusIcon} Day 9 Enterprise Test Framework CI Results
+            
+**Overall Status**: ${statusIcon} ${overallStatus.toUpperCase()}
+
+| Test Suite | Status | Environment Coverage |
+|------------|--------|---------------------|
+| 🧪 UI Tests | ${'${{ needs.ui-tests.result }}' === 'success' ? '✅' : '❌'} | Chromium, Firefox, WebKit |
+| 🥒 BDD Cucumber | ${'${{ needs.bdd-tests.result }}' === 'success' ? '✅' : '❌'} | Dev, QA |
+| 🚀 API Testing | ${'${{ needs.api-tests.result }}' === 'success' ? '✅' : '❌'} | Senior SDET Standards |
+| ⚡ Enhanced Parallelization | ${'${{ needs.enhanced-tests.result }}' === 'success' ? '✅' : '❌'} | Dev, QA |
+
+[📊 View detailed reports and artifacts](${runUrl})
+
+🎯 **Enterprise Features Validated**: Advanced parallelization, Senior SDET API testing, production-grade data management, and comprehensive monitoring.`
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            })
