@@ -30,7 +30,7 @@ Given(
     await this.page
       .getByRole("heading", { name: "Dashboard" })
       .waitFor({ timeout: 10000 });
-  }
+  },
 );
 
 // DISABLED: Playwright's toHaveScreenshot() doesn't work in Cucumber context
@@ -41,20 +41,20 @@ Then(
   "the full page should match the baseline {string}",
   function (baseline: string) {
     console.log(
-      `Visual testing not supported in Cucumber - use npm run test:visual instead (baseline: ${baseline})`
+      `Visual testing not supported in Cucumber - use npm run test:visual instead (baseline: ${baseline})`,
     );
     // Skip instead of returning pending to avoid CI failures
     this.skip();
-  }
+  },
 );
 
 Then(
   "the widget {string} should match the baseline",
   function (widgetName: string) {
     console.log(
-      `Visual testing not supported in Cucumber - use npm run test:visual instead (widget: ${widgetName})`
+      `Visual testing not supported in Cucumber - use npm run test:visual instead (widget: ${widgetName})`,
     );
     // Skip instead of returning pending to avoid CI failures
     this.skip();
-  }
+  },
 );
