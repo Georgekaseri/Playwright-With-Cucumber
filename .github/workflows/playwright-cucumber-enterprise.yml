@@ -16,6 +16,39 @@ permissions:
   pull-requests: write
 
 jobs:
+  # Code Quality Check
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          echo "::group::Install npm dependencies"
+          npm ci
+          echo "::endgroup::"
+
+      - name: Check code formatting
+        run: |
+          echo "::group::Check Prettier code formatting"
+          npx prettier . --check
+          echo "::endgroup::"
+
+      - name: Run ESLint
+        run: |
+          echo "::group::Run ESLint code analysis"
+          npm run lint
+          echo "::endgroup::"
+
   # UI Testing Suite
   ui-tests:
     name: UI Tests - ${{ matrix.browser }} - ${{ matrix.env }}
@@ -271,7 +304,15 @@ jobs:
   summary:
     name: CI Summary
     runs-on: ubuntu-latest
-    needs: [ui-tests, bdd-tests, api-tests, enhanced-tests, visual-tests]
+    needs:
+      [
+        code-quality,
+        ui-tests,
+        bdd-tests,
+        api-tests,
+        enhanced-tests,
+        visual-tests,
+      ]
     if: always()
 
     steps:
@@ -280,6 +321,7 @@ jobs:
         with:
           script: |
             const jobs = [
+              { name: 'Code Quality', status: '${{ needs.code-quality.result }}' },
               { name: 'UI Tests', status: '${{ needs.ui-tests.result }}' },
               { name: 'BDD Cucumber', status: '${{ needs.bdd-tests.result }}' },
               { name: 'API Testing', status: '${{ needs.api-tests.result }}' },
