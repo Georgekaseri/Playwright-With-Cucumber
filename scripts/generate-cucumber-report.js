@@ -33,5 +33,5 @@ report.generate({
   },
 });
 console.log(
-  "✅ Executive Cucumber HTML report generated at reports/cucumber-html/index.html"
+  "✅ Executive Cucumber HTML report generated at reports/cucumber-html/index.html",
 );
