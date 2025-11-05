@@ -1,0 +1,56 @@
+{
+  "dev": {
+    "name": "Development",
+    "features": {
+      "visualTesting": true,
+      "apiMocking": true,
+      "debugMode": true,
+      "slowMo": 100
+    },
+    "timeouts": {
+      "short": 5000,
+      "medium": 10000,
+      "long": 30000
+    },
+    "testData": {
+      "useRealData": false,
+      "resetDataAfterTest": true
+    }
+  },
+  "qa": {
+    "name": "Quality Assurance",
+    "features": {
+      "visualTesting": true,
+      "apiMocking": false,
+      "debugMode": false,
+      "slowMo": 0
+    },
+    "timeouts": {
+      "short": 10000,
+      "medium": 20000,
+      "long": 60000
+    },
+    "testData": {
+      "useRealData": true,
+      "resetDataAfterTest": false
+    }
+  },
+  "prod": {
+    "name": "Production",
+    "features": {
+      "visualTesting": false,
+      "apiMocking": false,
+      "debugMode": false,
+      "slowMo": 0
+    },
+    "timeouts": {
+      "short": 15000,
+      "medium": 30000,
+      "long": 90000
+    },
+    "testData": {
+      "useRealData": true,
+      "resetDataAfterTest": false
+    }
+  }
+}
