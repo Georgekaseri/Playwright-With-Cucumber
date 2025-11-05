@@ -1,0 +1,297 @@
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+import { BookingClient, BookingPayload } from "../../api/bookingClient";
+import { CustomWorld } from "../support/world";
+import { generateBookingData } from "../../data/bookingData";
+
+// Background steps
+Given("I have access to the booking API", async function (this: CustomWorld) {
+  // BookingClient is now initialized with request context from hooks
+  this.bookingAPI = new BookingClient(this.request, this.baseURL);
+
+  // Verify API health
+  const isHealthy = await this.bookingAPI.healthCheck();
+  expect(isHealthy, "Booking API should be healthy").toBeTruthy();
+});
+
+Given("I can create valid booking requests", function (this: CustomWorld) {
+  expect(this.baseURL).toBeDefined();
+  expect(this.bookingAPI).toBeDefined();
+});
+
+// George Kaseri booking scenario - now using data builder for consistency
+Given(
+  "I have a booking request for George Kaseri",
+  function (this: CustomWorld) {
+    // Use data builder for consistency and uniqueness
+    const data = generateBookingData("standard");
+    this.bookingPayload = {
+      ...data,
+      firstname: "George",
+      lastname: "Kaseri",
+      totalprice: 111, // Keep specific test values
+      additionalneeds: "Breakfast",
+    };
+  }
+);
+
+When(
+  "I submit the booking request to the API",
+  async function (this: CustomWorld) {
+    try {
+      this.bookingResponse = await this.bookingAPI.createBooking(
+        this.bookingPayload
+      );
+      this.createdBookingId = this.bookingResponse.bookingid;
+      this.requestSucceeded = true;
+    } catch (error) {
+      this.requestError = error as Error;
+      this.requestSucceeded = false;
+    }
+  }
+);
+
+Then(
+  "the booking should be created successfully",
+  function (this: CustomWorld) {
+    expect(
+      this.requestSucceeded,
+      `Request failed: ${this.requestError?.message}`
+    ).toBeTruthy();
+    expect(this.bookingResponse).toBeDefined();
+    expect(this.bookingResponse).toHaveProperty("bookingid");
+    expect(this.bookingResponse).toHaveProperty("booking");
+    expect(this.bookingResponse.bookingid).toBeGreaterThan(0);
+  }
+);
+
+Then(
+  "the booking details should match the request data",
+  function (this: CustomWorld) {
+    const req = this.bookingPayload;
+    const res = this.bookingResponse.booking;
+
+    // Data-driven assertions using the actual payload
+    expect(res.firstname).toBe(req.firstname);
+    expect(res.lastname).toBe(req.lastname);
+    expect(res.totalprice).toBe(req.totalprice);
+    expect(res.depositpaid).toBe(req.depositpaid);
+    expect(res.bookingdates.checkin).toBe(req.bookingdates.checkin);
+    expect(res.bookingdates.checkout).toBe(req.bookingdates.checkout);
+    expect(res.additionalneeds).toBe(req.additionalneeds);
+  }
+);
+
+Then(
+  "the response should contain a valid booking ID",
+  function (this: CustomWorld) {
+    expect(typeof this.bookingResponse.bookingid).toBe("number");
+    expect(this.bookingResponse.bookingid).toBeGreaterThan(0);
+
+    // Store for later use and attach to test context
+    this.createdBookingId = this.bookingResponse.bookingid;
+    this.attach(
+      JSON.stringify({ bookingId: this.createdBookingId, booking: this.bookingResponse.booking }, null, 2),
+      'application/json'
+    );
+  },
+);
+
+// Retrieve booking scenario using data builder
+Given(
+  "I have created a booking for George Kaseri",
+  async function (this: CustomWorld) {
+    // Use data builder for consistency
+    const payload = generateBookingData('standard');
+    const georgePayload = { 
+      ...payload, 
+      firstname: 'George', 
+      lastname: 'Kaseri',
+      totalprice: 111,
+      additionalneeds: 'Breakfast'
+    };
+    
+    this.bookingResponse = await this.bookingAPI.createBooking(georgePayload);
+    this.createdBookingId = this.bookingResponse.bookingid;
+    this.bookingPayload = georgePayload; // Store for comparison
+  },
+);
+
+When("I retrieve the booking by ID", async function (this: CustomWorld) {
+  this.retrievedBooking = await this.bookingAPI.getBooking(
+    this.createdBookingId,
+  );
+});
+
+Then(
+  "the booking details should be returned correctly",
+  function (this: CustomWorld) {
+    expect(this.retrievedBooking).toBeDefined();
+    
+    // Data-driven assertions
+    const original = this.bookingPayload;
+    expect(this.retrievedBooking.firstname).toBe(original.firstname);
+    expect(this.retrievedBooking.lastname).toBe(original.lastname);
+  },
+);
+
+Then(
+  "all booking fields should match the original request",
+  function (this: CustomWorld) {
+    const original = this.bookingPayload;
+    const retrieved = this.retrievedBooking;
+    
+    expect(retrieved.totalprice).toBe(original.totalprice);
+    expect(retrieved.depositpaid).toBe(original.depositpaid);
+    expect(retrieved.bookingdates.checkin).toBe(original.bookingdates.checkin);
+    expect(retrieved.bookingdates.checkout).toBe(original.bookingdates.checkout);
+    expect(retrieved.additionalneeds).toBe(original.additionalneeds);
+
+// Retrieve booking scenario
+// Retrieve booking scenario
+Given(
+  "I have created a booking for George Kaseri",
+  async function (this: CustomWorld) {
+    // Create request context on demand if not available
+    if (!this.request) {
+      const { request } = await import("playwright");
+      this.request = await request.newContext();
+    }
+
+    this.bookingAPI = new BookingClient(this.request, this.baseURL);
+    const payload = BookingClient.createGeorgeKaseriBooking();
+    this.bookingResponse = await this.bookingAPI.createBooking(payload);
+    this.createdBookingId = this.bookingResponse.bookingid;
+  }
+);
+
+When("I retrieve the booking by ID", async function (this: CustomWorld) {
+  this.retrievedBooking = await this.bookingAPI.getBooking(
+    this.createdBookingId
+  );
+});
+
+Then(
+  "the booking details should be returned correctly",
+  function (this: CustomWorld) {
+    expect(this.retrievedBooking).toBeDefined();
+    expect(this.retrievedBooking.firstname).toBe("George");
+    expect(this.retrievedBooking.lastname).toBe("Kaseri");
+  }
+);
+
+Then(
+  "all booking fields should match the original request",
+  function (this: CustomWorld) {
+    expect(this.retrievedBooking.totalprice).toBe(111);
+    expect(this.retrievedBooking.depositpaid).toBe(true);
+    expect(this.retrievedBooking.bookingdates.checkin).toBe("2018-01-01");
+    expect(this.retrievedBooking.bookingdates.checkout).toBe("2019-01-01");
+    expect(this.retrievedBooking.additionalneeds).toBe("Breakfast");
+
+    console.log(`Successfully retrieved booking ID: ${this.createdBookingId}`);
+  }
+);
+
+// Error handling scenario
+Given("I have an invalid booking request", function (this: CustomWorld) {
+  this.invalidPayload = {
+    firstname: "", // Invalid: empty firstname
+    lastname: "Kaseri",
+    totalprice: -10, // Invalid: negative price
+    depositpaid: true,
+    bookingdates: {
+      checkin: "2025-01-01",
+      checkout: "2024-01-01", // Invalid: checkout before checkin
+    },
+    additionalneeds: "Wifi",
+  };
+});
+
+When(
+  "I submit the invalid booking request",
+  async function (this: CustomWorld) {
+    try {
+      // Create request context on demand if not available
+      if (!this.request) {
+        const { request } = await import("playwright");
+        this.request = await request.newContext();
+      }
+
+      this.bookingAPI = new BookingClient(this.request, this.baseURL);
+      // Force the invalid payload to be passed (this is expected to fail)
+      await this.bookingAPI.createBooking(
+        this.invalidPayload as BookingPayload
+      );
+      this.requestSucceeded = true;
+    } catch (error) {
+      this.requestError = error as Error;
+      this.requestSucceeded = false;
+    }
+  }
+);
+
+Then("the API should reject the request", function (this: CustomWorld) {
+  expect(this.requestSucceeded).toBe(false);
+});
+
+Then("an appropriate error should be returned", function (this: CustomWorld) {
+  expect(this.requestError).toBeDefined();
+  console.log(
+    `Properly handled invalid request with error: ${this.requestError.message}`
+  );
+});
+
+// Performance scenario
+Given("I have a valid booking request", function (this: CustomWorld) {
+  this.bookingPayload = BookingClient.createGeorgeKaseriBooking();
+});
+
+When("I submit the booking request", async function (this: CustomWorld) {
+  // Create request context on demand if not available
+  if (!this.request) {
+    const { request } = await import("playwright");
+    this.request = await request.newContext();
+  }
+
+  this.bookingAPI = new BookingClient(this.request, this.baseURL);
+  this.startTime = Date.now();
+  this.bookingResponse = await this.bookingAPI.createBooking(
+    this.bookingPayload
+  );
+  this.duration = Date.now() - this.startTime;
+});
+
+Then("the API should respond within 5 seconds", function (this: CustomWorld) {
+  expect(this.duration).toBeLessThan(5000);
+  console.log(`API response time: ${this.duration}ms`);
+});
+
+Then("the response should be successful", function (this: CustomWorld) {
+  expect(this.bookingResponse).toBeDefined();
+  expect(this.bookingResponse.bookingid).toBeGreaterThan(0);
+});
+
+// Health check scenario
+Given("the booking service is running", function (this: CustomWorld) {
+  // Service should be accessible
+  expect(this.baseURL).toBe("https://restful-booker.herokuapp.com");
+});
+
+When("I check the API health endpoint", async function (this: CustomWorld) {
+  // Create request context on demand if not available
+  if (!this.request) {
+    const { request } = await import("playwright");
+    this.request = await request.newContext();
+  }
+
+  this.healthResponse = await this.request.get(`${this.baseURL}/ping`);
+});
+
+Then("the service should be available", function (this: CustomWorld) {
+  expect(this.healthResponse.status()).toBe(201);
+});
+
+Then("return a healthy status", function (this: CustomWorld) {
+  console.log("API service is healthy and available");
+});

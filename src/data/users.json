@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "username": "Admin",
+    "password": "admin123",
+    "role": "admin",
+    "permissions": ["all"]
+  },
+  "essUser": {
+    "username": "luke.doe",
+    "password": "Pass@123",
+    "role": "employee",
+    "permissions": ["profile", "leave"]
+  },
+  "manager": {
+    "username": "manager.test",
+    "password": "Manager@123",
+    "role": "manager",
+    "permissions": ["team", "reports", "approve"]
+  },
+  "hrUser": {
+    "username": "hr.specialist",
+    "password": "HR@123",
+    "role": "hr",
+    "permissions": ["recruitment", "employee-records"]
+  }
+}

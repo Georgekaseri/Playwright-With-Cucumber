@@ -1,0 +1,240 @@
+# GitHub Actions - Advanced Parallel Execution
+name: Advanced Playwright Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Test sharding job
+  test-sharding:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+        total: [4]
+        browser: [chromium, firefox]
+        environment: [dev, qa]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run tests with sharding
+        env:
+          NODE_ENV: ${{ matrix.environment }}
+          CURRENT_SHARD: ${{ matrix.shard }}
+          TOTAL_SHARDS: ${{ matrix.total }}
+          BROWSER_FILTER: ${{ matrix.browser }}
+          TRACK_PERFORMANCE: true
+          CI: true
+        run: |
+          npx playwright test \
+            --config=playwright.enhanced.config.ts \
+            --project=${{ matrix.browser }}-desktop \
+            --reporter=json \
+            --shard=${{ matrix.shard }}/${{ matrix.total }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.shard }}-${{ matrix.browser }}-${{ matrix.environment }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
+
+  # Performance monitoring job
+  performance-analysis:
+    runs-on: ubuntu-latest
+    needs: test-sharding
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all test results
+        uses: actions/download-artifact@v4
+        with:
+          path: collected-results/
+
+      - name: Analyze performance metrics
+        run: |
+          echo "Analyzing parallel execution performance..."
+          find collected-results/ -name "performance-report.txt" -exec cat {} \;
+
+      - name: Comment performance results
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read performance reports
+            const reportFiles = [];
+            const findReports = (dir) => {
+              const files = fs.readdirSync(dir);
+              files.forEach(file => {
+                const fullPath = path.join(dir, file);
+                if (fs.statSync(fullPath).isDirectory()) {
+                  findReports(fullPath);
+                } else if (file === 'performance-report.txt') {
+                  reportFiles.push(fullPath);
+                }
+              });
+            };
+
+            findReports('collected-results');
+
+            if (reportFiles.length > 0) {
+              let comment = '## Parallel Execution Performance Report\n\n';
+              reportFiles.forEach(file => {
+                const content = fs.readFileSync(file, 'utf8');
+                comment += content + '\n\n';
+              });
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  # Cross-browser compatibility matrix
+  cross-browser-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        browser: [chromium, firefox, webkit]
+        node-version: [18, 20]
+        exclude:
+          # WebKit not available on Windows
+          - os: windows-latest
+            browser: webkit
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run cross-browser tests
+        env:
+          NODE_ENV: qa
+          BROWSER_FILTER: ${{ matrix.browser }}
+          TRACK_PERFORMANCE: true
+        run: |
+          npx playwright test \
+            --config=playwright.enhanced.config.ts \
+            --project=${{ matrix.browser }}-desktop \
+            --reporter=line
+
+  # Load testing with multiple workers
+  load-testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workers: [2, 4, 8, 16]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run load tests with ${{ matrix.workers }} workers
+        env:
+          NODE_ENV: dev
+          TRACK_PERFORMANCE: true
+          FORCE_WORKERS: ${{ matrix.workers }}
+        run: |
+          npx playwright test \
+            --config=playwright.enhanced.config.ts \
+            --workers=${{ matrix.workers }} \
+            --reporter=json \
+            src/tests/dataManagement.spec.ts
+
+      - name: Upload load test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-${{ matrix.workers }}-workers
+          path: test-results/
+
+  # API and integration tests in parallel
+  api-integration-parallel:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-group: [api, integration, visual, performance]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run ${{ matrix.test-group }} tests
+        env:
+          NODE_ENV: qa
+          TRACK_PERFORMANCE: true
+        run: |
+          case "${{ matrix.test-group }}" in
+            api)
+              npx playwright test --grep "@api" --config=playwright.enhanced.config.ts
+              ;;
+            integration)
+              npx playwright test src/tests/integration/ --config=playwright.enhanced.config.ts
+              ;;
+            visual)
+              npx playwright test --grep "@visual" --config=playwright.enhanced.config.ts
+              ;;
+            performance)
+              npx playwright test --grep "@performance" --config=playwright.enhanced.config.ts
+              ;;
+          esac
