@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: |
@@ -85,7 +85,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: |
@@ -139,7 +139,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: |
@@ -180,7 +180,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: |
@@ -228,17 +228,17 @@ jobs:
               { name: 'API Testing', status: '${{ needs.api-tests.result }}', icon: '🚀' },
               { name: 'Enhanced Parallelization', status: '${{ needs.enhanced-tests.result }}', icon: '⚡' }
             ]
-            
+
             const overallStatus = jobs.every(job => job.status === 'success') ? 'success' : 
                                  jobs.some(job => job.status === 'failure') ? 'failure' : 'mixed'
-            
+
             const statusIcon = overallStatus === 'success' ? '✅' : overallStatus === 'failure' ? '❌' : '⚠️'
             const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
-            
+
             const tableRows = [
               [{data:'Test Suite', header:true}, {data:'Status', header:true}, {data:'Details', header:true}]
             ]
-            
+
             jobs.forEach(job => {
               const jobStatusIcon = job.status === 'success' ? '✅' : job.status === 'failure' ? '❌' : '⚠️'
               tableRows.push([
@@ -247,7 +247,7 @@ jobs:
                 '[View Details](' + runUrl + ')'
               ])
             })
-            
+
             core.summary
               .addHeading(`🏁 Day 9 Enterprise Test Framework CI Summary – ${statusIcon} ${overallStatus.toUpperCase()}`)
               .addTable(tableRows)
@@ -271,37 +271,3 @@ jobs:
               ])
               .addQuote('🚀 All artifacts and detailed reports are available in the Actions tab above.')
               .write()
-
-      - name: 💬 Comment on PR with results
-        if: always() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const overallStatus = ['${{ needs.ui-tests.result }}', '${{ needs.bdd-tests.result }}', 
-                                  '${{ needs.api-tests.result }}', '${{ needs.enhanced-tests.result }}']
-                                  .every(status => status === 'success') ? 'success' : 'failure'
-            
-            const statusIcon = overallStatus === 'success' ? '✅' : '❌'
-            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
-            
-            const comment = `## ${statusIcon} Day 9 Enterprise Test Framework CI Results
-            
-**Overall Status**: ${statusIcon} ${overallStatus.toUpperCase()}
-
-| Test Suite | Status | Environment Coverage |
-|------------|--------|---------------------|
-| 🧪 UI Tests | ${'${{ needs.ui-tests.result }}' === 'success' ? '✅' : '❌'} | Chromium, Firefox, WebKit |
-| 🥒 BDD Cucumber | ${'${{ needs.bdd-tests.result }}' === 'success' ? '✅' : '❌'} | Dev, QA |
-| 🚀 API Testing | ${'${{ needs.api-tests.result }}' === 'success' ? '✅' : '❌'} | Senior SDET Standards |
-| ⚡ Enhanced Parallelization | ${'${{ needs.enhanced-tests.result }}' === 'success' ? '✅' : '❌'} | Dev, QA |
-
-[📊 View detailed reports and artifacts](${runUrl})
-
-🎯 **Enterprise Features Validated**: Advanced parallelization, Senior SDET API testing, production-grade data management, and comprehensive monitoring.`
-            
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: comment
-            })
