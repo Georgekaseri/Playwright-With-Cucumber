@@ -62,7 +62,7 @@ export const bookingTemplates = {
 
 // Dynamic booking data generator
 export function generateBookingData(
-  template: keyof typeof bookingTemplates = "standard"
+  template: keyof typeof bookingTemplates = "standard",
 ): BookingTestData {
   const base = bookingTemplates[template];
   const today = new Date();

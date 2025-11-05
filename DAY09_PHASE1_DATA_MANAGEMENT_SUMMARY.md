@@ -191,7 +191,7 @@ When(
   async function (role: string) {
     const user = DataHelper.getParallelSafeUser(roleMap[role]);
     await this.loginPage.login(user.username, user.password);
-  }
+  },
 );
 ```
 

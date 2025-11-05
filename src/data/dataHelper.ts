@@ -34,7 +34,7 @@ export class DataHelper {
   static getUsersWithPermission(permission: string): User[] {
     return Object.values(users).filter(
       (user: any) =>
-        user && user.permissions && user.permissions.includes(permission)
+        user && user.permissions && user.permissions.includes(permission),
     );
   }
 
@@ -78,7 +78,7 @@ export class DataHelper {
    */
   static generateMultipleBookings(
     count: number,
-    template: BookingTemplate = "standard"
+    template: BookingTemplate = "standard",
   ) {
     return Array.from({ length: count }, () => this.generateBooking(template));
   }

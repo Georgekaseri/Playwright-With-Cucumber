@@ -28,8 +28,12 @@ export class CustomWorld extends World {
   invalidPayload!: Partial<BookingPayload>;
   requestError!: Error;
   requestSucceeded!: boolean;
+  lastAPIResponse!: any; // For debugging failed API calls
+  authToken!: string; // For authenticated operations
   startTime!: number;
+  endTime!: number; // Added for performance testing
   duration!: number;
+  apiHealthy!: boolean; // Added for health check scenarios
   healthResponse!: import("playwright").APIResponse;
 
   constructor(options: IWorldOptions) {

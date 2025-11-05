@@ -64,6 +64,14 @@ export class BookingClient {
     return responseData;
   }
 
+  async createBookingRaw(payload: BookingPayload | any) {
+    // Raw method for testing invalid payloads
+    return this.request.post(`${this.baseURL}/booking`, {
+      data: payload,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   async getBooking(bookingId: number): Promise<BookingPayload> {
     const response = await this.request.get(
       `${this.baseURL}/booking/${bookingId}`,
@@ -79,6 +87,54 @@ export class BookingClient {
     this.validatePayload(bookingData);
 
     return bookingData;
+  }
+
+  async auth(): Promise<string> {
+    const username = process.env.BOOKER_USERNAME || "admin";
+    const password = process.env.BOOKER_PASSWORD || "password123";
+
+    const response = await this.request.post(`${this.baseURL}/auth`, {
+      data: { username, password },
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok()) {
+      throw new Error(
+        `Authentication failed with status: ${response.status()}`,
+      );
+    }
+
+    const authData = (await response.json()) as { token: string };
+    return authData.token;
+  }
+
+  async deleteBooking(bookingId: number): Promise<void> {
+    const token = await this.auth();
+
+    const response = await this.request.delete(
+      `${this.baseURL}/booking/${bookingId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `token=${token}`,
+        },
+      },
+    );
+
+    if (!response.ok()) {
+      throw new Error(
+        `Failed to delete booking ${bookingId}: ${response.status()}`,
+      );
+    }
+  }
+
+  async healthCheck(): Promise<boolean> {
+    try {
+      const response = await this.request.get(`${this.baseURL}/ping`);
+      return response.status() === 201; // Restful-booker returns 201 for ping
+    } catch (error) {
+      return false;
+    }
   }
 
   private validatePayload(data: BookingPayload): void {
