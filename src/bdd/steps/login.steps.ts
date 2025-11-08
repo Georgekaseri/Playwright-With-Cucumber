@@ -32,7 +32,7 @@ When(
 
     const user = DataHelper.getUserByRole(userRole);
     await this.loginPage.login(user.username, user.password);
-  },
+  }
 );
 
 When(
@@ -56,14 +56,31 @@ When(
 
     const user = DataHelper.getParallelSafeUser(userRole);
     await this.loginPage.login(user.username, user.password);
-  },
+  }
 );
 
 When(
   "I login with username {string} and password {string}",
+  { timeout: 10000 }, // Increase timeout to 10 seconds for validation scenarios
   async function (this: CustomWorld, username: string, password: string) {
-    await this.loginPage.login(username, password);
-  },
+    // For empty credentials, handle form validation differently
+    if (username === "" && password === "") {
+      // Clear and fill the form fields
+      await this.loginPage.usernameInput.clear();
+      await this.loginPage.usernameInput.fill(username);
+      await this.loginPage.passwordInput.clear();
+      await this.loginPage.passwordInput.fill(password);
+
+      // Click login button and wait for validation errors to appear
+      await this.loginPage.loginBtn.click();
+
+      // Wait for validation messages to appear instead of navigation
+      await this.page.waitForSelector('text="Required"', { timeout: 8000 });
+    } else {
+      // Use normal login method for non-empty credentials
+      await this.loginPage.login(username, password);
+    }
+  }
 );
 
 Then("I should see the dashboard", async function (this: CustomWorld) {

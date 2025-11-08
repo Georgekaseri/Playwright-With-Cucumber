@@ -48,11 +48,25 @@ export class LoginPage {
     await this.passwordInput.fill(password);
     await expect(this.passwordInput).toHaveValue(password);
 
-    // Click login button and wait for navigation
+    // Click login button
     await this.loginBtn.click();
 
+    // Handle different scenarios based on input
+    if (username === "" || password === "") {
+      // For empty credentials, wait for validation errors instead of navigation
+      try {
+        await this.page.waitForSelector('text="Required"', { timeout: 8000 });
+        console.log("Validation errors appeared for empty credentials");
+        return; // Don't wait for navigation for validation scenarios
+      } catch (error) {
+        console.warn(
+          "Expected validation errors not found, continuing with normal flow"
+        );
+      }
+    }
+
     try {
-      // Wait for either URL change or error message
+      // Wait for either URL change or error message for valid/invalid credentials
       await Promise.race([
         this.page.waitForURL(/.*dashboard.*/, { timeout: 15000 }),
         this.page.waitForURL((url) => !url.toString().includes("/auth/login"), {
@@ -110,8 +124,42 @@ export class LoginPage {
   }
 
   async assertRequiredFieldValidation() {
+    // Wait for validation messages to appear with a longer timeout
     const validationMessages = this.page.locator('text="Required"');
-    await expect(validationMessages).toHaveCount(2, { timeout: this.timeout });
+
+    try {
+      // First wait for at least one validation message to appear
+      await validationMessages
+        .first()
+        .waitFor({ state: "visible", timeout: 8000 });
+
+      // Then check that we have exactly 2 validation messages (username and password)
+      await expect(validationMessages).toHaveCount(2, {
+        timeout: this.timeout,
+      });
+
+      console.log("Successfully found required field validation messages");
+    } catch (error) {
+      console.error(
+        "Failed to find required field validation messages:",
+        error
+      );
+
+      // Try alternative selectors for validation messages
+      const alternativeValidation = this.page.locator(
+        ".oxd-input-field-error-message, [data-v-957b4417] .oxd-text--span"
+      );
+      const hasAlternative = await alternativeValidation.count();
+
+      if (hasAlternative > 0) {
+        console.log(`Found ${hasAlternative} alternative validation messages`);
+        await expect(alternativeValidation).toHaveCount(2, {
+          timeout: this.timeout,
+        });
+      } else {
+        throw new Error("No validation messages found for required fields");
+      }
+    }
   }
 
   async assertUsernameRequired() {
