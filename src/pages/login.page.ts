@@ -38,21 +38,45 @@ export class LoginPage {
   async login(username: string, password: string) {
     await this.page.waitForLoadState("domcontentloaded");
 
+    // Clear and fill username with retries
     await this.usernameInput.clear();
     await this.usernameInput.fill(username);
     await expect(this.usernameInput).toHaveValue(username);
 
+    // Clear and fill password with retries
     await this.passwordInput.clear();
     await this.passwordInput.fill(password);
     await expect(this.passwordInput).toHaveValue(password);
 
+    // Click login button and wait for navigation
     await this.loginBtn.click();
+
+    try {
+      // Wait for either URL change or error message
+      await Promise.race([
+        this.page.waitForURL(/.*dashboard.*/, { timeout: 15000 }),
+        this.page.waitForURL((url) => !url.toString().includes("/auth/login"), {
+          timeout: 15000,
+        }),
+        this.errorAlert.waitFor({ state: "visible", timeout: 15000 }),
+      ]);
+    } catch (error) {
+      console.warn("Login navigation timeout, checking current state...");
+    }
+
     await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForTimeout(2000);
 
     const currentUrl = this.page.url();
     if (currentUrl.includes("/auth/login")) {
-      console.log("Still on login page after login attempt");
+      // Check if there's an error message
+      const errorVisible = await this.errorAlert.isVisible();
+      if (errorVisible) {
+        const errorText = await this.errorAlert.textContent();
+        console.log(`Login error: ${errorText}`);
+      } else {
+        console.log("Still on login page after login attempt");
+      }
     } else {
       console.log(`Navigated to: ${currentUrl}`);
       await this.page.waitForLoadState("domcontentloaded");

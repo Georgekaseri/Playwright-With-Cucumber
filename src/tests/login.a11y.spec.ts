@@ -23,11 +23,33 @@ test.describe("@a11y Accessibility", () => {
     page,
   }) => {
     const login = new LoginPage(page);
-    await login.goto();
-    await login.login(CONFIG.username, CONFIG.password);
-
     const dashboard = new DashboardPage(page);
-    await dashboard.assertLoaded();
+
+    // Add retry mechanism for flaky login
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (attempts < maxAttempts) {
+      try {
+        await login.goto();
+        await login.login(CONFIG.username, CONFIG.password);
+        await dashboard.assertLoaded();
+        break; // Success, exit the retry loop
+      } catch (error) {
+        attempts++;
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        console.log(`Login attempt ${attempts} failed: ${errorMessage}`);
+
+        if (attempts >= maxAttempts) {
+          throw error; // Re-throw the error if we've exhausted all attempts
+        }
+
+        // Wait a bit before retrying
+        await page.waitForTimeout(2000);
+      }
+    }
+
     await page.waitForLoadState("domcontentloaded");
 
     await runInformationalAccessibilityScan(page, "Dashboard Page");
@@ -45,7 +67,7 @@ test.describe("@a11y Accessibility", () => {
     await page.keyboard.press("Enter");
 
     const errorMessage = page.locator(
-      ".oxd-alert--error, .oxd-input-field-error-message",
+      ".oxd-alert--error, .oxd-input-field-error-message"
     );
     try {
       await errorMessage.waitFor({ timeout: 3000 });

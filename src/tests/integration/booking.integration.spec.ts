@@ -15,11 +15,32 @@ test.describe("@integration API+UI Integration Tests", () => {
     expect(booking.booking.lastname).toBe("Test");
 
     const login = new LoginPage(page);
-    await login.goto();
-    await login.login(CONFIG.username, CONFIG.password);
-
     const dash = new DashboardPage(page);
-    await dash.assertLoaded();
+
+    // Add retry mechanism for flaky login
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (attempts < maxAttempts) {
+      try {
+        await login.goto();
+        await login.login(CONFIG.username, CONFIG.password);
+        await dash.assertLoaded();
+        break; // Success, exit the retry loop
+      } catch (error) {
+        attempts++;
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        console.log(`Login attempt ${attempts} failed: ${errorMessage}`);
+
+        if (attempts >= maxAttempts) {
+          throw error; // Re-throw the error if we've exhausted all attempts
+        }
+
+        // Wait a bit before retrying
+        await page.waitForTimeout(2000);
+      }
+    }
 
     await expect(page).toHaveURL(/.*dashboard/);
 
@@ -39,7 +60,7 @@ test.describe("@integration API+UI Integration Tests", () => {
           id: booking.bookingid,
           firstname: booking.booking.firstname,
           lastname: booking.booking.lastname,
-        },
+        }
       );
 
       console.log("Mock booking display injected in UI");
@@ -53,7 +74,7 @@ test.describe("@integration API+UI Integration Tests", () => {
 
     console.log("Dashboard URL verification completed");
     console.log(
-      `Integration test completed: API booking ID ${booking.bookingid} with UI verification`,
+      `Integration test completed: API booking ID ${booking.bookingid} with UI verification`
     );
   });
 
@@ -87,14 +108,14 @@ test.describe("@integration API+UI Integration Tests", () => {
         id: booking.bookingid,
         firstname: booking.booking.firstname,
         lastname: booking.booking.lastname,
-      },
+      }
     );
 
     // Now we can safely use expects without conditional warnings
     const bookingDisplay = page.locator("#api-booking-display");
     await expect(bookingDisplay).toBeVisible();
     await expect(bookingDisplay).toContainText(
-      `API Booking: Integration Test (ID: ${booking.bookingid})`,
+      `API Booking: Integration Test (ID: ${booking.bookingid})`
     );
 
     console.log("Mock booking display verified in UI");

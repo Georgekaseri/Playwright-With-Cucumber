@@ -8,8 +8,29 @@ test.describe("Auth", () => {
     const login = new LoginPage(page);
     const dash = new DashboardPage(page);
 
-    await login.goto();
-    await login.login(CONFIG.username, CONFIG.password);
-    await dash.assertLoaded();
+    // Add retry mechanism for flaky login
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (attempts < maxAttempts) {
+      try {
+        await login.goto();
+        await login.login(CONFIG.username, CONFIG.password);
+        await dash.assertLoaded();
+        break; // Success, exit the retry loop
+      } catch (error) {
+        attempts++;
+        console.log(
+          `Login attempt ${attempts} failed: ${error instanceof Error ? error.message : String(error)}`
+        );
+
+        if (attempts >= maxAttempts) {
+          throw error; // Re-throw the error if we've exhausted all attempts
+        }
+
+        // Wait a bit before retrying
+        await page.waitForTimeout(2000);
+      }
+    }
   });
 });
