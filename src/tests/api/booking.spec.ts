@@ -132,7 +132,7 @@ test.describe("@api Booking API Tests", () => {
 
     // API should respond within 5 seconds
     expect(duration).toBeLessThan(5000);
-    console.log(`⚡ API response time: ${duration}ms`);
+    console.log(` API response time: ${duration}ms`);
 
     await req.dispose();
   });

@@ -6,13 +6,13 @@ export default defineConfig({
   expect: { timeout: 10_000 }, // Increased for CI
   // 🔁 Retries only in CI
   retries: process.env.CI ? 2 : 0,
-  // 🚀 Workers configuration for better performance
+  //  Workers configuration for better performance
   workers: process.env.CI ? 4 : "50%", // CI: 4 workers, Local: 50% of cores
   fullyParallel: true, // Run tests in parallel across files
   reporter: [
     ["list"],
     ["html", { outputFolder: "playwright-report", open: "never" }],
-    ["allure-playwright", { outputFolder: "allure-results" }], // ✅ Allure integration
+    ["allure-playwright", { outputFolder: "allure-results" }], //  Allure integration
   ],
   use: {
     baseURL:

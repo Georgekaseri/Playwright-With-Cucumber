@@ -66,7 +66,7 @@ export default defineConfig({
         attachmentsBaseURL: process.env.CI ? undefined : "file:///",
       },
     ],
-    ["allure-playwright", { outputFolder: "allure-results" }], // ✅ Allure integration
+    ["allure-playwright", { outputFolder: "allure-results" }], //  Allure integration
     ["json", { outputFile: "test-results/results.json" }],
     ...(process.env.CI ? [["github", {}] as const] : []),
   ],

@@ -272,11 +272,11 @@ npm run bdd:report
 
 This project is licensed under the MIT License.
 
-## 🚀 What We Built
+## What We Built
 
 This repository showcases a production-ready test automation framework with:
 
-### 🎯 **Core Framework**
+### **Core Framework**
 
 - **Playwright** for cross-browser automation (Chromium, Firefox, WebKit)
 - **Cucumber.js** for BDD with Gherkin syntax
@@ -286,13 +286,13 @@ This repository showcases a production-ready test automation framework with:
 ### 🧪 **Testing Types & Patterns**
 
 - **🔍 API Testing** - RESTful API validation with custom booking client
-- **🎨 Visual Regression Testing** - Screenshot comparison for UI consistency
+- ** Visual Regression Testing** - Screenshot comparison for UI consistency
 - **♿ Accessibility Testing** - WCAG compliance with axe-core integration
-- **⚡ Performance Testing** - Page load metrics and optimization validation
+- ** Performance Testing** - Page load metrics and optimization validation
 - **🏥 Health Check Testing** - System monitoring and uptime validation
 - **🔗 Integration Testing** - API + UI workflow validation
 
-### 🏗️ **Advanced Architecture**
+### **Advanced Architecture**
 
 - **Environment-based Configuration** - Flexible test environment management
 - **Custom Utilities** - Reusable API clients and accessibility scanners
@@ -300,7 +300,7 @@ This repository showcases a production-ready test automation framework with:
 - **Mock Integration** - Conditional mocking for flexible testing
 - **Tag-based Execution** - Granular test selection with @smoke, @regression, @api tags
 
-### 🔧 **Developer Experience**
+### **Developer Experience**
 
 - **ESLint** + **Prettier** for code quality and consistency
 - **Cross-platform Support** - Works on macOS, Linux, and Windows
@@ -339,22 +339,22 @@ This repository showcases a production-ready test automation framework with:
 │   │       └── world.ts       # Shared test context
 │   ├── 🌐 api/                # API Clients & Utilities
 │   │   └── bookingClient.ts   # RESTful API client
-│   ├── ⚙️ config/             # Configuration Management
+│   ├── ⚙ config/             # Configuration Management
 │   │   └── test-env.ts        # Environment-specific settings
-│   └── 🛠️ utils/              # Utility Functions
+│   └──  utils/              # Utility Functions
 │       ├── apiUtils.ts        # API helper functions
 │       └── a11yUtils.ts       # Accessibility testing utilities
-├── 📊 reports/                # Test Reports & Artifacts
+├──  reports/                # Test Reports & Artifacts
 ├── 📸 artifacts/              # Screenshots & Videos
-├── 🔧 scripts/               # Build & Utility Scripts
-└── ⚙️ Configuration Files
+├──  scripts/               # Build & Utility Scripts
+└── ⚙ Configuration Files
     ├── playwright.config.ts   # Playwright configuration
     ├── cucumber.config.js     # Cucumber configuration
     ├── .eslintrc.cjs          # ESLint rules
     └── package.json           # Dependencies & scripts
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -395,9 +395,9 @@ TEST_ENV=development
 HEADLESS=true
 ```
 
-## 🎯 Running Tests
+## Running Tests
 
-### 🔥 **Quick Test Commands**
+### **Quick Test Commands**
 
 ```bash
 # Run all tests
@@ -431,7 +431,7 @@ npm run bdd:visual            # Visual tests via BDD
 npm run bdd:visual:update     # Update visual baselines
 ```
 
-### 🏷️ **Tag-based Execution**
+### 🏷 **Tag-based Execution**
 
 ```bash
 # Run tests by tags
@@ -443,7 +443,7 @@ npx playwright test --grep "@visual"       # Visual tests
 npx playwright test --grep "@performance"  # Performance tests
 ```
 
-### 🔧 **Specialized Testing**
+### **Specialized Testing**
 
 ```bash
 # Health checks
@@ -477,7 +477,7 @@ const booking = await createBookingViaAPI();
 expect(booking.bookingid).toBeGreaterThan(0);
 ```
 
-### 🎨 **Visual Regression Testing**
+### **Visual Regression Testing**
 
 - **Cross-browser screenshot comparison**
 - **Responsive design validation**
@@ -501,7 +501,7 @@ await expect(page).toHaveScreenshot("dashboard.png");
 await runAccessibilityScan(page, "Login Page");
 ```
 
-### ⚡ **Performance Testing**
+### **Performance Testing**
 
 - **Page load time monitoring**
 - **Core Web Vitals tracking**
@@ -521,9 +521,9 @@ expect(loadTime).toBeLessThan(5000);
 - **Cross-system validation**
 - **Mock integration support**
 
-## 🛠️ Development & Maintenance
+## Development & Maintenance
 
-### 📝 **Code Quality**
+### **Code Quality**
 
 ```bash
 # Linting
@@ -536,7 +536,7 @@ npm run format                # Format all files
 npm run format:check          # Check formatting
 ```
 
-### 📊 **Reporting**
+### **Reporting**
 
 ```bash
 # Generate reports
@@ -544,7 +544,7 @@ npm run bdd:report            # Cucumber HTML report
 npx playwright show-report    # Playwright HTML report
 ```
 
-### 🔧 **Debugging**
+### **Debugging**
 
 ```bash
 # Debug modes
@@ -555,48 +555,48 @@ npm run bdd:headed            # BDD with browser UI
 
 ## 🏆 Key Features Implemented
 
-### ✨ **Advanced Testing Patterns**
+### **Advanced Testing Patterns**
 
-- **✅ Page Object Model** - Maintainable page abstractions
-- **✅ Custom Utilities** - Reusable API and accessibility helpers
-- **✅ Environment Management** - Flexible configuration system
-- **✅ Mock Integration** - Conditional testing modes
-- **✅ Tag-based Execution** - Granular test selection
+- ** Page Object Model** - Maintainable page abstractions
+- ** Custom Utilities** - Reusable API and accessibility helpers
+- ** Environment Management** - Flexible configuration system
+- ** Mock Integration** - Conditional testing modes
+- ** Tag-based Execution** - Granular test selection
 
-### 🎯 **Comprehensive Test Coverage**
+### **Comprehensive Test Coverage**
 
-- **✅ Functional Testing** - Core application workflows
-- **✅ API Testing** - RESTful service validation
-- **✅ Visual Testing** - UI consistency verification
-- **✅ Accessibility Testing** - WCAG compliance
-- **✅ Performance Testing** - Load time monitoring
-- **✅ Integration Testing** - End-to-end workflows
+- ** Functional Testing** - Core application workflows
+- ** API Testing** - RESTful service validation
+- ** Visual Testing** - UI consistency verification
+- ** Accessibility Testing** - WCAG compliance
+- ** Performance Testing** - Load time monitoring
+- ** Integration Testing** - End-to-end workflows
 
-### 🔧 **Developer Experience**
+### **Developer Experience**
 
-- **✅ TypeScript Support** - Type safety and IntelliSense
-- **✅ Multiple Execution Modes** - Headed, headless, debug, UI
-- **✅ Comprehensive Scripts** - Easy-to-use npm commands
-- **✅ Code Quality Tools** - ESLint + Prettier integration
-- **✅ Rich Reporting** - HTML reports with screenshots/videos
+- ** TypeScript Support** - Type safety and IntelliSense
+- ** Multiple Execution Modes** - Headed, headless, debug, UI
+- ** Comprehensive Scripts** - Easy-to-use npm commands
+- ** Code Quality Tools** - ESLint + Prettier integration
+- ** Rich Reporting** - HTML reports with screenshots/videos
 
 ### 🎭 **BDD Implementation**
 
-- **✅ Gherkin Features** - Business-readable test scenarios
-- **✅ Step Definitions** - Reusable test building blocks
-- **✅ Custom World** - Shared test context and utilities
-- **✅ Lifecycle Hooks** - Setup and teardown automation
+- ** Gherkin Features** - Business-readable test scenarios
+- ** Step Definitions** - Reusable test building blocks
+- ** Custom World** - Shared test context and utilities
+- ** Lifecycle Hooks** - Setup and teardown automation
 
-## 🌟 What Makes This Framework Special
+## What Makes This Framework Special
 
-1. **🎯 Production-Ready** - Enterprise-grade patterns and practices
+1. ** Production-Ready** - Enterprise-grade patterns and practices
 2. **🔄 Flexible Architecture** - Easy to extend and maintain
 3. **🌐 Cross-Platform** - Works across different operating systems
-4. **📊 Rich Reporting** - Comprehensive test results and artifacts
+4. ** Rich Reporting** - Comprehensive test results and artifacts
 5. **♿ Accessibility-First** - Built-in WCAG compliance testing
-6. **⚡ Performance-Aware** - Continuous performance monitoring
+6. ** Performance-Aware** - Continuous performance monitoring
 7. **🤖 CI/CD Ready** - Optimized for continuous integration
-8. **📚 Well-Documented** - Clear examples and comprehensive guides
+8. ** Well-Documented** - Clear examples and comprehensive guides
 
 ## 🤝 Contributing
 
@@ -619,4 +619,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ using Playwright + Cucumber + TypeScript**
+**Built with ❤ using Playwright + Cucumber + TypeScript**
