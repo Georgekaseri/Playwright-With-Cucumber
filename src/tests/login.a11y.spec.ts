@@ -67,7 +67,7 @@ test.describe("@a11y Accessibility", () => {
     await page.keyboard.press("Enter");
 
     const errorMessage = page.locator(
-      ".oxd-alert--error, .oxd-input-field-error-message"
+      ".oxd-alert--error, .oxd-input-field-error-message",
     );
     try {
       await errorMessage.waitFor({ timeout: 3000 });

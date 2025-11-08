@@ -21,7 +21,7 @@ test.describe("Auth", () => {
       } catch (error) {
         attempts++;
         console.log(
-          `Login attempt ${attempts} failed: ${error instanceof Error ? error.message : String(error)}`
+          `Login attempt ${attempts} failed: ${error instanceof Error ? error.message : String(error)}`,
         );
 
         if (attempts >= maxAttempts) {
