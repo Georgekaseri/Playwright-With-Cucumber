@@ -1,0 +1,7 @@
+Performance monitoring initialized
+System Information:
+CPU Cores: 8
+Total Memory: 8GB
+Free Memory: 0GB
+Platform: darwin
+Architecture: arm64

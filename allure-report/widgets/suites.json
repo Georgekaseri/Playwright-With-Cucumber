@@ -1,0 +1,89 @@
+{
+  "total": 7,
+  "items": [
+    {
+      "uid": "36c900977e1d8b81a2c6893cc82bfc01",
+      "name": "chromium",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 3,
+        "passed": 45,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "650ba9f3b63c6252b7f44dbb96cf5a63",
+      "name": "chromium-desktop",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 5,
+        "passed": 43,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "ed39c131db56604842b18253a0c76267",
+      "name": "firefox",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 7,
+        "passed": 41,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "44063b3706d66b0d346705a4a77c6704",
+      "name": "webkit",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 7,
+        "passed": 41,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "f12c3ffec86497cf57de712596a0f0c5",
+      "name": "firefox-desktop",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 7,
+        "passed": 41,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "0abc6eed228f1426d8aa5e6625a44fc9",
+      "name": "webkit-desktop",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 7,
+        "passed": 41,
+        "unknown": 0,
+        "total": 48
+      }
+    },
+    {
+      "uid": "dde38173103bc39d3c1cb4a821d7b246",
+      "name": "api-tests",
+      "statistic": {
+        "failed": 0,
+        "broken": 0,
+        "skipped": 0,
+        "passed": 8,
+        "unknown": 0,
+        "total": 8
+      }
+    }
+  ]
+}

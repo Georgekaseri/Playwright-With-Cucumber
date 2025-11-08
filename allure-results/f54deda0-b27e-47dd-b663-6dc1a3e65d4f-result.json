@@ -1,0 +1,149 @@
+{
+  "uuid": "f54deda0-b27e-47dd-b663-6dc1a3e65d4f",
+  "name": "Login form visual consistency @visual @smoke",
+  "historyId": "4e165de35a410823ad62c54d71c28fb0:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "skipped",
+  "statusDetails": {
+    "message": "Visual regression baseline only available for Chromium"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create context",
+              "start": 1762597328443,
+              "uuid": "6ce101c0-4337-4ad1-93c3-a08298267463",
+              "stop": 1762597328455
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597328443,
+          "uuid": "554a4565-6c22-461b-bcbb-fbbafd665b76",
+          "stop": 1762597328459
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create page",
+              "start": 1762597328460,
+              "uuid": "dc24ccec-d19e-4c2a-b7aa-1af738c75bc2",
+              "stop": 1762597328794
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597328460,
+          "uuid": "d6ffaae7-52da-453e-9e50-caf7f7759ece",
+          "stop": 1762597328794
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597328438,
+      "uuid": "ca2514d4-de3c-4ca7-9e0c-fa0cf0aa5a07",
+      "stop": 1762597328794
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597328795,
+          "uuid": "97f4e336-ffbe-475c-aad8-38afab27b52f",
+          "stop": 1762597328795
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762597328850,
+              "uuid": "e661c4b0-c77f-46a7-9d48-c1b1c8fdc50b",
+              "stop": 1762597328856
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597328795,
+          "uuid": "67a97464-0a96-481a-8355-a7fb1ae5d9af",
+          "stop": 1762597328856
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597328795,
+      "uuid": "1dc0976a-2b53-414a-995e-cc4fd56f3b39",
+      "stop": 1762597328860
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "visual.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > visual.spec.ts > Login Page Visual Tests"
+    },
+    { "name": "tag", "value": "visual" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-2" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "visual.spec.ts" },
+    { "name": "subSuite", "value": "Login Page Visual Tests" }
+  ],
+  "links": [],
+  "start": 1762597328441,
+  "testCaseId": "4e165de35a410823ad62c54d71c28fb0",
+  "fullName": "visual.spec.ts:116:7",
+  "titlePath": ["visual.spec.ts", "Login Page Visual Tests"],
+  "stop": 1762597328854
+}

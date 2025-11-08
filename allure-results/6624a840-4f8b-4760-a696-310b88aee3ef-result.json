@@ -1,0 +1,185 @@
+{
+  "uuid": "6624a840-4f8b-4760-a696-310b88aee3ef",
+  "name": "@api @smoke should retrieve created booking",
+  "historyId": "92f1afc0b6108adc057705453c772f1e:84e28e814b821ed013329cc8dbc467e0",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597014780,
+      "uuid": "e4dbd95f-58b6-4d63-aa09-12039089f2f5",
+      "stop": 1762597014781
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014781,
+      "name": "Create request context",
+      "uuid": "6ea2966b-0346-451b-90ef-e6896452e101",
+      "stop": 1762597014782
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014782,
+      "name": "POST \"/booking\"",
+      "uuid": "d5572087-25f9-48e6-997d-189c67a48dd2",
+      "stop": 1762597014886
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014887,
+      "name": "GET \"/booking/3401\"",
+      "uuid": "58025b83-de5a-4c04-8a97-0afd1fdb0d1f",
+      "stop": 1762597014987
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014988,
+      "name": "Expect \"toBe\"",
+      "uuid": "39bfc8cb-69cc-424f-8c30-b22f77554b0d",
+      "stop": 1762597014988
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014988,
+      "name": "Expect \"toBe\"",
+      "uuid": "944879ee-ec43-4cdd-926e-d72a3dc82572",
+      "stop": 1762597014988
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014988,
+      "name": "Expect \"toBe\"",
+      "uuid": "05e280f4-4a88-44ac-9b73-bc83340ac1e6",
+      "stop": 1762597014988
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014988,
+      "name": "Expect \"toBe\"",
+      "uuid": "a1f4b38a-26e5-4cc8-baf7-f0189b7bab1d",
+      "stop": 1762597014988
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014989,
+      "name": "Expect \"toBe\"",
+      "uuid": "e2bdac68-68bd-4da5-9df5-e87a9e5a33c5",
+      "stop": 1762597014989
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014989,
+      "name": "Expect \"toBe\"",
+      "uuid": "0781605d-0832-4e4a-8f38-85476be23bf4",
+      "stop": 1762597014989
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597014989,
+      "name": "Expect \"toBe\"",
+      "uuid": "dbb91ce7-b447-4f58-bf50-d4e99b840c60",
+      "stop": 1762597014989
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597014990,
+      "uuid": "4c9f61a1-784d-4556-9703-7daa458e1991",
+      "stop": 1762597014991
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "f848b5e2-ba31-4842-8a95-19bb60a621a6-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "webkit" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-2" },
+    { "name": "parentSuite", "value": "webkit" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762597014781,
+  "testCaseId": "92f1afc0b6108adc057705453c772f1e",
+  "fullName": "api/booking.spec.ts:44:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762597014990
+}

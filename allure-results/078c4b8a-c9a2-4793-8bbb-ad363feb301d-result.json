@@ -1,0 +1,101 @@
+{
+  "uuid": "078c4b8a-c9a2-4793-8bbb-ad363feb301d",
+  "name": "@api @performance should create booking within time threshold",
+  "historyId": "8db8e26db8a921c1f82d3d14ba21cc10:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597258587,
+      "uuid": "f09ced34-3a28-49d6-b74d-593244346e7f",
+      "stop": 1762597258589
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258590,
+      "name": "Create request context",
+      "uuid": "5ba552a1-4893-4aec-b468-d7fd04846acc",
+      "stop": 1762597258591
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258596,
+      "name": "POST \"/booking\"",
+      "uuid": "186c5087-6cee-4b47-9ae3-2e7d82c0bc33",
+      "stop": 1762597258692
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258695,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "bd91540e-62f3-4f0b-a64b-38ec6a8eee24",
+      "stop": 1762597258695
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597258702,
+      "uuid": "3f68edcd-10df-4ed3-acae-66ae51cf8a80",
+      "stop": 1762597258704
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "d1b3b365-10a5-4629-8571-8aa6f72de038-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "performance" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762597258588,
+  "testCaseId": "8db8e26db8a921c1f82d3d14ba21cc10",
+  "fullName": "api/booking.spec.ts:125:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762597258700
+}

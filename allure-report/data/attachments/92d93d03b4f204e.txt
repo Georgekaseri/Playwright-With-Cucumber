@@ -1,0 +1,8 @@
+Performance Metrics: {
+  domContentLoaded: 1,
+  loadComplete: 0,
+  firstContentfulPaint: 0,
+  largestContentfulPaint: 0
+}
+DOM Content Loaded: 1ms (threshold 8000ms)
+Load Complete: 0ms (threshold 8000ms)

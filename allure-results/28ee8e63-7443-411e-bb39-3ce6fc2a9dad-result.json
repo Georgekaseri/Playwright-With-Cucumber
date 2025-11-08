@@ -1,0 +1,36 @@
+{
+  "uuid": "28ee8e63-7443-411e-bb39-3ce6fc2a9dad",
+  "name": "Production health check @health @production",
+  "historyId": "9d1f262b962040078d8cd5d424a7aa60:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "skipped",
+  "statusDetails": {
+    "message": "Production tests only run in production environment"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "health.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > health.spec.ts > Production Environment Health @production"
+    },
+    { "name": "tag", "value": "production" },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "production" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker--1" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "health.spec.ts" },
+    { "name": "subSuite", "value": "Production Environment Health @production" }
+  ],
+  "links": [],
+  "start": 1762597260843,
+  "testCaseId": "9d1f262b962040078d8cd5d424a7aa60",
+  "fullName": "health.spec.ts:95:7",
+  "titlePath": ["health.spec.ts", "Production Environment Health @production"],
+  "stop": 1762597260847
+}

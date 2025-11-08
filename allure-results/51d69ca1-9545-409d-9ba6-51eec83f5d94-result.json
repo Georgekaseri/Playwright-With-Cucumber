@@ -1,0 +1,102 @@
+{
+  "uuid": "51d69ca1-9545-409d-9ba6-51eec83f5d94",
+  "name": "Should calculate optimal worker count based on system resources",
+  "historyId": "b1952bc1f7d339bc59d16cbb9b5c73dc:85ce55e83be83c0add58c088dc5e1817",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "beforeAll hook",
+          "start": 1762597329581,
+          "uuid": "c3aec9df-9a57-4afe-b63d-6ba74eaab90e",
+          "stop": 1762597329591
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597329580,
+      "uuid": "cd12132c-e500-47bf-98a3-065237a22037",
+      "stop": 1762597329595
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597329597,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "d9506bd5-5d5f-4bf1-a5af-283348f98ea9",
+      "stop": 1762597329597
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597329597,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "cf73cd70-d510-43a7-8bba-3340ad1ee8a3",
+      "stop": 1762597329597
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597329598,
+      "uuid": "9d3983d1-b6e1-4fb8-8077-12c7ebadb642",
+      "stop": 1762597329601
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "8e529c6c-0b25-4cd3-a696-d41b77414b79-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762597329580,
+  "testCaseId": "b1952bc1f7d339bc59d16cbb9b5c73dc",
+  "fullName": "advancedParallelization.spec.ts:11:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762597329583
+}

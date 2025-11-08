@@ -1,0 +1,151 @@
+{
+  "uuid": "04fea740-c347-450d-9286-e91c9fb66c2c",
+  "name": "@smoke should verify mock booking display (mock mode only)",
+  "historyId": "f4b36c99ece4e5814494d730dce18c0b:85ce55e83be83c0add58c088dc5e1817",
+  "status": "skipped",
+  "statusDetails": { "message": "Mock mode only test" },
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create context",
+              "start": 1762597343009,
+              "uuid": "6ca2fe8c-9d35-4c66-ad8d-5f6b98e10811",
+              "stop": 1762597343011
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597343009,
+          "uuid": "fa75fce8-c295-43e8-bbc0-118c5698fcd1",
+          "stop": 1762597343011
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create page",
+              "start": 1762597343012,
+              "uuid": "3a30f187-74eb-429e-a956-74d9a57c68ef",
+              "stop": 1762597343115
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597343011,
+          "uuid": "a71d4440-465e-466c-8a80-234b880afea1",
+          "stop": 1762597343115
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597343006,
+      "uuid": "c144df08-5e71-4c86-815a-2b502dfa9ca7",
+      "stop": 1762597343115
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597343118,
+          "uuid": "5a8e2229-5be9-4238-9319-346e989acb2b",
+          "stop": 1762597343118
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762597343155,
+              "uuid": "cf2adc82-c2e1-467d-a880-2fd086886a5f",
+              "stop": 1762597343158
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597343118,
+          "uuid": "ee4921f1-7551-4109-b6ba-4808285321b9",
+          "stop": 1762597343158
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597343117,
+      "uuid": "6ca8f2ab-0517-4401-af46-744a09c6de99",
+      "stop": 1762597343164
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "integration.booking.integration.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > integration/booking.integration.spec.ts > @integration API+UI Integration Tests"
+    },
+    { "name": "tag", "value": "integration" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "integration/booking.integration.spec.ts" },
+    { "name": "subSuite", "value": "@integration API+UI Integration Tests" }
+  ],
+  "links": [],
+  "start": 1762597343010,
+  "testCaseId": "f4b36c99ece4e5814494d730dce18c0b",
+  "fullName": "integration/booking.integration.spec.ts:60:7",
+  "titlePath": [
+    "integration",
+    "booking.integration.spec.ts",
+    "@integration API+UI Integration Tests"
+  ],
+  "stop": 1762597343158
+}

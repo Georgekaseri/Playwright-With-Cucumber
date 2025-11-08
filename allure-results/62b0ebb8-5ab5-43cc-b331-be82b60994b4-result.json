@@ -1,0 +1,101 @@
+{
+  "uuid": "62b0ebb8-5ab5-43cc-b331-be82b60994b4",
+  "name": "@api @health should verify API service availability",
+  "historyId": "24399b72e2ba1a691454ee67311caa7e:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290404,
+      "uuid": "c20aa4be-47d6-4382-bad5-128e7317f43d",
+      "stop": 1762597290406
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290406,
+      "name": "Create request context",
+      "uuid": "58724711-68e5-4370-9627-4edae45bbc9a",
+      "stop": 1762597290407
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290407,
+      "name": "GET \"/ping\"",
+      "uuid": "eaa0e2d5-ae97-4852-90ad-67405e77680d",
+      "stop": 1762597290501
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290502,
+      "name": "Expect \"toBe\"",
+      "uuid": "ff921f69-da29-470b-8a8f-f36d873c4fd0",
+      "stop": 1762597290502
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290504,
+      "uuid": "d9adae98-7012-4e1b-9aea-62697782a03e",
+      "stop": 1762597290506
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "4e885caf-1222-4fb5-983e-9d5bb9b07cd1-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "health" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762597290406,
+  "testCaseId": "24399b72e2ba1a691454ee67311caa7e",
+  "fullName": "api/booking.spec.ts:140:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762597290504
+}

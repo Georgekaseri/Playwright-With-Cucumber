@@ -1,0 +1,95 @@
+{
+  "uuid": "87583e47-b39f-4c4c-a643-b33ee7eebdbd",
+  "name": "Should integrate with environment configuration",
+  "historyId": "438f23ecbcfa3b693522e4f876e1aac7:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596980464,
+      "uuid": "4ece18a1-821d-4d2d-99f2-c83c46c4722d",
+      "stop": 1762596980466
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980466,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "1280283d-e862-4d25-b8db-1b1fa0b72917",
+      "stop": 1762596980468
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980466,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "6da4973a-8314-4034-8c36-d9c1e05c1893",
+      "stop": 1762596980468
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980467,
+      "name": "Expect \"toBe\"",
+      "uuid": "c4494d91-e3f9-4587-9d3f-6fca46486fbc",
+      "stop": 1762596980468
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596980467,
+      "uuid": "62abcbe3-e781-40fe-9336-52d7e3858552",
+      "stop": 1762596980468
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596980468,
+  "testCaseId": "438f23ecbcfa3b693522e4f876e1aac7",
+  "fullName": "advancedParallelization.spec.ts:152:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596980469
+}

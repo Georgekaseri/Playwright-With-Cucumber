@@ -1,0 +1,1 @@
+System has 8 CPUs and 8GB RAM

@@ -1,0 +1,149 @@
+{
+  "uuid": "7d669c50-ad3d-40a3-af3b-6d615625d9e4",
+  "name": "Login form visual consistency @visual @smoke",
+  "historyId": "4e165de35a410823ad62c54d71c28fb0:85ce55e83be83c0add58c088dc5e1817",
+  "status": "skipped",
+  "statusDetails": {
+    "message": "Visual regression baseline only available for Chromium"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create context",
+              "start": 1762598936349,
+              "uuid": "3716f5ee-ffa7-4579-a9eb-cfc8e105b5c7",
+              "stop": 1762598936362
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762598936347,
+          "uuid": "724275c0-3412-4481-baac-8ce0cc6b66ed",
+          "stop": 1762598936362
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create page",
+              "start": 1762598936363,
+              "uuid": "5e7860dc-1611-41a3-ba44-fab5f47dac4f",
+              "stop": 1762598936513
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762598936362,
+          "uuid": "94991112-6150-4809-a1b9-dc4cac6b18fb",
+          "stop": 1762598936513
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762598936334,
+      "uuid": "b507cf50-ae25-4dec-8de5-121c75f90b7f",
+      "stop": 1762598936513
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762598936514,
+          "uuid": "b80ed4a5-c01f-470c-b286-2337d8b0156f",
+          "stop": 1762598936514
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762598936552,
+              "uuid": "b50104eb-d17c-4ec4-adeb-9a838a4e3a36",
+              "stop": 1762598936553
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762598936515,
+          "uuid": "c0178218-0d40-4eb1-8f63-cef4613c83ed",
+          "stop": 1762598936553
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762598936514,
+      "uuid": "926b0948-b8eb-4bad-b3c9-bfc5a6cc7a63",
+      "stop": 1762598936556
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "visual.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > visual.spec.ts > Login Page Visual Tests"
+    },
+    { "name": "tag", "value": "visual" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-6731-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "visual.spec.ts" },
+    { "name": "subSuite", "value": "Login Page Visual Tests" }
+  ],
+  "links": [],
+  "start": 1762598936345,
+  "testCaseId": "4e165de35a410823ad62c54d71c28fb0",
+  "fullName": "visual.spec.ts:116:7",
+  "titlePath": ["visual.spec.ts", "Login Page Visual Tests"],
+  "stop": 1762598936551
+}

@@ -1,0 +1,80 @@
+{
+  "uuid": "938e144d-4de2-4551-af62-36ab80041163",
+  "name": "Should filter users by permission",
+  "historyId": "2861a2ea86feecdd7beac0621c47c616:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290630,
+      "uuid": "3fd1b000-630c-464a-a432-facd1ca69e11",
+      "stop": 1762597290631
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290631,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "23b9ad0c-c328-409b-a7fc-1fbccb3f7be6",
+      "stop": 1762597290631
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290631,
+      "name": "Expect \"toContain\"",
+      "uuid": "869ec34e-1ebf-4ab8-8a5d-67b825f547eb",
+      "stop": 1762597290631
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290631,
+      "uuid": "ac6a7279-9e77-4d08-9f09-d830f51ca0d5",
+      "stop": 1762597290633
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597290631,
+  "testCaseId": "2861a2ea86feecdd7beac0621c47c616",
+  "fullName": "dataManagement.spec.ts:32:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597290634
+}

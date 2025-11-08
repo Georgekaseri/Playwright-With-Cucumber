@@ -1,0 +1,120 @@
+{
+  "uuid": "5699f7d1-beef-4f5a-a6cc-3b45c54fb2bf",
+  "name": "Should record performance metrics",
+  "historyId": "bbbb1190394105cd43e9ba87fb8b0736:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "beforeAll hook",
+          "start": 1762596968289,
+          "uuid": "753edbb0-a058-4f21-86cc-7408c7de1526",
+          "stop": 1762596968304
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596968289,
+      "uuid": "e9d6779c-bb45-4434-b531-0a576f676483",
+      "stop": 1762596968310
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968315,
+      "name": "Expect \"not toBeNull\"",
+      "uuid": "244b490c-e947-469f-9f1f-fe31ead2bc09",
+      "stop": 1762596968316
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968316,
+      "name": "Expect \"toBeGreaterThanOrEqual\"",
+      "uuid": "50ff40e3-6d0e-46f6-a6c2-fac109af946f",
+      "stop": 1762596968316
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968317,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "24093126-1880-40ad-9c7b-411dd4ff2c3d",
+      "stop": 1762596968317
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968318,
+      "name": "Expect \"toBeDefined\"",
+      "uuid": "2c24f599-1f56-4b17-9ef1-08b1db419ea1",
+      "stop": 1762596968318
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596968319,
+      "uuid": "90f56f25-948e-41b1-9858-ce7945e22d48",
+      "stop": 1762596968327
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-2" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596968305,
+  "testCaseId": "bbbb1190394105cd43e9ba87fb8b0736",
+  "fullName": "advancedParallelization.spec.ts:124:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596968315
+}

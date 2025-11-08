@@ -1,0 +1,289 @@
+{
+  "uuid": "08c0c77e-74f6-4448-b5d6-8060e4d50caf",
+  "name": "Page load performance @performance @smoke",
+  "historyId": "47296c2ec413f43771433f794651a58f:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [
+                {
+                  "status": "passed",
+                  "statusDetails": {},
+                  "stage": "finished",
+                  "steps": [],
+                  "attachments": [],
+                  "parameters": [],
+                  "name": "Create context",
+                  "start": 1762597275173,
+                  "uuid": "b476690f-b6bc-4fa4-92b8-c76b95d04e09",
+                  "stop": 1762597275175
+                }
+              ],
+              "attachments": [],
+              "parameters": [],
+              "name": "Fixture \"context\"",
+              "start": 1762597275173,
+              "uuid": "8c5efbb8-d277-4970-ad68-a7e313c7fa84",
+              "stop": 1762597275175
+            },
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [
+                {
+                  "status": "passed",
+                  "statusDetails": {},
+                  "stage": "finished",
+                  "steps": [],
+                  "attachments": [],
+                  "parameters": [],
+                  "name": "Create page",
+                  "start": 1762597275176,
+                  "uuid": "b5c3f735-a8e1-4dd5-b1bc-3353306b8515",
+                  "stop": 1762597275215
+                }
+              ],
+              "attachments": [],
+              "parameters": [],
+              "name": "Fixture \"page\"",
+              "start": 1762597275175,
+              "uuid": "7be4f141-65b9-491f-9e46-69cc7a079b79",
+              "stop": 1762597275215
+            },
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Navigate to \"about:blank\"",
+              "start": 1762597275215,
+              "uuid": "c1525fd7-3ee5-41c1-9635-69cd64f4d38a",
+              "stop": 1762597275219
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "beforeEach hook",
+          "start": 1762597275171,
+          "uuid": "c934cce7-a07e-4ab2-9d3f-bcec782c9303",
+          "stop": 1762597275219
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597275171,
+      "uuid": "a9c2f230-1143-4541-9581-25490b0c75a0",
+      "stop": 1762597275219
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597275221,
+          "name": "Navigate to \"/\"",
+          "uuid": "43ab67fb-84e8-480b-ba2a-963a554f154b",
+          "stop": 1762597278375
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597278375,
+          "name": "Wait for load state \"domcontentloaded\"",
+          "uuid": "5e037bf8-bf6b-4bc9-b4cf-e4a075f46e50",
+          "stop": 1762597278376
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597278376,
+          "name": "Evaluate",
+          "uuid": "da2015b1-e6fd-4991-8fdc-f7e042276648",
+          "stop": 1762597278377
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597278378,
+          "name": "Expect \"toBeLessThanOrEqual\"",
+          "uuid": "edbee6a4-4e91-49b8-bec3-c77242d3604e",
+          "stop": 1762597278378
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597275220,
+      "name": "Measure initial page load",
+      "uuid": "3ec41426-ef19-409c-806f-b0aad9e515a6",
+      "stop": 1762597278378
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597278378,
+          "name": "Wait for load state \"load\"",
+          "uuid": "7fd0e3e5-d87b-484d-9ef8-24985636ccc2",
+          "stop": 1762597278382
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597278379,
+          "name": "Wait for load state \"networkidle\"",
+          "uuid": "def63ba0-b6e5-4c55-a52c-98b03ea2cfa3",
+          "stop": 1762597280591
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762597280593,
+          "name": "Expect \"toBeLessThanOrEqual\"",
+          "uuid": "ef31abd0-b2fa-4e64-8494-fc203585036b",
+          "stop": 1762597280594
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597278378,
+      "name": "Measure full page load",
+      "uuid": "dfd5a588-013b-4799-8c46-35d3f90d6bcb",
+      "stop": 1762597280594
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597280595,
+          "uuid": "21385bb2-5c41-4943-b0cc-56d128b317c3",
+          "stop": 1762597280595
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762597280635,
+              "uuid": "ccfdec2b-b69f-4e29-8eec-2e116517377f",
+              "stop": 1762597280638
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597280595,
+          "uuid": "31688ef3-983b-4ae2-bba7-cfd7da3ffa92",
+          "stop": 1762597280638
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597280594,
+      "uuid": "6dbd5ec9-fcfe-4215-8c12-cb5467422510",
+      "stop": 1762597280641
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "ac22286d-61cb-460b-9d33-7dc7c0402282-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "performance.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > performance.spec.ts > Performance Tests @performance"
+    },
+    { "name": "tag", "value": "performance" },
+    { "name": "tag", "value": "performance" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "performance.spec.ts" },
+    { "name": "subSuite", "value": "Performance Tests @performance" }
+  ],
+  "links": [],
+  "start": 1762597275173,
+  "testCaseId": "47296c2ec413f43771433f794651a58f",
+  "fullName": "performance.spec.ts:25:7",
+  "titlePath": ["performance.spec.ts", "Performance Tests @performance"],
+  "stop": 1762597280637
+}

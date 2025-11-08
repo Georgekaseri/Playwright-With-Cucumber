@@ -1,0 +1,92 @@
+{
+  "uuid": "8b6a6c39-7a35-423b-83a2-6ed71bc2f108",
+  "name": "Should generate unique test IDs",
+  "historyId": "bce121cdeec928adb99fcc0d98c0b4c6:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290668,
+      "uuid": "35666356-7639-4ee6-9444-f9757ccff833",
+      "stop": 1762597290669
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290673,
+      "name": "Expect \"toMatch\"",
+      "uuid": "ecbefca0-efe2-4b0a-9235-19f33f3c37ec",
+      "stop": 1762597290674
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290674,
+      "name": "Expect \"toMatch\"",
+      "uuid": "54a336b7-e22d-4f6e-bb3a-299810bce3cc",
+      "stop": 1762597290674
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290674,
+      "name": "Expect \"not toBe\"",
+      "uuid": "c06d4883-5202-4893-bc39-447d133a026e",
+      "stop": 1762597290674
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290674,
+      "uuid": "086e1c1e-7356-407d-acf5-8e5e686ddcfa",
+      "stop": 1762597290676
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597290673,
+  "testCaseId": "bce121cdeec928adb99fcc0d98c0b4c6",
+  "fullName": "dataManagement.spec.ts:93:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597290678
+}

@@ -1,0 +1,231 @@
+{
+  "uuid": "637d72ee-1698-414a-acc2-69c55e7d0c56",
+  "name": "Login form visual consistency @visual @smoke",
+  "historyId": "4e165de35a410823ad62c54d71c28fb0:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create context",
+              "start": 1762598888925,
+              "uuid": "057a14f3-904b-4b7a-a868-ee9936209fda",
+              "stop": 1762598888927
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762598888925,
+          "uuid": "41c9410f-53a3-46b5-81bb-7b2fc33fabd2",
+          "stop": 1762598888927
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create page",
+              "start": 1762598888928,
+              "uuid": "da4d7eeb-8fc2-4eee-90af-903a53e72834",
+              "stop": 1762598888977
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762598888927,
+          "uuid": "3cb9b229-a25e-46ba-8558-9e8185eb72de",
+          "stop": 1762598888977
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762598888922,
+      "uuid": "12092e40-64bb-463b-a606-03583b7603a2",
+      "stop": 1762598888977
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598888978,
+      "name": "Navigate to \"/web/index.php/auth/login\"",
+      "uuid": "96b20ceb-7fc1-41eb-9729-a081cd16acbb",
+      "stop": 1762598890230
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890231,
+      "name": "Wait for load state \"domcontentloaded\"",
+      "uuid": "94dca763-5f03-4ee4-a519-4b7597b335ea",
+      "stop": 1762598890231
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890231,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "c3aeb6d8-df33-478a-9cee-f795e9fe693d",
+      "stop": 1762598890599
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890600,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "d70cee12-65fc-4f7f-8760-20bf9ffdd422",
+      "stop": 1762598890603
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890604,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "6284ec4a-9a4e-4fb7-bf80-cde91c5085b5",
+      "stop": 1762598890609
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890610,
+      "name": "Add style tag",
+      "uuid": "9d2b6e55-a5c5-45d9-b14d-a71d24dcb316",
+      "stop": 1762598890625
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762598890625,
+      "name": "Expect \"toHaveScreenshot(login-form.png)\"",
+      "uuid": "11982acf-8b4b-4966-b6c4-5dc71f9aaef8",
+      "stop": 1762598890824
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762598890825,
+          "uuid": "db9ce042-de6f-4ea8-ba77-712e4f4981e0",
+          "stop": 1762598890825
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762598890843,
+              "uuid": "699d0d1b-20ca-4b15-8a36-37a49e9bca9d",
+              "stop": 1762598890845
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762598890825,
+          "uuid": "016a1f30-d574-4aea-80ba-0aa9aa4f0b8f",
+          "stop": 1762598890845
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762598890824,
+      "uuid": "d1e56771-bdf6-4199-b348-66aefc376464",
+      "stop": 1762598890847
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "visual.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > visual.spec.ts > Login Page Visual Tests"
+    },
+    { "name": "tag", "value": "visual" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-6731-worker-0" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "visual.spec.ts" },
+    { "name": "subSuite", "value": "Login Page Visual Tests" }
+  ],
+  "links": [],
+  "start": 1762598888925,
+  "testCaseId": "4e165de35a410823ad62c54d71c28fb0",
+  "fullName": "visual.spec.ts:116:7",
+  "titlePath": ["visual.spec.ts", "Login Page Visual Tests"],
+  "stop": 1762598890845
+}

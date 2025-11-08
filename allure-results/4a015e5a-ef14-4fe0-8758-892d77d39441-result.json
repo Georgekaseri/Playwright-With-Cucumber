@@ -1,0 +1,128 @@
+{
+  "uuid": "4a015e5a-ef14-4fe0-8758-892d77d39441",
+  "name": "Should access user data by role",
+  "historyId": "0ef99d5021364a134a14b450a5bdab05:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597258709,
+      "uuid": "ac5cb178-82cc-45ce-8937-b63bdd38e06e",
+      "stop": 1762597258713
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258713,
+      "name": "Expect \"toBe\"",
+      "uuid": "74dc21fe-05b7-4459-9356-ef6b937d76f9",
+      "stop": 1762597258714
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258714,
+      "name": "Expect \"toBe\"",
+      "uuid": "a059f24c-021d-48e8-b44f-5b0d48beaef8",
+      "stop": 1762597258716
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258714,
+      "name": "Expect \"toContain\"",
+      "uuid": "9cb400fa-be79-46df-b76b-85d7d8458656",
+      "stop": 1762597258716
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258714,
+      "name": "Expect \"toBe\"",
+      "uuid": "6293d2cc-607b-47ab-9fd9-9b824647ec83",
+      "stop": 1762597258716
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258714,
+      "name": "Expect \"toBe\"",
+      "uuid": "46ebe849-b4b6-425f-a1cc-29441bcd1f06",
+      "stop": 1762597258716
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258715,
+      "name": "Expect \"toContain\"",
+      "uuid": "7fe3547b-3453-4425-91bf-f6f7c94d0a0b",
+      "stop": 1762597258716
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597258715,
+      "uuid": "94de4c7b-a014-4c27-8222-8d5d925962c5",
+      "stop": 1762597258717
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597258713,
+  "testCaseId": "0ef99d5021364a134a14b450a5bdab05",
+  "fullName": "dataManagement.spec.ts:5:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597258715
+}

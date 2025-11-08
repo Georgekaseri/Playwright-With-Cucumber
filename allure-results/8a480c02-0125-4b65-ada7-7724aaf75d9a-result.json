@@ -1,0 +1,116 @@
+{
+  "uuid": "8a480c02-0125-4b65-ada7-7724aaf75d9a",
+  "name": "Should generate booking data from templates",
+  "historyId": "4e5526b9114687fbbd05ab3e3d8416c8:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290634,
+      "uuid": "b7cad885-6136-4b13-bf84-82cccf466bc9",
+      "stop": 1762597290635
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290636,
+      "name": "Expect \"toBe\"",
+      "uuid": "afa68fc5-0045-4e0c-8450-009c7f1b0629",
+      "stop": 1762597290638
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290636,
+      "name": "Expect \"toBe\"",
+      "uuid": "972436ed-d294-4576-89da-3efb12100cfb",
+      "stop": 1762597290638
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290636,
+      "name": "Expect \"toBe\"",
+      "uuid": "006fa5f4-81c9-41d6-bfb8-94d98d0a6498",
+      "stop": 1762597290638
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290636,
+      "name": "Expect \"toBe\"",
+      "uuid": "3fa92c26-1f1e-48bf-9105-805c1045b6e9",
+      "stop": 1762597290638
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290636,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "55ac3ce9-d466-4406-b2d9-5a976c1ddb77",
+      "stop": 1762597290638
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290636,
+      "uuid": "61b9d372-ee64-43cd-87d2-755c3afbaacf",
+      "stop": 1762597290638
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597290636,
+  "testCaseId": "4e5526b9114687fbbd05ab3e3d8416c8",
+  "fullName": "dataManagement.spec.ts:42:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597290637
+}

@@ -1,0 +1,113 @@
+{
+  "uuid": "57d8e42e-56c1-4a6c-92cf-389a9aabec9f",
+  "name": "@api @regression should test utility method",
+  "historyId": "b0b505c0ab30ad647eccf4390605577d:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290508,
+      "uuid": "6871b87a-c929-4b56-afcf-1be6e74085d7",
+      "stop": 1762597290509
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290510,
+      "name": "Create request context",
+      "uuid": "adf58bf9-7aab-4f44-bba4-3b14bbb7180e",
+      "stop": 1762597290512
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290511,
+      "name": "POST \"/booking\"",
+      "uuid": "be52c189-ae02-437f-85f7-5d4a176482c6",
+      "stop": 1762597290606
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290606,
+      "name": "Expect \"toBe\"",
+      "uuid": "94e076a6-6137-44e3-9e06-4cebd201c7fd",
+      "stop": 1762597290606
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290607,
+      "name": "Expect \"toBe\"",
+      "uuid": "6745aac9-b288-4d92-a0ef-33bc8ccc5377",
+      "stop": 1762597290607
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290611,
+      "uuid": "80ee3829-8fe6-4819-9199-e3ded71a868a",
+      "stop": 1762597290614
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "1ed764b3-eb7b-42ae-abd6-59feaa285a21-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "regression" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762597290510,
+  "testCaseId": "b0b505c0ab30ad647eccf4390605577d",
+  "fullName": "api/booking.spec.ts:152:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762597290612
+}

@@ -1,0 +1,47 @@
+{
+  "uid": "eee36827698e7253",
+  "name": "Staging specific health check @health @staging",
+  "fullName": "health.spec.ts:79:7",
+  "historyId": "901398314bb717bc60d57a6efd50c871:85ce55e83be83c0add58c088dc5e1817",
+  "time": { "start": 1762597339843, "stop": 1762597339845, "duration": 2 },
+  "status": "skipped",
+  "statusMessage": "Staging tests only run in QA environment",
+  "flaky": false,
+  "newFailed": false,
+  "newBroken": false,
+  "newPassed": false,
+  "retriesCount": 0,
+  "retriesStatusChange": false,
+  "beforeStages": [],
+  "afterStages": [],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "health.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > health.spec.ts > Staging Environment Health @staging"
+    },
+    { "name": "tag", "value": "staging" },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "staging" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker--1" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "health.spec.ts" },
+    { "name": "subSuite", "value": "Staging Environment Health @staging" },
+    { "name": "resultFormat", "value": "allure2" }
+  ],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "links": [],
+  "hidden": false,
+  "retry": false,
+  "extra": {
+    "severity": "normal",
+    "retries": [],
+    "categories": [],
+    "tags": ["health", "staging"]
+  },
+  "source": "eee36827698e7253.json",
+  "parameterValues": ["webkit-desktop"]
+}

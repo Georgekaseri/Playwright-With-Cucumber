@@ -1,0 +1,149 @@
+{
+  "uuid": "f5d2c41b-9b06-4f95-963b-8a856c0e2c6a",
+  "name": "@api @regression should retrieve all bookings",
+  "historyId": "ee3872e8990138187b4db81a7f604f30:85ce55e83be83c0add58c088dc5e1817",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597330196,
+      "uuid": "7b53554c-9706-4925-a4c7-6610b8252a8a",
+      "stop": 1762597330198
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330198,
+      "name": "Create request context",
+      "uuid": "15ae767b-56b8-4852-9822-630ab221a158",
+      "stop": 1762597330199
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330199,
+      "name": "GET \"/booking\"",
+      "uuid": "2b4a6b8a-f6b4-468e-b2f7-629209cb67b8",
+      "stop": 1762597330339
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330339,
+      "name": "Expect \"toBe\"",
+      "uuid": "f6d115d6-87a6-4bc9-bbed-14c54b0d2040",
+      "stop": 1762597330340
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330340,
+      "name": "Expect \"toBe\"",
+      "uuid": "614f9a96-c506-4137-8e12-0233d3e61aef",
+      "stop": 1762597330340
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330341,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "744b7494-0ecb-4506-89c0-fcee2533b386",
+      "stop": 1762597330341
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330341,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "fc325f50-7149-4e44-8b25-bdeca67a4013",
+      "stop": 1762597330341
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330341,
+      "name": "Expect \"toBe\"",
+      "uuid": "9755cfe3-2f43-4ae1-a4c9-1911eb851978",
+      "stop": 1762597330341
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597330349,
+      "uuid": "13d56f1d-40aa-45c7-bbb6-61f7841a30c0",
+      "stop": 1762597330351
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "393b69ae-dfcd-40b8-82bb-e4d397d073d5-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "regression" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762597330198,
+  "testCaseId": "ee3872e8990138187b4db81a7f604f30",
+  "fullName": "api/booking.spec.ts:93:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762597330349
+}

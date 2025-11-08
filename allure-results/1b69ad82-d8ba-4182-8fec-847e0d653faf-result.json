@@ -1,0 +1,95 @@
+{
+  "uuid": "1b69ad82-d8ba-4182-8fec-847e0d653faf",
+  "name": "Should integrate with environment configuration",
+  "historyId": "438f23ecbcfa3b693522e4f876e1aac7:85ce55e83be83c0add58c088dc5e1817",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597329660,
+      "uuid": "2e7afe1a-19ba-44ab-97aa-31823593b840",
+      "stop": 1762597329663
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597329663,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "d5e59fd4-14bd-46b4-ab78-83479973441c",
+      "stop": 1762597329664
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597329664,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "5cf4b535-8aa9-4a19-8444-2647bc4e680c",
+      "stop": 1762597329668
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597329664,
+      "name": "Expect \"toBe\"",
+      "uuid": "1f85e5b8-7e3a-41dc-8604-16960f6e00da",
+      "stop": 1762597329668
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597329664,
+      "uuid": "c3879574-f8df-41f9-9d8a-703409080532",
+      "stop": 1762597329667
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762597329665,
+  "testCaseId": "438f23ecbcfa3b693522e4f876e1aac7",
+  "fullName": "advancedParallelization.spec.ts:152:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762597329667
+}

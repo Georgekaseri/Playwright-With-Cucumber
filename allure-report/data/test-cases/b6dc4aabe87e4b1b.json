@@ -1,0 +1,149 @@
+{
+  "uid": "b6dc4aabe87e4b1b",
+  "name": "Should calculate optimal worker count based on system resources",
+  "fullName": "advancedParallelization.spec.ts:11:7",
+  "historyId": "b1952bc1f7d339bc59d16cbb9b5c73dc:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "time": { "start": 1762596968301, "stop": 1762596968309, "duration": 8 },
+  "status": "passed",
+  "flaky": false,
+  "newFailed": false,
+  "newBroken": false,
+  "newPassed": false,
+  "retriesCount": 0,
+  "retriesStatusChange": false,
+  "beforeStages": [],
+  "testStage": {
+    "status": "passed",
+    "steps": [
+      {
+        "name": "Before Hooks",
+        "time": {
+          "start": 1762596968290,
+          "stop": 1762596968301,
+          "duration": 11
+        },
+        "status": "passed",
+        "steps": [
+          {
+            "name": "beforeAll hook",
+            "time": {
+              "start": 1762596968291,
+              "stop": 1762596968299,
+              "duration": 8
+            },
+            "status": "passed",
+            "steps": [],
+            "attachments": [],
+            "parameters": [],
+            "shouldDisplayMessage": false,
+            "stepsCount": 0,
+            "attachmentsCount": 0,
+            "hasContent": false,
+            "attachmentStep": false
+          }
+        ],
+        "attachments": [],
+        "parameters": [],
+        "shouldDisplayMessage": false,
+        "stepsCount": 1,
+        "attachmentsCount": 0,
+        "hasContent": true,
+        "attachmentStep": false
+      },
+      {
+        "name": "Expect \"toBeGreaterThan\"",
+        "time": {
+          "start": 1762596968302,
+          "stop": 1762596968306,
+          "duration": 4
+        },
+        "status": "passed",
+        "steps": [],
+        "attachments": [],
+        "parameters": [],
+        "shouldDisplayMessage": false,
+        "stepsCount": 0,
+        "attachmentsCount": 0,
+        "hasContent": false,
+        "attachmentStep": false
+      },
+      {
+        "name": "Expect \"toBeGreaterThan\"",
+        "time": {
+          "start": 1762596968308,
+          "stop": 1762596968309,
+          "duration": 1
+        },
+        "status": "passed",
+        "steps": [],
+        "attachments": [],
+        "parameters": [],
+        "shouldDisplayMessage": false,
+        "stepsCount": 0,
+        "attachmentsCount": 0,
+        "hasContent": false,
+        "attachmentStep": false
+      },
+      {
+        "name": "After Hooks",
+        "time": {
+          "start": 1762596968308,
+          "stop": 1762596968320,
+          "duration": 12
+        },
+        "status": "passed",
+        "steps": [],
+        "attachments": [],
+        "parameters": [],
+        "shouldDisplayMessage": false,
+        "stepsCount": 0,
+        "attachmentsCount": 0,
+        "hasContent": false,
+        "attachmentStep": false
+      }
+    ],
+    "attachments": [
+      {
+        "uid": "cbc94bbe5344aa55",
+        "name": "stdout",
+        "source": "cbc94bbe5344aa55.txt",
+        "type": "text/plain",
+        "size": 30
+      }
+    ],
+    "parameters": [],
+    "shouldDisplayMessage": false,
+    "stepsCount": 5,
+    "attachmentsCount": 1,
+    "hasContent": true,
+    "attachmentStep": false
+  },
+  "afterStages": [],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-0" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" },
+    { "name": "resultFormat", "value": "allure2" }
+  ],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "links": [],
+  "hidden": false,
+  "retry": false,
+  "extra": {
+    "severity": "normal",
+    "retries": [],
+    "categories": [],
+    "tags": []
+  },
+  "source": "b6dc4aabe87e4b1b.json",
+  "parameterValues": ["chromium"]
+}

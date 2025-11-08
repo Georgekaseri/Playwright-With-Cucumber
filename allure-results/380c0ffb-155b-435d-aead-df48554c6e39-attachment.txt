@@ -1,0 +1,5 @@
+Navigated to: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+REAL mode — API+UI integration without mocking
+UI remains functional after API operations
+Dashboard URL verification completed
+Integration test completed: API booking ID 3050 with UI verification

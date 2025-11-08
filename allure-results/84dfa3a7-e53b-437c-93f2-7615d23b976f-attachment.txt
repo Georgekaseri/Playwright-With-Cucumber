@@ -1,0 +1,7 @@
+Heap usage: {
+  "usedSize": 6864024,
+  "totalSize": 9863168,
+  "embedderHeapUsedSize": 2144128,
+  "backingStorageSize": 6434351
+}
+Heap usage: 6.55MB (threshold 100.00MB)

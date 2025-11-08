@@ -1,0 +1,152 @@
+{
+  "uuid": "fc5e142c-81e8-4a25-b74a-d8d2604c9f44",
+  "name": "Should handle environment configuration",
+  "historyId": "c82f520d898c101250b516f299e07906:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597258743,
+      "uuid": "4fe96bd4-e4b1-4450-a020-b481e3a7a6a2",
+      "stop": 1762597258745
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258745,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "1dd2183f-d857-4ebd-b984-1ee7c5c136e7",
+      "stop": 1762597258746
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258746,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "1e876f3f-2fc6-47b8-8818-5fef5f9d3532",
+      "stop": 1762597258757
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258746,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "e1226d30-9dca-4bbb-b99a-3a9a4c60999f",
+      "stop": 1762597258757
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258747,
+      "name": "Expect \"toBe\"",
+      "uuid": "ad92eed4-87d8-4c2f-986f-cda3450cef34",
+      "stop": 1762597258757
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258747,
+      "name": "Expect \"toBe\"",
+      "uuid": "f06bac41-37b0-4cde-881a-636d9ad2ef5a",
+      "stop": 1762597258748
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258749,
+      "name": "Expect \"toBe\"",
+      "uuid": "d7234636-1fde-42be-ae3b-7c5b25c94d48",
+      "stop": 1762597258757
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258751,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "9d5bbc45-9da5-42cf-a94e-90f762d52317",
+      "stop": 1762597258757
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258753,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "649dbb13-c2fb-42da-9edb-49a83819924a",
+      "stop": 1762597258761
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597258754,
+      "uuid": "64a9d96d-c0a7-42ec-b479-b93b0856a2a5",
+      "stop": 1762597258765
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-2" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597258757,
+  "testCaseId": "c82f520d898c101250b516f299e07906",
+  "fullName": "dataManagement.spec.ts:67:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597258772
+}

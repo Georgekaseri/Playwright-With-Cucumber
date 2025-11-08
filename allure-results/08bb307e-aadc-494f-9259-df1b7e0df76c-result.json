@@ -1,0 +1,95 @@
+{
+  "uuid": "08bb307e-aadc-494f-9259-df1b7e0df76c",
+  "name": "Should generate performance report",
+  "historyId": "0ac5d8581aa76ef599b07de28457c939:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597258004,
+      "uuid": "00c7e5d8-b1dc-4abf-9b1a-574be944b734",
+      "stop": 1762597258008
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258008,
+      "name": "Expect \"toContain\"",
+      "uuid": "9baa6712-6ccc-4943-82c6-48343b6ca114",
+      "stop": 1762597258009
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258011,
+      "name": "Expect \"toContain\"",
+      "uuid": "0e5828f5-2a2b-4291-9fbe-5084def1c73a",
+      "stop": 1762597258037
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258011,
+      "name": "Expect \"toContain\"",
+      "uuid": "f39d6ac5-08c4-4929-8252-61da74a718ea",
+      "stop": 1762597258012
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597258012,
+      "uuid": "d53c316d-7d46-49b3-9888-3455f517a8e1",
+      "stop": 1762597258018
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-2" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762597258036,
+  "testCaseId": "0ac5d8581aa76ef599b07de28457c939",
+  "fullName": "advancedParallelization.spec.ts:142:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762597258041
+}

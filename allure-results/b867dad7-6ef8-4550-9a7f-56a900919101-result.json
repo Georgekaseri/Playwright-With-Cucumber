@@ -1,0 +1,215 @@
+{
+  "uuid": "b867dad7-6ef8-4550-9a7f-56a900919101",
+  "name": "Memory usage monitoring @performance",
+  "historyId": "0ff11b3a4dcf57f6577a6b7496f56d17:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [
+                {
+                  "status": "passed",
+                  "statusDetails": {},
+                  "stage": "finished",
+                  "steps": [],
+                  "attachments": [],
+                  "parameters": [],
+                  "name": "Create context",
+                  "start": 1762596978035,
+                  "uuid": "1873f8ba-3daf-442d-94d1-9da3d8eb0e24",
+                  "stop": 1762596978037
+                }
+              ],
+              "attachments": [],
+              "parameters": [],
+              "name": "Fixture \"context\"",
+              "start": 1762596978035,
+              "uuid": "85d32c8e-82ea-4cb9-b183-0d8ee9892ac9",
+              "stop": 1762596978037
+            },
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [
+                {
+                  "status": "passed",
+                  "statusDetails": {},
+                  "stage": "finished",
+                  "steps": [],
+                  "attachments": [],
+                  "parameters": [],
+                  "name": "Create page",
+                  "start": 1762596978037,
+                  "uuid": "cbc3c0e8-9da2-4fbe-862c-44cc972705b5",
+                  "stop": 1762596978089
+                }
+              ],
+              "attachments": [],
+              "parameters": [],
+              "name": "Fixture \"page\"",
+              "start": 1762596978037,
+              "uuid": "c3efe5b0-ec6f-46af-b541-ec5472a2dfdd",
+              "stop": 1762596978089
+            },
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Navigate to \"about:blank\"",
+              "start": 1762596978089,
+              "uuid": "1f5a6270-ebdd-40fd-a3e8-8568fcdb055e",
+              "stop": 1762596978092
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "beforeEach hook",
+          "start": 1762596978033,
+          "uuid": "4b58425d-29be-450d-b793-1e0b822eec45",
+          "stop": 1762596978092
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596978032,
+      "uuid": "4cb5dcd3-3a5e-4737-8b68-5fd1b9f99eb4",
+      "stop": 1762596978092
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762596978093,
+          "name": "Navigate to \"/\"",
+          "uuid": "530f0035-de36-4b80-8415-2eeaa8a210f5",
+          "stop": 1762596979346
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "start": 1762596979349,
+          "name": "Expect \"toBeLessThanOrEqual\"",
+          "uuid": "6a18df7a-253e-4c31-8f12-3cafbf546ef8",
+          "stop": 1762596979349
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596978093,
+      "name": "Monitor memory consumption",
+      "uuid": "5abd02d7-5510-4050-86c0-15d945c7b47d",
+      "stop": 1762596979349
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762596979349,
+          "uuid": "5d187254-405e-4e07-bf9f-8ec457ca7acd",
+          "stop": 1762596979349
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762596979365,
+              "uuid": "ccc30c8b-80c2-4420-8a10-58188e6108f8",
+              "stop": 1762596979379
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762596979349,
+          "uuid": "23a6b5bb-3fba-482f-a83c-e8f5000f71d9",
+          "stop": 1762596979379
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596979349,
+      "uuid": "2d6fac15-9f66-4f85-8680-0954b3fb4ec2",
+      "stop": 1762596979381
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "84dfa3a7-e53b-437c-93f2-7615d23b976f-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "performance.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > performance.spec.ts > Performance Tests @performance"
+    },
+    { "name": "tag", "value": "performance" },
+    { "name": "tag", "value": "performance" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-0" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "performance.spec.ts" },
+    { "name": "subSuite", "value": "Performance Tests @performance" }
+  ],
+  "links": [],
+  "start": 1762596978035,
+  "testCaseId": "0ff11b3a4dcf57f6577a6b7496f56d17",
+  "fullName": "performance.spec.ts:146:7",
+  "titlePath": ["performance.spec.ts", "Performance Tests @performance"],
+  "stop": 1762596979379
+}

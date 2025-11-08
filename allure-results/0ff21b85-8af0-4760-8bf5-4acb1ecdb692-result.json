@@ -1,0 +1,420 @@
+{
+  "uuid": "0ff21b85-8af0-4760-8bf5-4acb1ecdb692",
+  "name": "@smoke should validate keyboard navigation on Login page",
+  "historyId": "5d5611b380aa6762300921827b1374f6:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create context",
+              "start": 1762597559545,
+              "uuid": "7ef6fbda-a1f7-498a-9b46-2d9e716b723e",
+              "stop": 1762597559809
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597559544,
+          "uuid": "e70b3496-1f8f-49e0-b5f9-b0e5539175da",
+          "stop": 1762597559835
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create page",
+              "start": 1762597559837,
+              "uuid": "6e5b62ab-f601-48b7-bf7a-969f0002d7a9",
+              "stop": 1762597560343
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597559836,
+          "uuid": "b2e3856d-e8f3-4873-bc50-1822adeef93b",
+          "stop": 1762597560343
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597559534,
+      "uuid": "7c544cce-95e0-495e-8c6b-d89c094149ea",
+      "stop": 1762597560343
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597560348,
+      "name": "Navigate to \"/web/index.php/auth/login\"",
+      "uuid": "950b78dc-4aa2-48df-a16f-d5bb700a7e2c",
+      "stop": 1762597562177
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562184,
+      "name": "Wait for load state \"domcontentloaded\"",
+      "uuid": "77d1d9cf-9cd6-4f01-9866-8e0f57479d2a",
+      "stop": 1762597562185
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562188,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "64c7542b-7d7d-495a-b6c6-31b40eab1272",
+      "stop": 1762597562724
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562732,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "402c75fa-6516-4c05-9956-84e993754b49",
+      "stop": 1762597562786
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562788,
+      "name": "Expect \"toBeVisible\"",
+      "uuid": "1246bcca-149d-4ec0-b071-d712052346bc",
+      "stop": 1762597562806
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562812,
+      "name": "Press \"Tab\"",
+      "uuid": "0846e9be-d8f7-47d3-9f93-799a98b3b36b",
+      "stop": 1762597562934
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597562936,
+      "name": "Press \"Tab\"",
+      "uuid": "b9b65eaf-8db9-4d2d-97f9-20d3bfce4d17",
+      "stop": 1762597563020
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597563023,
+      "name": "Press \"Tab\"",
+      "uuid": "fba85bdf-a4cb-4483-b53d-aafb548d410e",
+      "stop": 1762597563059
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597563059,
+      "name": "Press \"Enter\"",
+      "uuid": "934d097b-585b-4f69-91e4-baaec06c0953",
+      "stop": 1762597563167
+    },
+    {
+      "status": "failed",
+      "statusDetails": {
+        "message": "TimeoutError: locator.waitFor: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('.oxd-alert--error, .oxd-input-field-error-message') to be visible\n",
+        "trace": "TimeoutError: locator.waitFor: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator('.oxd-alert--error, .oxd-input-field-error-message') to be visible\n\n    at /Users/george/Documents/Playwright-Cucumber/src/tests/login.a11y.spec.ts:73:26"
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597563172,
+      "name": "Wait for selector locator('.oxd-alert--error, .oxd-input-field-error-message')",
+      "uuid": "bfa5564e-e36a-49f8-8e55-931fbc88e5f9",
+      "stop": 1762597567728
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597567742,
+      "name": "Evaluate",
+      "uuid": "41250ad9-41b9-4034-8863-6d527fbb69ea",
+      "stop": 1762597568692
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597568695,
+      "name": "Evaluate",
+      "uuid": "a88dcd77-4a60-4f51-88cd-9b2c0e0434d2",
+      "stop": 1762597569344
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597569351,
+      "name": "Evaluate",
+      "uuid": "4ac01691-5f68-42d0-966d-93d79f3c4ffa",
+      "stop": 1762597569565
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597569566,
+      "name": "Evaluate",
+      "uuid": "c5d796e6-36c2-4fa9-8d9a-422990cd6e91",
+      "stop": 1762597569931
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597569933,
+      "name": "Create page",
+      "uuid": "89439e54-5a62-4a97-b0aa-19378039acbc",
+      "stop": 1762597570401
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570403,
+      "name": "Evaluate",
+      "uuid": "1bd53e31-eaaa-40e0-bb2f-5c061f1aa4ac",
+      "stop": 1762597570585
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570586,
+      "name": "Evaluate",
+      "uuid": "5873dc7e-edb0-4ed8-b5cf-9e6b272a8460",
+      "stop": 1762597570637
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570639,
+      "name": "Evaluate",
+      "uuid": "7c233d4c-dedb-459a-9f1f-d766199a8ec6",
+      "stop": 1762597570664
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570667,
+      "name": "Evaluate",
+      "uuid": "13f42af7-aafc-48e9-bfae-e8ce6e7de201",
+      "stop": 1762597570760
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570760,
+      "name": "Evaluate",
+      "uuid": "8dd4a4ba-7dcf-453e-bf97-227f66b0017a",
+      "stop": 1762597570842
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570845,
+      "name": "Close page",
+      "uuid": "1587b407-41c1-43bf-873d-16ce1e02463c",
+      "stop": 1762597570850
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597570860,
+      "name": "0 critical a11y issues detected in Login Page with Validation",
+      "uuid": "9ff87647-1875-4665-be76-f7fca0443590",
+      "stop": 1762597570861
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"page\"",
+          "start": 1762597570866,
+          "uuid": "9f3af794-8d01-4064-88e7-5a8cfa77ffc3",
+          "stop": 1762597570867
+        },
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Close context",
+              "start": 1762597571168,
+              "uuid": "5068f302-6e15-4e0a-b3ca-6520be1629d3",
+              "stop": 1762597571213
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"context\"",
+          "start": 1762597570867,
+          "uuid": "bee18352-3321-41c5-86ca-e288d3da1b0d",
+          "stop": 1762597571213
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597570861,
+      "uuid": "b98cd34b-a81b-4a55-bec9-6e6aa0be6b05",
+      "stop": 1762597571219
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "7ccc8473-b805-4cd4-81a2-e9c40437d3e4-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "login.a11y.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > login.a11y.spec.ts > @a11y Accessibility"
+    },
+    { "name": "tag", "value": "a11y" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-89251-worker-3" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "login.a11y.spec.ts" },
+    { "name": "subSuite", "value": "@a11y Accessibility" }
+  ],
+  "links": [],
+  "start": 1762597559545,
+  "testCaseId": "5d5611b380aa6762300921827b1374f6",
+  "fullName": "login.a11y.spec.ts:58:7",
+  "titlePath": ["login.a11y.spec.ts", "@a11y Accessibility"],
+  "stop": 1762597571209
+}

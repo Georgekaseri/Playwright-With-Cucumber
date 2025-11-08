@@ -1,0 +1,122 @@
+{
+  "uuid": "cb5c285e-3246-46a4-9981-3ce825238ec8",
+  "name": "API endpoints are responsive @health @api",
+  "historyId": "c007ce1cdbfb133eead8affda356ea37:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [
+            {
+              "status": "passed",
+              "statusDetails": {},
+              "stage": "finished",
+              "steps": [],
+              "attachments": [],
+              "parameters": [],
+              "name": "Create request context",
+              "start": 1762596986198,
+              "uuid": "77c10358-7e9b-4bcc-9e48-f412708c232f",
+              "stop": 1762596986200
+            }
+          ],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"request\"",
+          "start": 1762596986197,
+          "uuid": "295f3439-4b0b-4901-a41b-437953d9c7c8",
+          "stop": 1762596986200
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596986193,
+      "uuid": "a72a1ac1-5987-4b58-98d3-53401954de92",
+      "stop": 1762596986200
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596986201,
+      "name": "GET \"/\"",
+      "uuid": "86e8077a-f4f5-4ab0-a4e5-564310080446",
+      "stop": 1762596986938
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596986939,
+      "name": "Expect \"toBe\"",
+      "uuid": "754309a0-e7f9-49b0-b7eb-bdd25ed6f6a5",
+      "stop": 1762596986940
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "Fixture \"request\"",
+          "start": 1762596986941,
+          "uuid": "1ee5d87a-a354-4989-8e93-9bf507a9f132",
+          "stop": 1762596986942
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596986940,
+      "uuid": "0523aa8e-4f45-43b0-a03b-4d40c8719ab4",
+      "stop": 1762596986946
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "health.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > health.spec.ts > System Health Checks @health"
+    },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "api" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-3" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "health.spec.ts" },
+    { "name": "subSuite", "value": "System Health Checks @health" }
+  ],
+  "links": [],
+  "start": 1762596986194,
+  "testCaseId": "c007ce1cdbfb133eead8affda356ea37",
+  "fullName": "health.spec.ts:17:7",
+  "titlePath": ["health.spec.ts", "System Health Checks @health"],
+  "stop": 1762596986939
+}

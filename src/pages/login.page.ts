@@ -60,7 +60,7 @@ export class LoginPage {
         return; // Don't wait for navigation for validation scenarios
       } catch (error) {
         console.warn(
-          "Expected validation errors not found, continuing with normal flow"
+          "Expected validation errors not found, continuing with normal flow",
         );
       }
     }
@@ -142,12 +142,12 @@ export class LoginPage {
     } catch (error) {
       console.error(
         "Failed to find required field validation messages:",
-        error
+        error,
       );
 
       // Try alternative selectors for validation messages
       const alternativeValidation = this.page.locator(
-        ".oxd-input-field-error-message, [data-v-957b4417] .oxd-text--span"
+        ".oxd-input-field-error-message, [data-v-957b4417] .oxd-text--span",
       );
       const hasAlternative = await alternativeValidation.count();
 

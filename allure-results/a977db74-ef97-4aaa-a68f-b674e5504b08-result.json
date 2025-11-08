@@ -1,0 +1,95 @@
+{
+  "uuid": "a977db74-ef97-4aaa-a68f-b674e5504b08",
+  "name": "Should integrate with environment configuration",
+  "historyId": "438f23ecbcfa3b693522e4f876e1aac7:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596968357,
+      "uuid": "6475b9b0-b534-4493-9e82-7847498f568f",
+      "stop": 1762596968359
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968360,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "271668bb-5203-47f3-bd18-33726cf719d7",
+      "stop": 1762596968380
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968360,
+      "name": "Expect \"toBeLessThan\"",
+      "uuid": "7f82b1d5-6efb-4591-8bee-0f92cf487874",
+      "stop": 1762596968380
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968360,
+      "name": "Expect \"toBe\"",
+      "uuid": "ec902965-b980-4d71-96a7-08e681df3365",
+      "stop": 1762596968380
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596968361,
+      "uuid": "ccbfda21-68f9-4558-9df7-0514a13b32d8",
+      "stop": 1762596968365
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-2" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596968380,
+  "testCaseId": "438f23ecbcfa3b693522e4f876e1aac7",
+  "fullName": "advancedParallelization.spec.ts:152:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596968382
+}

@@ -1,0 +1,203 @@
+{
+  "uuid": "92208e7c-4c14-414e-b071-ea301ad357ce",
+  "name": "Should handle parallel booking data generation",
+  "historyId": "607c6abee89bdc8f3e03f4d601b2f658:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596980478,
+      "uuid": "20693aef-a5b1-493b-b03c-52d09c551e63",
+      "stop": 1762596980479
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980481,
+      "name": "Expect \"toHaveLength\"",
+      "uuid": "359d88f7-e7d8-4511-a5ab-e2ffd186329b",
+      "stop": 1762596980482
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980481,
+      "name": "Expect \"toBe\"",
+      "uuid": "5f9ec8b0-2afd-4bf1-9b0a-10c7cecfbd6b",
+      "stop": 1762596980482
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980481,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "4d0af4be-cabf-48b7-a626-e2181e2d446c",
+      "stop": 1762596980482
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "07b185d4-5135-4912-acc1-1892e63de9c9",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "eda68f42-faf1-40d1-8b9f-e7aaf767a236",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "7f964d02-4348-4e09-b3c8-38bfa2f994d7",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "10ab4c47-f217-46be-8273-7bb907ecc792",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "a96fc8cf-f6b6-42f3-b5f7-51692337cd8b",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980482,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "0a8bd3eb-ec80-4a62-be98-1512e83cde9b",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980483,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "7b463df0-b9e9-4a7f-8c03-f454e8d0954a",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980483,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "3457dab0-cd8b-461d-8774-07fac4b30a7d",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980483,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "dc360d56-a1c2-4e16-8e92-554b8af03a6c",
+      "stop": 1762596980483
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596980483,
+      "uuid": "e541495f-4303-461a-b6de-88b6dcfe04b6",
+      "stop": 1762596980484
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596980482,
+  "testCaseId": "607c6abee89bdc8f3e03f4d601b2f658",
+  "fullName": "advancedParallelization.spec.ts:185:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596980485
+}

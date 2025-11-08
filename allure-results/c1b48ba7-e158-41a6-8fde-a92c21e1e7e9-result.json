@@ -1,0 +1,80 @@
+{
+  "uuid": "c1b48ba7-e158-41a6-8fde-a92c21e1e7e9",
+  "name": "Should generate multiple unique bookings",
+  "historyId": "7eec4b2c47bf87327bb8a1de84169ec3:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596982302,
+      "uuid": "bf622b56-bd29-49fd-bf9a-428714150bf2",
+      "stop": 1762596982303
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596982304,
+      "name": "Expect \"toHaveLength\"",
+      "uuid": "37bc82cd-0dc9-4f57-ab23-72dd6235a724",
+      "stop": 1762596982305
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596982304,
+      "name": "Expect \"toHaveLength\"",
+      "uuid": "5fc361f9-2d57-416a-ae64-ad15123c88ca",
+      "stop": 1762596982305
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596982304,
+      "uuid": "92a341db-74dd-48e9-81fa-7510cd71cf6f",
+      "stop": 1762596982307
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762596982304,
+  "testCaseId": "7eec4b2c47bf87327bb8a1de84169ec3",
+  "fullName": "dataManagement.spec.ts:57:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762596982305
+}

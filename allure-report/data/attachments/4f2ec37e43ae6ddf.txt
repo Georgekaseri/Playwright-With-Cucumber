@@ -1,0 +1,2 @@
+DOM Content Loaded: 5068ms (threshold 8000ms)
+Page Load Complete: 3853ms (threshold 10000ms)

@@ -1,0 +1,83 @@
+{
+  "uuid": "d4c50b26-6339-4a6e-bd2d-d9d3664fe018",
+  "name": "@api @regression should handle invalid booking data",
+  "historyId": "12a96e6233e62f3e6f7e214b2c7f12c6:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596981319,
+      "uuid": "725145b7-3367-4390-b03d-0d187f329ac4",
+      "stop": 1762596981321
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596981323,
+      "name": "Create request context",
+      "uuid": "10e5d9a3-7f5b-4478-b5d9-40ace5dc184b",
+      "stop": 1762596981323
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596981324,
+      "name": "Expect \"toThrow\"",
+      "uuid": "4783b108-ff88-44dd-8014-0b569c9662cd",
+      "stop": 1762596981325
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596981326,
+      "uuid": "6e48929c-7f2a-4214-87c0-1cc99f80933b",
+      "stop": 1762596981327
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "api.booking.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > api/booking.spec.ts > @api Booking API Tests"
+    },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "api" },
+    { "name": "tag", "value": "regression" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "api/booking.spec.ts" },
+    { "name": "subSuite", "value": "@api Booking API Tests" }
+  ],
+  "links": [],
+  "start": 1762596981323,
+  "testCaseId": "12a96e6233e62f3e6f7e214b2c7f12c6",
+  "fullName": "api/booking.spec.ts:69:7",
+  "titlePath": ["api", "booking.spec.ts", "@api Booking API Tests"],
+  "stop": 1762596981327
+}

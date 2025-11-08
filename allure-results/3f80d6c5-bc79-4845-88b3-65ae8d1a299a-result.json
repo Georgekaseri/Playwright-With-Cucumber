@@ -1,0 +1,152 @@
+{
+  "uuid": "3f80d6c5-bc79-4845-88b3-65ae8d1a299a",
+  "name": "Should handle environment configuration",
+  "historyId": "c82f520d898c101250b516f299e07906:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597290645,
+      "uuid": "cbec17fc-6f90-44bf-8fbd-cd8462985a79",
+      "stop": 1762597290646
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290647,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "1019a918-393f-4a14-9513-5f19761166a5",
+      "stop": 1762597290647
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290647,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "c137939f-4047-436b-ab83-300c14cf6db4",
+      "stop": 1762597290647
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290648,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "6e3e7e97-93c8-4fe2-a53c-1bfecefdc609",
+      "stop": 1762597290648
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290648,
+      "name": "Expect \"toBe\"",
+      "uuid": "827112a9-9da9-4cd5-b3d1-2ff2a51676e1",
+      "stop": 1762597290648
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290648,
+      "name": "Expect \"toBe\"",
+      "uuid": "52e5d7de-b862-40d1-be30-3f7701930c82",
+      "stop": 1762597290648
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290648,
+      "name": "Expect \"toBe\"",
+      "uuid": "9b8326e6-ddf4-4183-bb13-35318a008076",
+      "stop": 1762597290648
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290649,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "c4129b24-01bf-4c59-bb13-b48b53fd2ca2",
+      "stop": 1762597290649
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597290649,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "5d6fd243-979c-4d34-8d33-64c0e8db7a7d",
+      "stop": 1762597290649
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597290649,
+      "uuid": "fe1379b0-a619-44f5-b1f7-375f3bfd59b3",
+      "stop": 1762597290651
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597290647,
+  "testCaseId": "c82f520d898c101250b516f299e07906",
+  "fullName": "dataManagement.spec.ts:67:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597290649
+}

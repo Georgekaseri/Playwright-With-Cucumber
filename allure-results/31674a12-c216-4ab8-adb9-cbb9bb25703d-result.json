@@ -1,0 +1,102 @@
+{
+  "uuid": "31674a12-c216-4ab8-adb9-cbb9bb25703d",
+  "name": "Should handle parallel-safe user generation",
+  "historyId": "05689696986c28538c0fed8169b04cfd:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [
+        {
+          "status": "passed",
+          "statusDetails": {},
+          "stage": "finished",
+          "steps": [],
+          "attachments": [],
+          "parameters": [],
+          "name": "beforeAll hook",
+          "start": 1762596980471,
+          "uuid": "6d1c2f0a-360a-4f5a-8dd0-7eecfe6783d1",
+          "stop": 1762596980474
+        }
+      ],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596980471,
+      "uuid": "4812ad51-9e7b-4c1b-b1d0-1d6573a929e2",
+      "stop": 1762596980476
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980476,
+      "name": "Expect \"toBe\"",
+      "uuid": "f34a4f85-39ec-425e-9a3a-7c1a818f0db5",
+      "stop": 1762596980476
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596980476,
+      "name": "Expect \"toBe\"",
+      "uuid": "c8dcbf81-b41c-4134-8e9f-0a2200387282",
+      "stop": 1762596980476
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596980476,
+      "uuid": "4d7d1970-af0d-40fc-b7bc-3c05e1a56903",
+      "stop": 1762596980478
+    }
+  ],
+  "attachments": [
+    {
+      "name": "stdout",
+      "source": "d3c1e140-6a62-422b-b1d8-350e5701dc32-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596980472,
+  "testCaseId": "05689696986c28538c0fed8169b04cfd",
+  "fullName": "advancedParallelization.spec.ts:168:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596980480
+}

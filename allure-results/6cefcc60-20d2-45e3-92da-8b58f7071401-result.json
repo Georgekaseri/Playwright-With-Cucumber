@@ -1,0 +1,131 @@
+{
+  "uuid": "6cefcc60-20d2-45e3-92da-8b58f7071401",
+  "name": "Should calculate shard statistics correctly",
+  "historyId": "5caafb2707bc0bef203109799648d63b:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597289085,
+      "uuid": "481fda0a-b2ce-4935-a57b-001d61ea9e02",
+      "stop": 1762597289087
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289088,
+      "name": "Expect \"toBe\"",
+      "uuid": "c5bcad2a-13a0-4f4d-ac1b-666cc9d9e291",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289088,
+      "name": "Expect \"toBe\"",
+      "uuid": "d5605893-138d-4de2-8f2e-84217475b956",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289088,
+      "name": "Expect \"toEqual\"",
+      "uuid": "9208fa4f-bffb-4948-a2cf-da3c913733e7",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289089,
+      "name": "Expect \"toBe\"",
+      "uuid": "d80498f6-c341-4b89-a5c2-e3b79b961716",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289089,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "dec8aebf-412d-45fd-891f-cad895b4537e",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289089,
+      "name": "Expect \"toBeLessThanOrEqual\"",
+      "uuid": "49fe6109-d014-4ff3-b409-373dafae8408",
+      "stop": 1762597289089
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597289089,
+      "uuid": "6ce5ed10-a9dc-4e86-a5fe-75b135cd75a6",
+      "stop": 1762597289091
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762597289089,
+  "testCaseId": "5caafb2707bc0bef203109799648d63b",
+  "fullName": "advancedParallelization.spec.ts:67:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762597289091
+}

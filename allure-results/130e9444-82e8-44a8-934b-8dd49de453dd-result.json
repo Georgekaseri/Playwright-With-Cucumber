@@ -1,0 +1,36 @@
+{
+  "uuid": "130e9444-82e8-44a8-934b-8dd49de453dd",
+  "name": "Production health check @health @production",
+  "historyId": "9d1f262b962040078d8cd5d424a7aa60:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "skipped",
+  "statusDetails": {
+    "message": "Production tests only run in production environment"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "health.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > health.spec.ts > Production Environment Health @production"
+    },
+    { "name": "tag", "value": "production" },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "production" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker--1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "health.spec.ts" },
+    { "name": "subSuite", "value": "Production Environment Health @production" }
+  ],
+  "links": [],
+  "start": 1762597296852,
+  "testCaseId": "9d1f262b962040078d8cd5d424a7aa60",
+  "fullName": "health.spec.ts:95:7",
+  "titlePath": ["health.spec.ts", "Production Environment Health @production"],
+  "stop": 1762597296855
+}

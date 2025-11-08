@@ -1,0 +1,107 @@
+{
+  "uuid": "e170bb6a-d2dc-4a38-9ceb-14460bea811a",
+  "name": "Should generate shard configurations for CI",
+  "historyId": "681b4370ac821b3ff2524ef7b46f9b3f:d583fcab6b947ca3cdc623ce3415e6fd",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597289118,
+      "uuid": "8b5b78e4-b90a-423b-b33e-fc399943c7a6",
+      "stop": 1762597289120
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289120,
+      "name": "Expect \"toHaveLength\"",
+      "uuid": "f513dc56-8f9b-4885-8144-40588c25b96e",
+      "stop": 1762597289123
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289120,
+      "name": "Expect \"toEqual\"",
+      "uuid": "594bc223-c03f-43c7-811f-84c6df5dae5e",
+      "stop": 1762597289123
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289121,
+      "name": "Expect \"toEqual\"",
+      "uuid": "a9f56d99-2db8-4431-a160-c13c12d11aa7",
+      "stop": 1762597289123
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597289121,
+      "name": "Expect \"toEqual\"",
+      "uuid": "217b727b-5b7b-48b1-b131-012c49e83176",
+      "stop": 1762597289123
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597289121,
+      "uuid": "f2c73e9e-f11d-4cdc-b6ab-84017aa18dec",
+      "stop": 1762597289123
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox-desktop > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "firefox-desktop" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762597289121,
+  "testCaseId": "681b4370ac821b3ff2524ef7b46f9b3f",
+  "fullName": "advancedParallelization.spec.ts:115:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762597289122
+}

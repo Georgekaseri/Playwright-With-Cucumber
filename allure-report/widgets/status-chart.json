@@ -1,0 +1,2142 @@
+[
+  {
+    "uid": "694297a40163cc61",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762596969143, "stop": 1762596971372, "duration": 2229 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "935504758e3c586e",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762597258734, "stop": 1762597258735, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "66e012087b9cd405",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762596988480, "stop": 1762596988482, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "7c948143f43a267f",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": { "start": 1762597041006, "stop": 1762597049825, "duration": 8819 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "153d887e5b46e736",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762597021769, "stop": 1762597027656, "duration": 5887 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8217fd2819f16eb8",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762597013160, "stop": 1762597013359, "duration": 199 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "f664420b3af00feb",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762597015539, "stop": 1762597015966, "duration": 427 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7e4ee05969ff2c8e",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762596981752, "stop": 1762596981859, "duration": 107 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "155678032d2e06e4",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762597258606, "stop": 1762597258738, "duration": 132 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "685268b3d5216b2a",
+    "name": "Login performance @performance",
+    "time": { "start": 1762596977192, "stop": 1762596979777, "duration": 2585 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dc5cdfa2535aecca",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762596968463, "stop": 1762596969027, "duration": 564 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d5841b5274886a51",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762597330763, "stop": 1762597330765, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ecd1cd986bd901f4",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762597032224, "stop": 1762597041356, "duration": 9132 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "295b8efc42b427f1",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762597289114, "stop": 1762597289115, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f1b950970ee4a3a7",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": {
+      "start": 1762597327067,
+      "stop": 1762597348859,
+      "duration": 21792
+    },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "34fbf8db1d5601f6",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762597015666, "stop": 1762597015667, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5f1adb5321f7bf60",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762597014997, "stop": 1762597015300, "duration": 303 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "eabeb804f302ef10",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762597351880, "stop": 1762597359643, "duration": 7763 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "bb4018ac8f155469",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762597258051, "stop": 1762597258054, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2ab8824fe584e3a6",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": {
+      "start": 1762597022270,
+      "stop": 1762597033328,
+      "duration": 11058
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5a6320c1961e1fed",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762596980472, "stop": 1762596980480, "duration": 8 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "90f27d253c215e64",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762597258089, "stop": 1762597258597, "duration": 508 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b25b5741ed4c51ed",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762597014172, "stop": 1762597014173, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "862950fdee626bfb",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762597572133, "stop": 1762597572590, "duration": 457 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "c84b067ac40e27d4",
+    "name": "Should check feature flags",
+    "time": { "start": 1762596969117, "stop": 1762596969120, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9035b7846511e345",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762597258058, "stop": 1762597258078, "duration": 20 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c5caf37f171e46f8",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762597009003, "stop": 1762597009290, "duration": 287 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "a1d2144e491f0ab7",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762596980482, "stop": 1762596980485, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a6dbcf31b0084cdf",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762596969073, "stop": 1762596969081, "duration": 8 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "366c7d6fb3d4b799",
+    "name": "Should generate performance report",
+    "time": { "start": 1762597329653, "stop": 1762597329656, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "df1ca9f57072b5ed",
+    "name": "Should generate performance report",
+    "time": { "start": 1762597258036, "stop": 1762597258041, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ca50415ffd1cbbcb",
+    "name": "Should access user data by role",
+    "time": { "start": 1762597258713, "stop": 1762597258715, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d19b0926fe6b5859",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762597289179, "stop": 1762597289182, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "cb51946830afa6cc",
+    "name": "Should generate performance report",
+    "time": { "start": 1762596980463, "stop": 1762596980464, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ae82f68cdeb7b269",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762597332570, "stop": 1762597339600, "duration": 7030 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dfc2324757b3c182",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762596981323, "stop": 1762596981327, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1e0b861787bf6571",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762597015671, "stop": 1762597015675, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c7e6582513929af3",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762597330756, "stop": 1762597330761, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8fb210d6443fd6b8",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762596969051, "stop": 1762596969054, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "27b572155e30535d",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762597014781, "stop": 1762597014990, "duration": 209 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "93b79d881604deb5",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762596978035, "stop": 1762596979379, "duration": 1344 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5776404ed789f17",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": { "start": 1762596972790, "stop": 1762596977180, "duration": 4390 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dc091f5f64b607de",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762597289083, "stop": 1762597289089, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "25278ac4330ece5b",
+    "name": "Login performance @performance",
+    "time": {
+      "start": 1762597358894,
+      "stop": 1762597375195,
+      "duration": 16301
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2760eaf7b988f4a",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762596982383, "stop": 1762596982387, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "eda0e68925ad1939",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762597289132, "stop": 1762597289135, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "28e69041b51b5492",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762597258015, "stop": 1762597258019, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1b0da973b00596c5",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762596969896, "stop": 1762596969898, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "9702e1f2d2105b84",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762597360182, "stop": 1762597363792, "duration": 3610 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5c9e02f6cb89ebd4",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762596981333, "stop": 1762596981741, "duration": 408 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "aec9cd74aad80ac",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762597329658, "stop": 1762597329666, "duration": 8 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "60cc69d299c4d00e",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762597330813, "stop": 1762597337656, "duration": 6843 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6fdd98bf814379db",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762597545775, "stop": 1762597546150, "duration": 375 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "c47d7f514f972f31",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762597330828, "stop": 1762597332543, "duration": 1715 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1b6bdc71fbba7b1c",
+    "name": "Should access user data by role",
+    "time": { "start": 1762596969047, "stop": 1762596969051, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "17270464509a0a53",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762597329586, "stop": 1762597329589, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c123d294fa20206b",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762597289842, "stop": 1762597290045, "duration": 203 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a3836c8cc361efdf",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762597014269, "stop": 1762597014773, "duration": 504 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "389430519490f154",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762597258001, "stop": 1762597258006, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "559d827d780700f",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762597290185, "stop": 1762597290284, "duration": 99 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "262e776097ff1b93",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762596982315, "stop": 1762596982319, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2fcd6e2b959f3c5d",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762596969128, "stop": 1762596969129, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ee42a426ef750e2a",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": {
+      "start": 1762597364239,
+      "stop": 1762597382904,
+      "duration": 18665
+    },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "1d0af45286cd4a9b",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": { "start": 1762597576394, "stop": 1762597585764, "duration": 9370 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a46115ad98c60fd6",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762597373302, "stop": 1762597373419, "duration": 117 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "aaced67caf2bf9d9",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762597258826, "stop": 1762597263851, "duration": 5025 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "589e9f6c360106c2",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762597289060, "stop": 1762597289063, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9babfbfe33999643",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762597015979, "stop": 1762597016818, "duration": 839 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9172acb002ed7c8c",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762597290641, "stop": 1762597290645, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e07d61ed80c5a731",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762597258716, "stop": 1762597258717, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "124e546250c5f053",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762597330593, "stop": 1762597330815, "duration": 222 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7042a70343db8d28",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762596982392, "stop": 1762596986178, "duration": 3786 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f9ea0a113e4b9e30",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762596968305, "stop": 1762596968315, "duration": 10 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f440f9710e3a9d2b",
+    "name": "Should check feature flags",
+    "time": { "start": 1762597015660, "stop": 1762597015663, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "cd33d37955f2d643",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762597329620, "stop": 1762597329625, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6462098524c1ac04",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762596980418, "stop": 1762596980420, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8a8679dcd9df9ff0",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762597296852, "stop": 1762597296855, "duration": 3 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "936fa45b5708eb3",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762597330771, "stop": 1762597330775, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "170767ac020bdbf",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762597280648, "stop": 1762597284721, "duration": 4073 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dff4e40898e9a8db",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762597258810, "stop": 1762597260816, "duration": 2006 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b6121d7128f2e3ee",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": { "start": 1762597545789, "stop": 1762597555174, "duration": 9385 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f240391ee8a4f834",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762596979789, "stop": 1762596985731, "duration": 5942 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5df39cd521f3e773",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762596974772, "stop": 1762596977444, "duration": 2672 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "250c4b9491d2a4f6",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": {
+      "start": 1762596993523,
+      "stop": 1762597003711,
+      "duration": 10188
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "fd3fda0f22483e9e",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762597015653, "stop": 1762597015655, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "de17036c95f28399",
+    "name": "Should check feature flags",
+    "time": { "start": 1762597258760, "stop": 1762597258762, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6fa4f16053a38444",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762596980468, "stop": 1762596980469, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a380259d74072c07",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": {
+      "start": 1762597553501,
+      "stop": 1762597566370,
+      "duration": 12869
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "32eb68f6b1c307ab",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762597015639, "stop": 1762597015640, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "34959e2d1ef6c436",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762597290055, "stop": 1762597290065, "duration": 10 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f1349f77cbc6780a",
+    "name": "Login performance @performance",
+    "time": {
+      "start": 1762597315568,
+      "stop": 1762597328457,
+      "duration": 12889
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "35e8d2351082f314",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": { "start": 1762597571168, "stop": 1762597580697, "duration": 9529 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "232b4fa74181b908",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762597015409, "stop": 1762597015508, "duration": 99 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "fbf44813e1a62bf4",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": { "start": 1762597012077, "stop": 1762597021310, "duration": 9233 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "d7f1f9a5b1dbcc65",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762596969125, "stop": 1762596969132, "duration": 7 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "58638d968123cf9a",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762597359664, "stop": 1762597359854, "duration": 190 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "4a1d8012e8a01497",
+    "name": "Should access user data by role",
+    "time": { "start": 1762597290620, "stop": 1762597290621, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5cba5170571284f4",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762596988217, "stop": 1762596992962, "duration": 4745 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1817739461e4d57",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762597015518, "stop": 1762597015529, "duration": 11 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2070f6bbc9acaf39",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762597339847, "stop": 1762597339850, "duration": 3 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "309853c95a488745",
+    "name": "Should check feature flags",
+    "time": { "start": 1762597290661, "stop": 1762597290662, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "630b685f6aada227",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762597258757, "stop": 1762597258772, "duration": 15 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d04b3ef4500ff4ca",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762596969097, "stop": 1762596969105, "duration": 8 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "85d5b1df5494593c",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": {
+      "start": 1762596993302,
+      "stop": 1762597004064,
+      "duration": 10762
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "57223a997b9ceee",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762597329605, "stop": 1762597329611, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "62112500f4c962b0",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762596968915, "stop": 1762596969016, "duration": 101 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "17db4522e65337dc",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762597373416, "stop": 1762597373531, "duration": 115 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2886bc50b75ef8a5",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762596980441, "stop": 1762596980442, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4131f572a8a25618",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762597258095, "stop": 1762597258118, "duration": 23 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ac9102b2f9c5a11e",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762596968465, "stop": 1762596968480, "duration": 15 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ced871c26d83ce12",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762596968392, "stop": 1762596968399, "duration": 7 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d3666711689749d6",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762597258595, "stop": 1762597258705, "duration": 110 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "3ac75b7d68ebb43d",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762597258042, "stop": 1762597258047, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f1179760469c88cc",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762597009298, "stop": 1762597014889, "duration": 5591 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6c404a92ebd1d62b",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762596968380, "stop": 1762596968382, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4c341c930cd4e4d1",
+    "name": "can login and reach Dashboard",
+    "time": {
+      "start": 1762597563987,
+      "stop": 1762597576051,
+      "duration": 12064
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4e9fdf8e8fdddb9b",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762597290406, "stop": 1762597290504, "duration": 98 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8f86a7c6dbdfa42",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762597296848, "stop": 1762597296850, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "8d0660afa68f50f2",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762597258126, "stop": 1762597258587, "duration": 461 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "17c642f1a4cc0a8e",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762597329717, "stop": 1762597330358, "duration": 641 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "63a29973ac6668fe",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762597290690, "stop": 1762597299792, "duration": 9102 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7e415e4d44e01d5e",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762596977453, "stop": 1762596978933, "duration": 1480 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "fb3eba3905b839b6",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762596981103, "stop": 1762596981312, "duration": 209 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "568e050f1e5de6e4",
+    "name": "can login and reach Dashboard",
+    "time": { "start": 1762597031683, "stop": 1762597040118, "duration": 8435 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2b94958373aa6ef8",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762597002925, "stop": 1762597012053, "duration": 9128 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1fcc6cb7bbb9177a",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762596988476, "stop": 1762596988478, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "6003fce41791e32b",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762596982293, "stop": 1762596982296, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "95ef322e351b58fc",
+    "name": "Should access user data by role",
+    "time": { "start": 1762597330743, "stop": 1762597330744, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dacbe8901f11faec",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": { "start": 1762597022894, "stop": 1762597032211, "duration": 9317 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f5a92eae30084b7d",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": {
+      "start": 1762597559545,
+      "stop": 1762597571209,
+      "duration": 11664
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "79fb135ba9ea5f6",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762597290076, "stop": 1762597290181, "duration": 105 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "fc6bde949789ede5",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762597289357, "stop": 1762597289833, "duration": 476 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "27e14e15f46806cf",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762597295307, "stop": 1762597300337, "duration": 5030 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d0b3ac9df17cd756",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762597258808, "stop": 1762597258809, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "395746c4f26c33f7",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762597282909, "stop": 1762597287420, "duration": 4511 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2e9dffa75e557f96",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762597279269, "stop": 1762597282744, "duration": 3475 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4bb28bc46543edc2",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762597290681, "stop": 1762597290685, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8f83e9bfecd14fd2",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762596968296, "stop": 1762596968300, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6bd90b3d595d5a27",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762597323188, "stop": 1762597328415, "duration": 5227 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8fc66a41b80e71e8",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762597014219, "stop": 1762597014226, "duration": 7 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2ff576d8c09691ed",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762597290673, "stop": 1762597290678, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e635f41a01677cd",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762596982120, "stop": 1762596982233, "duration": 113 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "54ec008cc2585d9a",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762597258736, "stop": 1762597258738, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9416bc7b88962e4d",
+    "name": "Should check feature flags",
+    "time": { "start": 1762597330785, "stop": 1762597330789, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "478e6ac488d8c732",
+    "name": "Login performance @performance",
+    "time": { "start": 1762597033482, "stop": 1762597040991, "duration": 7509 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6a3de1b79ce64d6e",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762597290291, "stop": 1762597290400, "duration": 109 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "15384c8b5a983637",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762597258818, "stop": 1762597265542, "duration": 6724 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "476b5663fa7d1728",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762597258806, "stop": 1762597265414, "duration": 6608 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f2a03b5cfcd302dc",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762596968355, "stop": 1762596968358, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "eee36827698e7253",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762597339843, "stop": 1762597339845, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "9e7a4b5e9b75a54d",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": {
+      "start": 1762597284731,
+      "stop": 1762597296832,
+      "duration": 12101
+    },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "94ee99be5e957592",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762597040274, "stop": 1762597044009, "duration": 3735 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "477f87f396945006",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762597015623, "stop": 1762597015624, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "77fea00ec007ab80",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762596982304, "stop": 1762596982305, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d2b2bfd1992bd10f",
+    "name": "Login performance @performance",
+    "time": {
+      "start": 1762597276588,
+      "stop": 1762597288648,
+      "duration": 12060
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "bb0d0d9199b50756",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762597373428, "stop": 1762597373535, "duration": 107 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "740554440abe5d64",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762596972305, "stop": 1762596972462, "duration": 157 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "a8950565029d65d1",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762596969070, "stop": 1762596969073, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "46356f239f65ae9e",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762596982274, "stop": 1762596982278, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "86be67827b2cadad",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762597021327, "stop": 1762597021329, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "b09e464be1b08f45",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762596968939, "stop": 1762596969048, "duration": 109 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1e8574837ce6324f",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762596980391, "stop": 1762596980393, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "97473f606f356170",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762597004071, "stop": 1762597008988, "duration": 4917 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "de0c4ac2188a0259",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762596969146, "stop": 1762596970901, "duration": 1755 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6d95f5c8da2d14",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762597258765, "stop": 1762597258766, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ba507c986f7ac754",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762596969065, "stop": 1762596969067, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2c183b976a78df5",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762597330364, "stop": 1762597330582, "duration": 218 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7d2afd0165c04f55",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762597258024, "stop": 1762597258026, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ba25bb4bdaabda39",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762597330356, "stop": 1762597330581, "duration": 225 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d89290e15e2bab00",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762597373537, "stop": 1762597373656, "duration": 119 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "980a34dea3915548",
+    "name": "can login and reach Dashboard",
+    "time": { "start": 1762596974552, "stop": 1762596978466, "duration": 3914 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6c4068df41918c4d",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762597373075, "stop": 1762597373085, "duration": 10 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1542adf2f3bc83b2",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": { "start": 1762596978943, "stop": 1762596987777, "duration": 8834 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "facf7a7208533a30",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762597258588, "stop": 1762597258700, "duration": 112 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e6a0adc60ecb6d41",
+    "name": "can login and reach Dashboard",
+    "time": {
+      "start": 1762596997169,
+      "stop": 1762597010801,
+      "duration": 13632
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "19bf2f4d593267c9",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762596968445, "stop": 1762596968932, "duration": 487 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c3b49c5fe2d86e19",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": { "start": 1762597041009, "stop": 1762597049865, "duration": 8856 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "50556768bc0912a5",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762596991403, "stop": 1762596992031, "duration": 628 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "c9e86b16b94bb977",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762597321103, "stop": 1762597327047, "duration": 5944 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "efce7cf5173fa6eb",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762596981997, "stop": 1762596982110, "duration": 113 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "fb6ccc973988e95f",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": {
+      "start": 1762597327109,
+      "stop": 1762597348758,
+      "duration": 21649
+    },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "fb0a526e30de6c55",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762597329614, "stop": 1762597329619, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "290191ee7072cd8d",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762597289121, "stop": 1762597289122, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a8380aa9a83ef186",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762597545781, "stop": 1762597548485, "duration": 2704 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "3e00b6ab0da07ee8",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762597287523, "stop": 1762597292139, "duration": 4616 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8678b253fcdffa8a",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762597041364, "stop": 1762597041501, "duration": 137 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "8c8acb5383962dc6",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": { "start": 1762597027857, "stop": 1762597036349, "duration": 8492 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "bf742de646d7488",
+    "name": "Should check feature flags",
+    "time": { "start": 1762596982340, "stop": 1762596982341, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ff4bdd67d921df16",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762597330777, "stop": 1762597330778, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "acfd1121f227e603",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762597258106, "stop": 1762597258579, "duration": 473 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "29d9e65b50beed27",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762597014228, "stop": 1762597014234, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "793528de2ce584a6",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762597290626, "stop": 1762597290629, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b58143bd4e9a23a7",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762597040132, "stop": 1762597040267, "duration": 135 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "b6ed0850d475be54",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762597556668, "stop": 1762597558400, "duration": 1732 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "56a9490802ad66b2",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762597258028, "stop": 1762597258034, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "97362ea050cf42b1",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762596968366, "stop": 1762596968397, "duration": 31 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9181bcf93e41b9",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762597289097, "stop": 1762597289098, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "aa82dd3eadf5d0b9",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762596968452, "stop": 1762596969033, "duration": 581 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d251323920ea32bf",
+    "name": "can login and reach Dashboard",
+    "time": { "start": 1762597548882, "stop": 1762597557975, "duration": 9093 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2aac50de59f726d7",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762597014119, "stop": 1762597014122, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ee0b46b815396fc6",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762596993006, "stop": 1762597002902, "duration": 9896 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d51e3ef8c2b42cb4",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762596982376, "stop": 1762596982377, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2dcad9cf41fd533f",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762597014190, "stop": 1762597014191, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7735e03fde373bb5",
+    "name": "Should generate performance report",
+    "time": { "start": 1762597014209, "stop": 1762597014210, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f4ca121e3ae35b51",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762597260843, "stop": 1762597260847, "duration": 4 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "6356f5b639aa59d8",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762597370639, "stop": 1762597371384, "duration": 745 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "2a8710f58e07a9c",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762596986194, "stop": 1762596986939, "duration": 745 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1a2a18777d4ab022",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762597372762, "stop": 1762597373398, "duration": 636 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5083d6ffe82fe6f",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762596968490, "stop": 1762596968904, "duration": 414 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8c64faf73227aca9",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": {
+      "start": 1762597282878,
+      "stop": 1762597295051,
+      "duration": 12173
+    },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "a07cbbf3e7e8fdc6",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762596968411, "stop": 1762596968417, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f8b8b3172ea6fc3d",
+    "name": "@api @regression should handle invalid booking data",
+    "time": { "start": 1762597330183, "stop": 1762597330190, "duration": 7 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4d166c73e15f8f8",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762597022803, "stop": 1762597031657, "duration": 8854 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "daa470bb7eab9786",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762597292537, "stop": 1762597295297, "duration": 2760 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d8a75f98d19f263e",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762597014215, "stop": 1762597014216, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2430590a71862db",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762597015514, "stop": 1762597015610, "duration": 96 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "bb93c76bc60af633",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762597016844, "stop": 1762597020889, "duration": 4045 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "57600ffa1d1c6d5b",
+    "name": "Should generate performance report",
+    "time": { "start": 1762597289155, "stop": 1762597289157, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d48aab0fa37246e9",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762597359957, "stop": 1762597363395, "duration": 3438 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2c08b153674893e2",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762597329580, "stop": 1762597329583, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "51cb4398dbe525f1",
+    "name": "Login form visual consistency @visual @smoke",
+    "time": { "start": 1762597328441, "stop": 1762597328854, "duration": 413 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "e467ad7f22ac7b02",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": { "start": 1762597010819, "stop": 1762597020803, "duration": 9984 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "52f02214f9c9bad1",
+    "name": "Quick Actions widget looks correct @visual @regression",
+    "time": {
+      "start": 1762596979386,
+      "stop": 1762596990900,
+      "duration": 11514
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b0eb071c147b01f1",
+    "name": "@regression should have no critical accessibility violations on Dashboard page",
+    "time": {
+      "start": 1762597559082,
+      "stop": 1762597572666,
+      "duration": 13584
+    },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c09513a0809f5e8c",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762596969140, "stop": 1762596971459, "duration": 2319 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e454d66e94582542",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762596980520, "stop": 1762596981094, "duration": 574 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b6dc4aabe87e4b1b",
+    "name": "Should calculate optimal worker count based on system resources",
+    "time": { "start": 1762596968301, "stop": 1762596968309, "duration": 8 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "67d8eab09d5281f1",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762596980410, "stop": 1762596980415, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d03e9127a3d8f1e1",
+    "name": "@api @performance should create booking within time threshold",
+    "time": { "start": 1762596981867, "stop": 1762596981989, "duration": 122 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d97914c7a85eba86",
+    "name": "@api @smoke should handle non-existent booking gracefully",
+    "time": { "start": 1762597015307, "stop": 1762597015404, "duration": 97 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2d50662132db1ba8",
+    "name": "Performance baseline check @health @performance",
+    "time": { "start": 1762597338311, "stop": 1762597342993, "duration": 4682 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "adc0369e7fe75175",
+    "name": "Should access user data by role",
+    "time": { "start": 1762597015617, "stop": 1762597015618, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "1f408d4e6bbdbd7c",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": { "start": 1762597545785, "stop": 1762597555211, "duration": 9426 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4d9f24d1d3add991",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762597315143, "stop": 1762597322679, "duration": 7536 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "45f2c278cfb9c1af",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762597258047, "stop": 1762597258056, "duration": 9 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "99991e040b6f01c1",
+    "name": "Should access user data by role",
+    "time": { "start": 1762596982244, "stop": 1762596982246, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4756dd1a20d1a2ed",
+    "name": "Should generate performance report",
+    "time": { "start": 1762596968374, "stop": 1762596968390, "duration": 16 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d36f1c760ae3a1e3",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762596969025, "stop": 1762596969127, "duration": 102 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b8ce62e2678f5f43",
+    "name": "@api @smoke should retrieve created booking",
+    "time": { "start": 1762597258099, "stop": 1762597258695, "duration": 596 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5dfbe7f87da33898",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762597258740, "stop": 1762597258741, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "132a0ae641c7adfe",
+    "name": "Should calculate optimal shard count",
+    "time": { "start": 1762597014185, "stop": 1762597014186, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d6ff1ac766692649",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762596980445, "stop": 1762596980446, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "627548ed4dbe019b",
+    "name": "Should handle environment configuration",
+    "time": { "start": 1762597290647, "stop": 1762597290649, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "3c8b80f7924cd19a",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762596968334, "stop": 1762596968338, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b724c84a6a409187",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762597289214, "stop": 1762597289236, "duration": 22 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c69db866695b134a",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762597330750, "stop": 1762597330751, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dc2201d71b795e65",
+    "name": "Memory usage monitoring @performance",
+    "time": { "start": 1762597322712, "stop": 1762597323162, "duration": 450 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "95f2b341b8ae9063",
+    "name": "Should generate unique test IDs",
+    "time": { "start": 1762597330791, "stop": 1762597330792, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "52eac1e186bb869",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762597573032, "stop": 1762597575980, "duration": 2948 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "2c07c946131d7dd3",
+    "name": "Dashboard page matches baseline @visual @smoke",
+    "time": { "start": 1762597363414, "stop": 1762597372118, "duration": 8704 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "248dbbe677378380",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762597015631, "stop": 1762597015636, "duration": 5 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "140f8b1e65abf0bd",
+    "name": "@api @health should verify API service availability",
+    "time": { "start": 1762597330590, "stop": 1762597330738, "duration": 148 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a12b04a7a6d84a8a",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762597014164, "stop": 1762597014167, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "8c10513e76fb64d5",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762597014197, "stop": 1762597014198, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "d644453b1c1d3d35",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": { "start": 1762596972806, "stop": 1762596978025, "duration": 5219 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "7f8f936cd19037f0",
+    "name": "Production health check @health @production",
+    "time": { "start": 1762596969901, "stop": 1762596969903, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "7bad6f68aa3b59c0",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762597556662, "stop": 1762597562373, "duration": 5711 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "86d88d53d7bca3",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762597260838, "stop": 1762597260841, "duration": 3 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "d88777c2badd502b",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762596986951, "stop": 1762596992680, "duration": 5729 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b4d2f900431d4935",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762597258004, "stop": 1762597258008, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "87bcab991d0dd5f5",
+    "name": "Login performance @performance",
+    "time": { "start": 1762597003723, "stop": 1762597013141, "duration": 9418 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "dc356aa2b7d06d44",
+    "name": "Should handle parallel booking data generation",
+    "time": { "start": 1762597258010, "stop": 1762597258030, "duration": 20 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "67d2227643feb404",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762597289171, "stop": 1762597289175, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "80bb4f1325e64011",
+    "name": "Should generate shard configurations for CI",
+    "time": { "start": 1762597329627, "stop": 1762597329630, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "3dcb8605b76177f1",
+    "name": "Should distribute tests evenly across shards",
+    "time": { "start": 1762597014157, "stop": 1762597014161, "duration": 4 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c93844de078a0de1",
+    "name": "can login and reach Dashboard",
+    "time": { "start": 1762597577542, "stop": 1762597586370, "duration": 8828 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "a68a9e55f8a3693f",
+    "name": "@smoke should verify mock booking display (mock mode only)",
+    "time": { "start": 1762597022608, "stop": 1762597022803, "duration": 195 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "a7ac3ffd0c3f43c9",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762597329715, "stop": 1762597330171, "duration": 456 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b66546314816dc45",
+    "name": "Core Web Vitals performance @performance",
+    "time": { "start": 1762596978478, "stop": 1762596979919, "duration": 1441 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "6c8a23630de16aa0",
+    "name": "Critical user flows work @health",
+    "time": { "start": 1762597295406, "stop": 1762597303213, "duration": 7807 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "93740c554794f738",
+    "name": "Should calculate shard statistics correctly",
+    "time": { "start": 1762597289089, "stop": 1762597289091, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "30fc3cac06accfad",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762597373094, "stop": 1762597373288, "duration": 194 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "9b3d514c924bb38c",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762596980426, "stop": 1762596980427, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e574766565d987bf",
+    "name": "Should generate parallel-safe users",
+    "time": { "start": 1762596982257, "stop": 1762596982259, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "46209c4ac7be788c",
+    "name": "Should get tests for specific shard",
+    "time": { "start": 1762596968308, "stop": 1762596968314, "duration": 6 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "14da5d28a9ae2476",
+    "name": "Application is accessible @health @quick @smoke",
+    "time": { "start": 1762597015681, "stop": 1762597019878, "duration": 4197 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e3d7fb123e5cd945",
+    "name": "Should integrate with environment configuration",
+    "time": { "start": 1762597329665, "stop": 1762597329667, "duration": 2 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b21ac5af698daf4",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762597329638, "stop": 1762597329641, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "803eea98979f08be",
+    "name": "@api @regression should retrieve all bookings",
+    "time": { "start": 1762597330198, "stop": 1762597330349, "duration": 151 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "eea821aed18cfcdd",
+    "name": "@api @regression should test utility method",
+    "time": { "start": 1762597290510, "stop": 1762597290612, "duration": 102 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "bdf2b3f492cba0d4",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": { "start": 1762597576001, "stop": 1762597579003, "duration": 3002 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "4473f76d7accb6ab",
+    "name": "Should handle parallel-safe user generation",
+    "time": { "start": 1762597329637, "stop": 1762597329638, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "b976f266cb6bb02a",
+    "name": "Should record performance metrics",
+    "time": { "start": 1762596980451, "stop": 1762596980452, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "346ee067945a3403",
+    "name": "Should handle data cleanup settings",
+    "time": { "start": 1762597330801, "stop": 1762597330802, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "3041b656a43ea8ef",
+    "name": "@smoke should have no critical accessibility violations on Login page",
+    "time": { "start": 1762596972551, "stop": 1762596974544, "duration": 1993 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "5f8a500d1ab07ae2",
+    "name": "API endpoints are responsive @health @api",
+    "time": { "start": 1762596969148, "stop": 1762596969898, "duration": 750 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e5fc01607d76aef5",
+    "name": "@api @smoke should create booking with George Kaseri data",
+    "time": { "start": 1762597372452, "stop": 1762597373056, "duration": 604 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "aeb5ae2a5a765aca",
+    "name": "@smoke should validate keyboard navigation on Login page",
+    "time": { "start": 1762597546573, "stop": 1762597552878, "duration": 6305 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ef0008cc217d6851",
+    "name": "Resource loading performance @performance",
+    "time": { "start": 1762597036358, "stop": 1762597040994, "duration": 4636 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "c395b63b967f734b",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": { "start": 1762596969933, "stop": 1762596974231, "duration": 4298 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "709c9a056b487232",
+    "name": "Should generate booking data from templates",
+    "time": { "start": 1762597290636, "stop": 1762597290637, "duration": 1 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "712e72122b8c84bc",
+    "name": "@smoke should create booking via API and verify data integrity",
+    "time": { "start": 1762596988491, "stop": 1762596997159, "duration": 8668 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "f3a56b06781325e0",
+    "name": "Staging specific health check @health @staging",
+    "time": { "start": 1762597021322, "stop": 1762597021324, "duration": 2 },
+    "status": "skipped",
+    "severity": "normal"
+  },
+  {
+    "uid": "aadd8aca9628b212",
+    "name": "Page load performance @performance @smoke",
+    "time": { "start": 1762597275173, "stop": 1762597280637, "duration": 5464 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "ab88ea4e7fa8e6ec",
+    "name": "Should generate multiple unique bookings",
+    "time": { "start": 1762597015647, "stop": 1762597015650, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  },
+  {
+    "uid": "e576d81d0d76de9b",
+    "name": "Should filter users by permission",
+    "time": { "start": 1762597290631, "stop": 1762597290634, "duration": 3 },
+    "status": "passed",
+    "severity": "normal"
+  }
+]

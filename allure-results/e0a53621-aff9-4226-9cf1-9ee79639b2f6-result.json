@@ -1,0 +1,152 @@
+{
+  "uuid": "e0a53621-aff9-4226-9cf1-9ee79639b2f6",
+  "name": "Should handle environment configuration",
+  "historyId": "c82f520d898c101250b516f299e07906:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596969083,
+      "uuid": "9c072278-21da-4f0b-956c-e62996dd512e",
+      "stop": 1762596969086
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969087,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "53f41c63-b633-4ae3-b440-78eef26704b0",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969088,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "9ce23dc3-e9cd-419e-9a8f-a10ba3dff315",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969089,
+      "name": "Expect \"toHaveProperty\"",
+      "uuid": "39107bd5-ba52-49ae-bf5e-e8f81f1a9b65",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969092,
+      "name": "Expect \"toBe\"",
+      "uuid": "0f8df175-08fb-4341-a9d8-078213ac4655",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969093,
+      "name": "Expect \"toBe\"",
+      "uuid": "8fb4b479-3f8d-4aaa-8fe9-2c4ea249c232",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969093,
+      "name": "Expect \"toBe\"",
+      "uuid": "eeb3c0c9-515e-4cb6-89fa-be546a56c22b",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969093,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "962da4a2-8d89-4a08-be5b-f5ba371bde53",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596969093,
+      "name": "Expect \"toBeTruthy\"",
+      "uuid": "aa399409-d91c-4e80-a302-e7fcd78fa4cd",
+      "stop": 1762596969112
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596969093,
+      "uuid": "8b141291-96ec-4ac8-896f-702fb45d2097",
+      "stop": 1762596969107
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-3" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762596969097,
+  "testCaseId": "c82f520d898c101250b516f299e07906",
+  "fullName": "dataManagement.spec.ts:67:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762596969105
+}

@@ -1,0 +1,80 @@
+{
+  "uuid": "86e44411-67c9-4f79-bbc2-1bdec3800442",
+  "name": "Should handle data cleanup settings",
+  "historyId": "c9897ede5dc1e3ce331e2903eeb8005e:85ce55e83be83c0add58c088dc5e1817",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597330800,
+      "uuid": "1c481867-92b9-453e-aa77-cc2690604f83",
+      "stop": 1762597330804
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330805,
+      "name": "Expect \"toBe\"",
+      "uuid": "5b29f259-2da5-4c4d-be27-0241f1c08c96",
+      "stop": 1762597330805
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597330805,
+      "name": "Expect \"toBe\"",
+      "uuid": "183838fd-c457-4baa-b7c2-ec7dd4705ba1",
+      "stop": 1762597330805
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597330805,
+      "uuid": "f0bb52b8-b387-4a04-aa0b-28c564a568e1",
+      "stop": 1762597330807
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "webkit-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > webkit-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-0" },
+    { "name": "parentSuite", "value": "webkit-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597330801,
+  "testCaseId": "c9897ede5dc1e3ce331e2903eeb8005e",
+  "fullName": "dataManagement.spec.ts:102:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597330802
+}

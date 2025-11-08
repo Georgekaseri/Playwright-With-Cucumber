@@ -1,0 +1,80 @@
+{
+  "uuid": "7677393f-8ce9-4dca-ae43-a4a2c885dc37",
+  "name": "Should filter users by permission",
+  "historyId": "2861a2ea86feecdd7beac0621c47c616:37bd82dd3846ffabacc8571fafbf68f1",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762597258726,
+      "uuid": "0678c5f6-d553-4987-8c2e-0a50bf402c40",
+      "stop": 1762597258727
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258728,
+      "name": "Expect \"toBeGreaterThan\"",
+      "uuid": "b3395e07-50b7-4f4d-b005-cb3bde50d58d",
+      "stop": 1762597258734
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762597258728,
+      "name": "Expect \"toContain\"",
+      "uuid": "893da053-8633-41ff-87fd-58e3dcd93c7b",
+      "stop": 1762597258734
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762597258728,
+      "uuid": "270ab5a3-1981-40e9-83bc-ecc3644ee829",
+      "stop": 1762597258737
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium-desktop" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "dataManagement.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium-desktop > dataManagement.spec.ts > Data Management System Validation"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-85229-worker-1" },
+    { "name": "parentSuite", "value": "chromium-desktop" },
+    { "name": "suite", "value": "dataManagement.spec.ts" },
+    { "name": "subSuite", "value": "Data Management System Validation" }
+  ],
+  "links": [],
+  "start": 1762597258734,
+  "testCaseId": "2861a2ea86feecdd7beac0621c47c616",
+  "fullName": "dataManagement.spec.ts:32:7",
+  "titlePath": ["dataManagement.spec.ts", "Data Management System Validation"],
+  "stop": 1762597258735
+}

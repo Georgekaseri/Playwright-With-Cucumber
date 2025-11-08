@@ -1,0 +1,2 @@
+Still on login page after login attempt
+Login failed in visual test setup, skipping dashboard tests

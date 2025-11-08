@@ -32,7 +32,7 @@ When(
 
     const user = DataHelper.getUserByRole(userRole);
     await this.loginPage.login(user.username, user.password);
-  }
+  },
 );
 
 When(
@@ -56,7 +56,7 @@ When(
 
     const user = DataHelper.getParallelSafeUser(userRole);
     await this.loginPage.login(user.username, user.password);
-  }
+  },
 );
 
 When(
@@ -80,7 +80,7 @@ When(
       // Use normal login method for non-empty credentials
       await this.loginPage.login(username, password);
     }
-  }
+  },
 );
 
 Then("I should see the dashboard", async function (this: CustomWorld) {

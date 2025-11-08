@@ -1,0 +1,107 @@
+{
+  "uuid": "5fe40ed2-e511-4282-b598-239a2b201fd4",
+  "name": "Should generate shard configurations for CI",
+  "historyId": "681b4370ac821b3ff2524ef7b46f9b3f:5bd835b0d6b1d4ada3b9f0db936e82c8",
+  "status": "passed",
+  "statusDetails": {},
+  "stage": "finished",
+  "steps": [
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "Before Hooks",
+      "start": 1762596968349,
+      "uuid": "22a94b44-2488-4293-95c4-c8e38674abc8",
+      "stop": 1762596968352
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968353,
+      "name": "Expect \"toHaveLength\"",
+      "uuid": "a7e3d2b6-8b64-4fa5-958e-da2182101185",
+      "stop": 1762596968411
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968354,
+      "name": "Expect \"toEqual\"",
+      "uuid": "05200326-8e53-4917-9354-c7282e464071",
+      "stop": 1762596968411
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968355,
+      "name": "Expect \"toEqual\"",
+      "uuid": "183d70b1-4f8d-437f-b036-a6303dfadbba",
+      "stop": 1762596968356
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1762596968356,
+      "name": "Expect \"toEqual\"",
+      "uuid": "b2f0ec80-cb43-47c7-8814-936c20a2cefa",
+      "stop": 1762596968411
+    },
+    {
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "name": "After Hooks",
+      "start": 1762596968357,
+      "uuid": "e87a2c4f-890d-4695-ad85-91c1bafd72ce",
+      "stop": 1762596968365
+    }
+  ],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "chromium" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "advancedParallelization.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > chromium > advancedParallelization.spec.ts > Advanced Parallelization System Tests"
+    },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker-1" },
+    { "name": "parentSuite", "value": "chromium" },
+    { "name": "suite", "value": "advancedParallelization.spec.ts" },
+    { "name": "subSuite", "value": "Advanced Parallelization System Tests" }
+  ],
+  "links": [],
+  "start": 1762596968411,
+  "testCaseId": "681b4370ac821b3ff2524ef7b46f9b3f",
+  "fullName": "advancedParallelization.spec.ts:115:7",
+  "titlePath": [
+    "advancedParallelization.spec.ts",
+    "Advanced Parallelization System Tests"
+  ],
+  "stop": 1762596968417
+}

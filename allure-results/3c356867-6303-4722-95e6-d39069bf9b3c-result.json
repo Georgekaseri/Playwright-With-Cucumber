@@ -1,0 +1,34 @@
+{
+  "uuid": "3c356867-6303-4722-95e6-d39069bf9b3c",
+  "name": "Staging specific health check @health @staging",
+  "historyId": "901398314bb717bc60d57a6efd50c871:b444eb0fbe6390c71e68b51dd25701fc",
+  "status": "skipped",
+  "statusDetails": { "message": "Staging tests only run in QA environment" },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [{ "name": "Project", "value": "firefox" }],
+  "labels": [
+    { "name": "language", "value": "javascript" },
+    { "name": "framework", "value": "playwright" },
+    { "name": "package", "value": "health.spec.ts" },
+    {
+      "name": "titlePath",
+      "value": " > firefox > health.spec.ts > Staging Environment Health @staging"
+    },
+    { "name": "tag", "value": "staging" },
+    { "name": "tag", "value": "health" },
+    { "name": "tag", "value": "staging" },
+    { "name": "host", "value": "Georges-MacBook-Pro.local" },
+    { "name": "thread", "value": "pid-83530-worker--1" },
+    { "name": "parentSuite", "value": "firefox" },
+    { "name": "suite", "value": "health.spec.ts" },
+    { "name": "subSuite", "value": "Staging Environment Health @staging" }
+  ],
+  "links": [],
+  "start": 1762596988476,
+  "testCaseId": "901398314bb717bc60d57a6efd50c871",
+  "fullName": "health.spec.ts:79:7",
+  "titlePath": ["health.spec.ts", "Staging Environment Health @staging"],
+  "stop": 1762596988478
+}
