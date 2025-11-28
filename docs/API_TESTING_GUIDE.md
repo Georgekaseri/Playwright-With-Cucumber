@@ -67,12 +67,12 @@ interface BookingResponse {
 
 | Method | Description | Returns |
 |--------|-------------|---------|
-| `createBooking(payload)` | Creates a new booking with validation | `BookingResponse` |
-| `createBookingRaw(payload)` | Creates booking without validation (for testing invalid data) | `APIResponse` |
-| `getBooking(bookingId)` | Retrieves a booking by ID | `BookingPayload` |
-| `deleteBooking(bookingId)` | Deletes a booking (requires authentication) | `void` |
-| `auth()` | Authenticates and returns a token | `string` |
-| `healthCheck()` | Checks API service availability | `boolean` |
+| `createBooking(payload)` | Creates a new booking with validation | `Promise<BookingResponse>` |
+| `createBookingRaw(payload)` | Creates booking without validation (for testing invalid data) | `Promise<APIResponse>` |
+| `getBooking(bookingId)` | Retrieves a booking by ID | `Promise<BookingPayload>` |
+| `deleteBooking(bookingId)` | Deletes a booking (requires authentication) | `Promise<void>` |
+| `auth()` | Authenticates and returns a token | `Promise<string>` |
+| `healthCheck()` | Checks API service availability | `Promise<boolean>` |
 
 ## Test Types
 
