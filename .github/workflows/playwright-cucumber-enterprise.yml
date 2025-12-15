@@ -103,7 +103,7 @@ jobs:
 
       - name: Upload Playwright report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Playwright Report - ${{ matrix.browser }} - ${{ matrix.env }}
           path: playwright-report/
@@ -157,7 +157,7 @@ jobs:
 
       - name: Upload Cucumber report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Cucumber Report - ${{ matrix.env }}
           path: reports/
@@ -198,7 +198,7 @@ jobs:
 
       - name: Upload API test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: API Test Results - ${{ matrix.env }}
           path: playwright-report/
@@ -245,7 +245,7 @@ jobs:
 
       - name: Upload visual test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Visual Test Results - ${{ matrix.env }}
           path: |
@@ -294,7 +294,7 @@ jobs:
 
       - name: Upload enhanced test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Enhanced Test Results - ${{ matrix.config }}
           path: playwright-report/
@@ -360,7 +360,7 @@ jobs:
 
       - name: Upload Executive Cucumber HTML Report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Executive Cucumber HTML Report
           path: reports/cucumber-html/
@@ -368,7 +368,7 @@ jobs:
 
       - name: Upload Allure Report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Allure Test Report
           path: allure-report/
@@ -376,7 +376,7 @@ jobs:
 
       - name: Upload Consolidated Playwright Reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Consolidated Playwright Reports
           path: |

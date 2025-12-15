@@ -86,7 +86,7 @@ jobs:
           API_KEY: ${{ matrix.environment == 'dev' && secrets.DEV_API_KEY || matrix.environment == 'qa' && secrets.QA_API_KEY || secrets.PROD_API_KEY }}
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: test-results-${{ matrix.browser }}-${{ matrix.environment }}-${{ github.run_id }}
@@ -137,7 +137,7 @@ jobs:
           ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Upload visual test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: visual-test-results-${{ matrix.environment }}-${{ github.run_id }}
@@ -183,7 +183,7 @@ jobs:
         if: always()
 
       - name: Upload BDD test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: bdd-test-results-${{ github.run_id }}
@@ -224,7 +224,7 @@ jobs:
           ORANGEHRM_PASSWORD: ${{ matrix.environment == 'dev' && secrets.DEV_ORANGEHRM_PASSWORD || matrix.environment == 'qa' && secrets.QA_ORANGEHRM_PASSWORD || secrets.PROD_ORANGEHRM_PASSWORD }}
 
       - name: Upload accessibility results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: accessibility-test-results-${{ matrix.environment }}-${{ github.run_id }}
